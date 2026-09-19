@@ -110,7 +110,11 @@ input[type=email],input[type=password]{width:100%;font-family:var(--sans);font-s
 .crecim__lab{font-size:13px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
 .crecim__nd{font-size:19px;font-weight:600;color:var(--navy);line-height:1.4}
 .crecim__pie{font-size:15px;color:var(--muted);line-height:1.5;margin-top:8px}
-.crecim__rango{font-size:15px;color:var(--ink);margin-top:12px;padding-top:12px;border-top:1px solid var(--line-soft);font-variant-numeric:tabular-nums}
+.crecim__n{font-family:var(--display);font-size:42px;font-weight:800;color:var(--navy);line-height:1.05;font-variant-numeric:tabular-nums;letter-spacing:-0.02em;margin-bottom:6px}
+.crecim__n span{font-family:var(--sans);font-size:17px;font-weight:600;color:var(--muted);letter-spacing:0}
+.crecim__vs{font-size:15px;color:var(--muted);padding-left:12px;border-left:3px solid var(--yellow);line-height:1.4}
+.crecim__nota{font-size:15px;color:var(--muted);line-height:1.55;margin-top:18px;padding-top:14px;border-top:1px solid var(--line-soft);max-width:72ch}
+.crecim__rango{font-size:15px;color:var(--ink);margin-top:12px;font-variant-numeric:tabular-nums;line-height:1.45}
 .cierre{margin-top:26px;font-size:19px;font-weight:600;line-height:1.5;color:var(--ink);background:var(--yellow-soft);border-left:5px solid var(--yellow);border-radius:0 12px 12px 0;padding:18px 20px;max-width:64ch}
 
 /* ============ PANEL ============ */
@@ -461,21 +465,22 @@ input[type=email],input[type=password]{width:100%;font-family:var(--sans);font-s
 
         <div class="panelito">
           <h2>Cuánto ha crecido tu salario anualmente</h2>
-          <p class="panelito__sub">La inflación crece en promedio 4.40% al año. Si tu salario crece menos, pierdes poder de compra.</p>
+          <p class="panelito__sub">La inflación crece en promedio 4.40% al año. Si tu salario crece menos, cada año compras menos con lo mismo.</p>
           <div class="crecim">
             <div class="crecim__c">
               <p class="crecim__lab">Con tus datos actuales</p>
-              <p class="crecim__nd">No se puede calcular</p>
-              <p class="crecim__pie">El salario inicial registrado es $0.00, así que no hay punto de partida para medir el crecimiento.</p>
-              <p class="crecim__rango">28.6 años · de $0.00 a $1,712.91 diarios</p>
+              <p class="crecim__n">16.87<span>% al año</span></p>
+              <p class="crecim__vs">Inflación: 4.40% al año</p>
+              <p class="crecim__rango">En 27.4 años, de $19.91 a $1,433.19 diarios.</p>
             </div>
             <div class="crecim__c">
               <p class="crecim__lab">Con pronóstico</p>
-              <p class="crecim__nd">No se puede calcular</p>
-              <p class="crecim__pie">El salario inicial registrado es $0.00, así que no hay punto de partida para medir el crecimiento.</p>
-              <p class="crecim__rango">36.6 años · de $0.00 a $2,384.15 diarios</p>
+              <p class="crecim__n">11.85<span>% al año</span></p>
+              <p class="crecim__vs">Inflación: 4.40% al año</p>
+              <p class="crecim__rango">En 44.7 años, de $19.91 a $2,980.17 diarios.</p>
             </div>
           </div>
+          <p class="crecim__nota">Estas dos cifras vienen de otro reporte. En el de esta pantalla, el primer salario está registrado en $0.00, así que no hay punto de partida y no se puede calcular el crecimiento. Hoy la app imprime “Infinity%” en ese caso.</p>
         </div>
 
         <p class="cierre">Esa diferencia depende sobre todo de una decisión: a qué edad te retiras. Ese es el siguiente paso.</p>
