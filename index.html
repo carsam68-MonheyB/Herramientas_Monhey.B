@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>monhey.B · Propuesta de textos de interfaz</title>
+<meta name="description" content="Propuesta de textos para las siete herramientas de monhey.B: de describir funciones a prometer respuestas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#16386E;
+  --navy-deep:#0E2247;
+  --navy-soft:#EDF1F8;
+  --yellow:#F7C822;
+  --yellow-soft:#FEF6D8;
+  --ink:#14171C;
+  --muted:#525B6B;
+  --old:#6B7280;
+  --line:#DFE4EC;
+  --line-soft:#EEF1F6;
+  --red:#B3261E;
+  --red-soft:#FDECEA;
+  --amber:#8A5300;
+  --amber-soft:#FBF1DF;
+  --white:#FFFFFF;
+  --sans:"Instrument Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --display:"Fraunces", Georgia, "Times New Roman", serif;
+  --measure:36rem;
+  --navh:64px;
+  --radius:14px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{
+  scroll-behavior:smooth;
+  scroll-padding-top:calc(var(--navh) + 18px);
+  -webkit-text-size-adjust:100%;
+}
+body{
+  margin:0;
+  background:var(--white);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:17px;
+  line-height:1.6;
+  font-weight:400;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+h1,h2,h3,h4{font-family:var(--display);font-weight:800;line-height:1.15;margin:0;letter-spacing:-0.01em}
+p{margin:0}
+a{color:var(--navy);text-decoration-thickness:1.5px;text-underline-offset:3px}
+:focus-visible{outline:3px solid var(--navy);outline-offset:3px;border-radius:4px}
+.wrap{width:100%;max-width:1240px;margin:0 auto;padding:0 24px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.skip{position:absolute;left:12px;top:-100px;z-index:200;background:var(--navy);color:#fff;padding:12px 18px;border-radius:10px;font-weight:600;text-decoration:none}
+.skip:focus{top:12px}
+
+/* ---------- Navegación ---------- */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(255,255,255,.96);
+  backdrop-filter:saturate(1.6) blur(8px);
+  border-bottom:1px solid var(--line);
+}
+.nav__inner{display:flex;align-items:center;gap:20px;height:var(--navh);max-width:1240px;margin:0 auto;padding:0 24px}
+.brand{display:flex;align-items:center;gap:9px;flex:0 0 auto;text-decoration:none;color:var(--navy);font-weight:700;font-size:17px;letter-spacing:-0.02em}
+.brand__dot{width:26px;height:26px;border-radius:8px;background:var(--navy);display:grid;place-items:center;color:var(--yellow);font-family:var(--display);font-size:15px;font-weight:800;line-height:1}
+.navlinks{display:flex;gap:4px;overflow-x:auto;overflow-y:hidden;scrollbar-width:thin;padding:6px 0;margin-left:auto;-webkit-overflow-scrolling:touch}
+.navlinks a{
+  flex:0 0 auto;text-decoration:none;color:var(--muted);
+  font-size:14px;font-weight:600;letter-spacing:.01em;
+  padding:7px 11px;border-radius:999px;white-space:nowrap;
+}
+.navlinks a:hover{background:var(--navy-soft);color:var(--navy)}
+.navlinks a[aria-current="true"]{background:var(--navy);color:#fff}
+.navlinks a .n{font-variant-numeric:tabular-nums;opacity:.65;margin-right:5px}
+.navlinks a[aria-current="true"] .n{opacity:.85;color:var(--yellow)}
+
+main{padding-top:var(--navh)}
+section{scroll-margin-top:calc(var(--navh) + 18px)}
+
+/* ---------- Portada ---------- */
+.hero{padding:64px 0 56px;border-bottom:1px solid var(--line)}
+.hero__grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:64px;align-items:start}
+.eyebrow{
+  display:inline-block;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--navy);background:var(--yellow);padding:6px 12px;border-radius:999px;margin-bottom:22px;
+}
+.hero h1{font-size:clamp(38px,5.2vw,60px);color:var(--navy);margin-bottom:22px}
+.hero h1 em{font-style:normal;color:var(--ink);background:linear-gradient(transparent 62%, var(--yellow) 62%)}
+.lede{font-size:19px;line-height:1.65;color:var(--muted);max-width:34rem}
+.lede + .lede{margin-top:16px}
+.lede strong{color:var(--ink);font-weight:600}
+
+/* Ejemplo antes/después compacto de portada */
+.example{margin-top:34px;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;max-width:34rem}
+.example__row{padding:18px 22px}
+.example__row + .example__row{border-top:1px solid var(--line)}
+.example__tag{display:block;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
+.example__row--old{background:#FAFBFC}
+.example__row--old .example__tag{color:var(--old)}
+.example__row--new .example__tag{color:var(--navy)}
+.old-text{color:var(--old);text-decoration:line-through;text-decoration-thickness:1.5px;font-size:18px;line-height:1.5}
+.new-text{color:var(--ink);font-weight:600;font-size:21px;line-height:1.4;letter-spacing:-0.01em}
+
+/* ---------- Teléfono ---------- */
+.phone-col{display:flex;flex-direction:column;align-items:center;gap:14px}
+.phone{
+  width:340px;max-width:100%;
+  border:11px solid #0B1A33;border-radius:40px;
+  background:var(--white);overflow:hidden;
+  box-shadow:0 20px 50px rgba(11,26,51,.18);
+}
+.phone__bar{background:var(--navy);color:#fff;padding:16px 18px 18px;position:relative}
+.phone__notch{width:76px;height:5px;border-radius:99px;background:rgba(255,255,255,.35);margin:0 auto 14px}
+.phone__hi{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--yellow);font-weight:700}
+.phone__title{font-family:var(--display);font-size:22px;font-weight:800;margin-top:4px;line-height:1.2}
+.phone__list{list-style:none;margin:0;padding:6px 10px 14px}
+.phone__item{display:flex;gap:12px;padding:13px 10px;align-items:flex-start}
+.phone__item + .phone__item{border-top:1px solid var(--line-soft)}
+.phone__ico{flex:0 0 auto;width:34px;height:34px;border-radius:10px;background:var(--navy-soft);display:grid;place-items:center;color:var(--navy);margin-top:2px}
+.phone__ico svg{width:18px;height:18px;display:block}
+.phone__item--pro .phone__ico{background:var(--yellow-soft);color:var(--amber)}
+.phone__name{font-size:14px;font-weight:700;color:var(--navy);line-height:1.3;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.phone__sub{font-size:15px;line-height:1.4;color:var(--ink);font-weight:500;margin-top:3px;letter-spacing:-0.005em}
+.pro{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:var(--yellow);color:var(--navy-deep);padding:2px 7px;border-radius:999px}
+.phone-caption{font-size:14px;color:var(--muted);text-align:center;max-width:320px;line-height:1.5}
+
+/* ---------- Encabezados de sección ---------- */
+.band{padding:72px 0;border-bottom:1px solid var(--line)}
+.band--tint{background:#FAFBFD}
+.band__head{max-width:var(--measure);margin-bottom:40px}
+.band__kicker{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--navy);margin-bottom:12px}
+.band__head h2{font-size:clamp(28px,3.4vw,38px);color:var(--navy);margin-bottom:14px}
+.band__head p{font-size:18px;color:var(--muted);line-height:1.6}
+
+/* ---------- El giro: filas antes/después ---------- */
+.shift{display:grid;gap:20px}
+.shift__row{
+  display:grid;grid-template-columns:minmax(0,1fr) 54px minmax(0,1.15fr);
+  align-items:stretch;border:1px solid var(--line);border-radius:var(--radius);background:var(--white);overflow:hidden;
+}
+.shift__cell{padding:24px 26px;display:flex;flex-direction:column;justify-content:center;gap:10px;min-width:0}
+.shift__cell--old{background:#F7F8FA}
+.shift__cell--new{background:var(--white);border-left:4px solid var(--yellow)}
+.shift__label{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.shift__cell--old .shift__label{color:var(--old)}
+.shift__cell--new .shift__label{color:var(--navy)}
+.shift__arrow{display:grid;place-items:center;background:#F7F8FA;color:var(--navy);border-left:1px solid var(--line);border-right:1px solid var(--line)}
+.shift__arrow svg{width:22px;height:22px}
+
+/* ---------- Leyenda de hallazgos ---------- */
+.legend{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:34px;padding:20px 24px;border:1px dashed var(--line);border-radius:var(--radius);background:var(--white)}
+.legend__item{display:flex;align-items:center;gap:10px;font-size:15px;color:var(--muted)}
+
+/* ---------- Bloques por herramienta ---------- */
+.tool{padding:72px 0;border-bottom:1px solid var(--line)}
+.tool__head{display:flex;align-items:center;gap:16px;margin-bottom:8px;flex-wrap:wrap}
+.tool__num{
+  font-family:var(--display);font-size:20px;font-weight:800;color:var(--navy-deep);
+  background:var(--yellow);width:46px;height:46px;border-radius:12px;display:grid;place-items:center;
+  font-variant-numeric:tabular-nums;flex:0 0 auto;
+}
+.tool__head h2{font-size:clamp(26px,3.2vw,34px);color:var(--navy)}
+.tool__head .pro{font-size:12px;padding:5px 11px}
+.tool__rule{height:3px;background:var(--navy-soft);border-radius:2px;margin:18px 0 40px}
+.tool__grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:56px;align-items:start}
+.tool__main{min-width:0;max-width:40rem}
+.tool__side{min-width:0}
+
+.field + .field{margin-top:38px}
+.field__label{
+  font-family:var(--sans);font-size:13px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--navy);margin-bottom:14px;display:flex;align-items:center;gap:10px;
+}
+.field__label::after{content:"";flex:1;height:1px;background:var(--line)}
+
+/* Unidad copiable */
+.copyunit{display:flex;flex-direction:column;align-items:flex-start;gap:13px}
+.copyunit > div{min-width:0;width:100%}
+.copytext{max-width:64ch;min-width:0}
+.prop{color:var(--ink);letter-spacing:-0.005em}
+.prop--hero{font-size:22px;font-weight:600;line-height:1.4}
+.prop--md{font-size:20px;font-weight:600;line-height:1.45}
+.prop--body{font-size:20px;font-weight:500;line-height:1.55;color:#20242C}
+.prop--alt{font-size:20px;font-weight:500;line-height:1.45;color:#2A303A}
+
+.hero-card{border:2px solid var(--navy);border-radius:var(--radius);padding:22px 24px;background:var(--white)}
+.entry{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.entry__part{padding:20px 22px}
+.entry__part + .entry__part{border-top:1px solid var(--line);background:#FCFDFE}
+.entry__mini{font-size:12px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.alts{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.alts li{padding:16px 18px;border:1px solid var(--line);border-radius:12px;background:#FBFCFE}
+.alts .prop--alt{position:relative;padding-left:22px}
+.alts .prop--alt::before{content:"";position:absolute;left:0;top:.62em;width:10px;height:2px;background:var(--line);border-radius:2px}
+.hook{background:var(--yellow-soft);border-left:5px solid var(--yellow);border-radius:0 12px 12px 0;padding:20px 22px}
+
+.copybtn{
+  flex:0 0 auto;display:inline-flex;align-items:center;gap:7px;
+  font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:.02em;
+  color:var(--navy);background:var(--white);border:1.5px solid var(--navy);
+  padding:7px 13px;border-radius:999px;cursor:pointer;line-height:1.2;
+  transition:background .15s ease, color .15s ease;
+}
+.copybtn:hover{background:var(--navy);color:#fff}
+.copybtn svg{width:14px;height:14px;flex:0 0 auto}
+.copybtn .ok{display:none}
+.copybtn.is-done{background:var(--navy);color:#fff;border-color:var(--navy)}
+.copybtn.is-done .ok{display:block}
+.copybtn.is-done .clip{display:none}
+
+/* Hallazgos */
+.findings{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.finding{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;align-items:start;padding:16px 18px;border:1px solid var(--line);border-radius:12px;background:var(--white)}
+.finding p{font-size:17px;line-height:1.6;color:#22262E;max-width:56ch}
+.badge{
+  font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
+  padding:4px 9px;border-radius:999px;white-space:nowrap;line-height:1.3;margin-top:3px;
+}
+.badge--grave{background:var(--red);color:#fff}
+.badge--aviso{background:var(--amber-soft);color:var(--amber);border:1px solid #E7CFA3}
+.badge--mejora{background:var(--navy-soft);color:var(--navy);border:1px solid #CBD7EA}
+.finding--grave{border-color:var(--red);background:var(--red-soft)}
+.finding--grave p{color:#6E1610;font-weight:500}
+
+/* Tabla de nombres de columna */
+.subsection{margin-top:52px;padding-top:44px;border-top:3px solid var(--navy-soft)}
+.subsection h3{font-size:24px;color:var(--navy);margin-bottom:10px}
+.subsection > p{font-size:17px;color:var(--muted);max-width:var(--measure);margin-bottom:26px}
+.table-wrap{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+table{width:100%;border-collapse:collapse;background:var(--white)}
+caption{text-align:left;font-size:14px;color:var(--muted);padding-bottom:12px}
+th,td{text-align:left;padding:16px 20px;vertical-align:top;border-bottom:1px solid var(--line-soft)}
+thead th{background:var(--navy);color:#fff;font-size:13px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;border-bottom:none}
+tbody tr:last-child td{border-bottom:none}
+td.col-old{width:38%;color:var(--old);font-size:18px}
+td.col-old span{text-decoration:line-through;text-decoration-thickness:1.5px}
+td.col-new{font-size:20px;font-weight:600;color:var(--ink);line-height:1.45}
+td.col-new .kill{color:var(--red);font-weight:700}
+td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--muted);margin-top:4px}
+
+/* Reglas finales */
+.rules{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.rule{border:1px solid var(--line);border-top:5px solid var(--navy);border-radius:var(--radius);padding:28px 26px;background:var(--white)}
+.rule h3{font-size:21px;color:var(--navy);margin-bottom:12px;line-height:1.3}
+.rule p{font-size:17px;color:var(--muted);line-height:1.6}
+.rule p.rule__n{font-family:var(--display);font-size:40px;font-weight:800;color:var(--yellow);line-height:1;margin-bottom:14px;-webkit-text-stroke:1.5px var(--navy)}
+
+.foot{padding:48px 0 64px;color:var(--muted);font-size:15px}
+.foot p{max-width:var(--measure);line-height:1.6}
+
+/* ---------- Responsivo ---------- */
+@media (max-width:980px){
+  .hero__grid{grid-template-columns:1fr;gap:48px}
+  .phone-col{order:-1}
+  .tool__grid{grid-template-columns:1fr;gap:44px}
+  .tool__main{max-width:none}
+  .rules{grid-template-columns:1fr}
+}
+@media (max-width:720px){
+  .wrap{padding:0 20px}
+  .nav__inner{padding:0 20px;gap:12px}
+  .hero{padding:44px 0 40px}
+  .band,.tool{padding:52px 0}
+  .shift__row{grid-template-columns:1fr}
+  .shift__arrow{border:none;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:8px 0}
+  .shift__arrow svg{transform:rotate(90deg)}
+  .shift__cell--new{border-left:5px solid var(--yellow)}
+  .prop--hero,.prop--md,.prop--alt{font-size:20px}
+  .prop--body{font-size:19px}
+  .table-wrap{border:none}
+  table,thead,tbody,tr,td{display:block;width:100%}
+  thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  tbody tr{border:1px solid var(--line);border-radius:12px;margin-bottom:14px;overflow:hidden}
+  td{border-bottom:none;padding:16px 18px}
+  td.col-old{width:100%;background:#F7F8FA}
+  td::before{content:attr(data-label);display:block;font-size:11px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+  .finding{grid-template-columns:1fr;gap:10px}
+  .badge{justify-self:start;margin-top:0}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition-duration:.001ms !important;animation-duration:.001ms !important;animation-iteration-count:1 !important}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+
+<svg aria-hidden="true" focusable="false" style="position:absolute;width:0;height:0;overflow:hidden">
+  <defs>
+    <symbol id="i-resumen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18"/><rect x="5" y="11" width="4" height="7"/><rect x="11" y="7" width="4" height="11"/><rect x="17" y="4" width="4" height="14"/></symbol>
+    <symbol id="i-proy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-5 4 3 7-8"/><path d="M15 7h5v5"/></symbol>
+    <symbol id="i-hist" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><path d="M3 12h18"/></symbol>
+    <symbol id="i-gastos" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-9-9v9z"/><path d="M15 3.5A9 9 0 0 1 20.5 9H15z"/></symbol>
+    <symbol id="i-ahorro" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></symbol>
+    <symbol id="i-simul" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"/><circle cx="9" cy="6" r="2.2"/><circle cx="15" cy="12" r="2.2"/><circle cx="8" cy="18" r="2.2"/></symbol>
+    <symbol id="i-mod40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2.5" width="16" height="19" rx="2"/><path d="M8 7h8"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01M8.5 16h.01M12 16h.01M15.5 16h.01"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"/><path d="M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-clip" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5.5 5.5L20 6.5"/></symbol>
+  </defs>
+</svg>
+
+<nav class="nav" aria-label="Navegación de la propuesta">
+  <div class="nav__inner">
+    <a class="brand" href="#portada"><span class="brand__dot" aria-hidden="true">m</span>monhey.B</a>
+    <div class="navlinks">
+      <a href="#giro">El giro</a>
+      <a href="#t01"><span class="n">01</span>Resumen</a>
+      <a href="#t02"><span class="n">02</span>Proyecciones</a>
+      <a href="#t03"><span class="n">03</span>Historial</a>
+      <a href="#t04"><span class="n">04</span>Gastos</a>
+      <a href="#t05"><span class="n">05</span>Ahorros</a>
+      <a href="#t06"><span class="n">06</span>Simulador</a>
+      <a href="#t07"><span class="n">07</span>Modalidad 40</a>
+      <a href="#reglas">Reglas</a>
+    </div>
+  </div>
+</nav>
+
+<p class="sr-only" id="live" role="status" aria-live="polite"></p>
+
+<main id="contenido">
+
+<!-- ============ PORTADA ============ -->
+<section class="hero" id="portada">
+  <div class="wrap hero__grid">
+    <div>
+      <span class="eyebrow">Propuesta de textos de interfaz</span>
+      <h1>De función a <em>respuesta</em></h1>
+      <p class="lede">Hoy los subtítulos del menú describen lo que hace la herramienta: <strong>“Herramienta interactiva para simular escenarios”</strong>. Nadie abre una app para usar una herramienta interactiva.</p>
+      <p class="lede">La abre porque tiene una pregunta. Esta propuesta cambia los siete subtítulos por la <strong>respuesta que cada herramienta promete</strong>, y revisa pantalla por pantalla qué contradice esa promesa.</p>
+
+      <div class="example">
+        <div class="example__row example__row--old">
+          <span class="example__tag">Antes</span>
+          <p class="old-text">Vista general de tu situación</p>
+        </div>
+        <div class="example__row example__row--new">
+          <span class="example__tag">Después</span>
+          <p class="new-text">Tu pensión hoy vs. la que podrías tener</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="phone-col">
+      <div class="phone" role="group" aria-label="Menú de la app monhey.B con las siete herramientas y los subtítulos propuestos">
+        <div class="phone__bar">
+          <div class="phone__notch" aria-hidden="true"></div>
+          <p class="phone__hi">Tus herramientas</p>
+          <p class="phone__title">¿Qué quieres saber hoy?</p>
+        </div>
+        <ul class="phone__list">
+          <li class="phone__item">
+            <span class="phone__ico" aria-hidden="true"><svg><use href="#i-resumen"></use></svg></span>
+            <span><span class="phone__name">Resumen financiero</span><span class="phone__sub">Tu pensión hoy vs. la que podrías tener</span></span>
+          </li>
+          <li class="phone__item">
+            <span class="phone__ico" aria-hidden="true"><svg><use href="#i-proy"></use></svg></span>
+            <span><span class="phone__name">Proyecciones de pensión</span><span class="phone__sub">Retirarte a los 60 o a los 65 no es lo mismo</span></span>
+          </li>
+          <li class="phone__item">
+            <span class="phone__ico" aria-hidden="true"><svg><use href="#i-hist"></use></svg></span>
+            <span><span class="phone__name">Historial laboral</span><span class="phone__sub">Revisa que el IMSS tenga bien tus años cotizados</span></span>
+          </li>
+          <li class="phone__item">
+            <span class="phone__ico" aria-hidden="true"><svg><use href="#i-gastos"></use></svg></span>
+            <span><span class="phone__name">Análisis de gastos</span><span class="phone__sub">En qué se te va el dinero y cuánto costará mañana</span></span>
+          </li>
+          <li class="phone__item">
+            <span class="phone__ico" aria-hidden="true"><svg><use href="#i-ahorro"></use></svg></span>
+            <span><span class="phone__name">Proyección de ahorros</span><span class="phone__sub">Cuánto tendrás el día que dejes de trabajar</span></span>
+          </li>
+          <li class="phone__item phone__item--pro">
+            <span class="phone__ico" aria-hidden="true"><svg><use href="#i-simul"></use></svg></span>
+            <span><span class="phone__name">Simulador de jubilación <span class="pro">Premium</span></span><span class="phone__sub">¿Hasta qué edad te alcanza el dinero?</span></span>
+          </li>
+          <li class="phone__item">
+            <span class="phone__ico" aria-hidden="true"><svg><use href="#i-mod40"></use></svg></span>
+            <span><span class="phone__name">Modalidad 40</span><span class="phone__sub">Cuánto cuesta la Modalidad 40 y cuánto sube cada año</span></span>
+          </li>
+        </ul>
+      </div>
+      <p class="phone-caption">El menú con los siete subtítulos propuestos. Cada uno es una pregunta que el usuario ya se hizo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EL GIRO ============ -->
+<section class="band band--tint" id="giro">
+  <div class="wrap">
+    <div class="band__head">
+      <p class="band__kicker">El giro</p>
+      <h2>Tres ejemplos del mismo cambio</h2>
+      <p>El subtítulo viejo explica la pantalla. El nuevo contesta la duda que llevó al usuario hasta ahí.</p>
+    </div>
+
+    <div class="shift">
+      <div class="shift__row">
+        <div class="shift__cell shift__cell--old">
+          <span class="shift__label">Antes</span>
+          <p class="old-text">Vista general de tu situación</p>
+        </div>
+        <div class="shift__arrow" aria-hidden="true"><svg><use href="#i-arrow"></use></svg></div>
+        <div class="shift__cell shift__cell--new">
+          <span class="shift__label">Después</span>
+          <p class="new-text">Tu pensión hoy vs. la que podrías tener</p>
+        </div>
+      </div>
+      <div class="shift__row">
+        <div class="shift__cell shift__cell--old">
+          <span class="shift__label">Antes</span>
+          <p class="old-text">Proyecciones por edad de retiro</p>
+        </div>
+        <div class="shift__arrow" aria-hidden="true"><svg><use href="#i-arrow"></use></svg></div>
+        <div class="shift__cell shift__cell--new">
+          <span class="shift__label">Después</span>
+          <p class="new-text">Retirarte a los 60 o a los 65 no es lo mismo</p>
+        </div>
+      </div>
+      <div class="shift__row">
+        <div class="shift__cell shift__cell--old">
+          <span class="shift__label">Antes</span>
+          <p class="old-text">Historial de empleos y salarios</p>
+        </div>
+        <div class="shift__arrow" aria-hidden="true"><svg><use href="#i-arrow"></use></svg></div>
+        <div class="shift__cell shift__cell--new">
+          <span class="shift__label">Después</span>
+          <p class="new-text">Revisa que el IMSS tenga bien tus años cotizados</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="legend">
+      <span class="legend__item"><span class="badge badge--grave">Grave</span> Error que hay que corregir antes de publicar.</span>
+      <span class="legend__item"><span class="badge badge--aviso">Aviso</span> Texto o dato que confunde.</span>
+      <span class="legend__item"><span class="badge badge--mejora">Mejora</span> Ajuste de jerarquía o de claridad.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 01 ============ -->
+<section class="tool" id="t01">
+  <div class="wrap">
+    <div class="tool__head"><span class="tool__num" aria-hidden="true">01</span><h2>Resumen financiero</h2></div>
+    <div class="tool__rule" aria-hidden="true"></div>
+    <div class="tool__grid">
+      <div class="tool__main">
+        <div class="field">
+          <h3 class="field__label">Subtítulo recomendado</h3>
+          <div class="hero-card copyunit"><p class="copytext prop prop--hero">Tu pensión hoy vs. la que podrías tener</p></div>
+        </div>
+        <div class="field">
+          <h3 class="field__label">Alternativas descartadas</h3>
+          <ul class="alts">
+            <li class="copyunit"><p class="copytext prop prop--alt">Descubre cuánto puede crecer tu pensión</p></li>
+            <li class="copyunit"><p class="copytext prop prop--alt">Tu retrato financiero completo, en un vistazo</p></li>
+          </ul>
+        </div>
+        <div class="field">
+          <h3 class="field__label">Texto de entrada</h3>
+          <div class="entry">
+            <div class="entry__part copyunit"><div><p class="entry__mini">Título</p><p class="copytext prop prop--md">Tu pensión hoy vs. tu pensión proyectada</p></div></div>
+            <div class="entry__part copyunit"><div><p class="entry__mini">Cuerpo</p><p class="copytext prop prop--body">Comparamos lo que recibirías con tus datos actuales contra lo que podrías alcanzar con proyección a futuro. La diferencia puede sorprenderte.</p></div></div>
+          </div>
+        </div>
+        <div class="field">
+          <h3 class="field__label">Frase gancho</h3>
+          <div class="hook copyunit"><p class="copytext prop prop--md">¿Sabías que la diferencia entre tu pensión actual y la proyectada puede ser de decenas de miles de pesos al mes? Aquí está tu número.</p></div>
+        </div>
+      </div>
+      <aside class="tool__side">
+        <h3 class="field__label">Hallazgos de pantalla</h3>
+        <ul class="findings">
+          <li class="finding finding--aviso"><span class="badge badge--aviso">Aviso</span><p>Dice “Tú Pensión Ahora”; debe ser “Tu”, sin acento.</p></li>
+          <li class="finding finding--mejora"><span class="badge badge--mejora">Mejora</span><p>Cambiar esa etiqueta a “Tu pensión con datos actuales” para que contraste con “Pensión con pronóstico”.</p></li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 02 ============ -->
+<section class="tool" id="t02">
+  <div class="wrap">
+    <div class="tool__head"><span class="tool__num" aria-hidden="true">02</span><h2>Proyecciones de pensión</h2></div>
+    <div class="tool__rule" aria-hidden="true"></div>
+    <div class="tool__grid">
+      <div class="tool__main">
+        <div class="field">
+          <h3 class="field__label">Subtítulo recomendado</h3>
+          <div class="hero-card copyunit"><p class="copytext prop prop--hero">Retirarte a los 60 o a los 65 no es lo mismo</p></div>
+        </div>
+        <div class="field">
+          <h3 class="field__label">Alternativas descartadas</h3>
+          <ul class="alts">
+            <li class="copyunit"><p class="copytext prop prop--alt">Cuánto cambia tu pensión por cada año que esperes</p></li>
+            <li class="copyunit"><p class="copytext prop prop--alt">Tu pensión, edad por edad, hasta los 65</p></li>
+          </ul>
+        </div>
+        <div class="field">
+          <h3 class="field__label">Texto de entrada</h3>
+          <div class="entry">
+            <div class="entry__part copyunit"><div><p class="entry__mini">Título</p><p class="copytext prop prop--md">Tu pensión, año por año, hasta los 65</p></div></div>
+            <div class="entry__part copyunit"><div><p class="entry__mini">Cuerpo</p><p class="copytext prop prop--body">Cada año adicional suma semanas cotizadas y sube tu porcentaje por edad. Aquí ves exactamente cuánto cambia tu pensión mensual en cada escenario.</p></div></div>
+          </div>
+        </div>
+        <div class="field">
+          <h3 class="field__label">Frase gancho</h3>
+          <div class="hook copyunit"><p class="copytext prop prop--md">Un año más de trabajo puede valer miles de pesos al mes durante toda tu jubilación. Descubre cuánto vale el tuyo.</p></div>
+        </div>
+      </div>
+      <aside class="tool__side">
+        <h3 class="field__label">Hallazgos de pantalla</h3>
+        <ul class="findings">
+          <li class="finding finding--aviso"><span class="badge badge--aviso">Aviso</span><p>La gráfica muestra un solo punto con el eje entre $126,083 y $126,086. No aporta y confunde: ocultarla o forzar el eje desde cero.</p></li>
+          <li class="finding finding--mejora"><span class="badge badge--mejora">Mejora</span><p>Subir el bloque “Información relevante” antes de la tabla: 1,643 semanas contra 2,169, y SBC de $2,597.74 contra $3,903.46.</p></li>
+          <li class="finding finding--mejora"><span class="badge badge--mejora">Mejora</span><p>Explicar el 100% de la columna “Porcentaje por edad”: a los 65 recibes el 100% de tu pensión calculada.</p></li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 ============ -->
+<section class="tool" id="t03">
+  <div class="wrap">
+    <div class="tool__head"><span class="tool__num" aria-hidden="true">03</span><h2>Historial laboral</h2></div>
+    <div class="tool__rule" aria-hidden="true"></div>
+    <div class="tool__grid">
+      <div class="tool__main">
+        <div class="field">
+          <h3 class="field__label">Subtítulo recomendado</h3>
+          <div class="hero-card copyunit"><p class="copytext prop prop--hero">Revisa que el IMSS tenga bien tus años cotizados</p></div>
+        </div>
+        <div class="field">
+          <h3 class="field__label">Alternativas descartadas</h3>
+          <ul class="alts">
+            <li class="copyunit"><p class="copytext prop prop--alt">Toda tu vida laboral ante el IMSS, en un solo lugar</p></li>
+            <li class="copyunit"><p class="copytext prop prop--alt">Cada empleo y cada salario que definen tu pensión</p></li>
+          </ul>
+        </div>
+        <div class="field">
+          <h3 class="field__label">Texto de entrada</h3>
+          <div class="entry">
+            <div class="entry__part copyunit"><div><p class="entry__mini">Título</p><p class="copytext prop prop--md">Tu trayectoria completa ante el IMSS</p></div></div>
+            <div class="entry__part copyunit"><div><p class="entry__mini">Cuerpo</p><p class="copytext prop prop--body">Cada patrón, periodo y salario base registrado a tu nombre. De aquí salen tus semanas cotizadas y el cálculo de tu pensión, así que vale la pena revisarlo.</p></div></div>
+          </div>
+        </div>
+        <div class="field">
+          <h3 class="field__label">Frase gancho</h3>
+          <div class="hook copyunit"><p class="copytext prop prop--md">Tu pensión se calcula con lo que el IMSS tiene registrado, no con lo que tú recuerdas. Revisa tu historial completo.</p></div>
+        </div>
+      </div>
+      <aside class="tool__side">
+        <h3 class="field__label">Hallazgos de pantalla</h3>
+        <ul class="findings">
+          <li class="finding finding--mejora"><span class="badge badge--mejora">Mejora</span><p>Falta un resumen arriba de la lista: “10 empleos · 1,643 semanas · desde 1994”.</p></li>
+          <li class="finding finding--aviso"><span class="badge badge--aviso">Aviso</span><p>“Salario base” es diario y no lo dice. Etiquetar como “Salario base diario (SBC)”.</p></li>
+          <li class="finding finding--mejora"><span class="badge badge--mejora">Mejora</span><p>Mostrar las semanas de cada periodo dentro de la tarjeta.</p></li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 ============ -->
+<section class="tool" id="t04">
+  <div class="wrap">
+    <div class="tool__head"><span class="tool__num" aria-hidden="true">04</span><h2>Análisis de gastos</h2></div>
+    <div class="tool__rule" aria-hidden="true"></div>
+    <div class="tool__grid">
+      <div class="tool__main">
+        <div class="field">
+          <h3 class="field__label">Subtítulo recomendado</h3>
+          <div class="hero-card copyunit"><p class="copytext prop prop--hero">En qué se te va el dinero y cuánto costará mañana</p></div>
+        </div>
+        <div class="field">
+          <h3 class="field__label">Alternativas descartadas</h3>
+          <ul class="alts">
+            <li class="copyunit"><p class="copytext prop prop--alt">Lo que hoy gastas, con precios de dentro de unos años</p></li>
+            <li class="copyunit"><p class="copytext prop prop--alt">Tus gastos peso por peso, categoría por categoría</p></li>
+          </ul>
+        </div>
+        <div class="field">
+          <h3 class="field__label">Texto de entrada</h3>
+          <div class="entry">
+            <div class="entry__part copyunit"><div><p class="entry__mini">Título</p><p class="copytext prop prop--md">Tus gastos hoy y lo que costarán mañana</p></div></div>
+            <div class="entry__part copyunit"><div><p class="entry__mini">Cuerpo</p><p class="copytext prop prop--body">Desglosamos cada categoría y subcategoría de tu gasto mensual, y te mostramos cuánto costará lo mismo dentro de unos años con la inflación estimada.</p></div></div>
+          </div>
+        </div>
+        <div class="field">
+          <h3 class="field__label">Frase gancho</h3>
+          <div class="hook copyunit"><p class="copytext prop prop--md">Mantener tu mismo estilo de vida costará casi 19% más en cuatro años. Descubre cuánto significa eso en tu bolsillo.</p></div>
+        </div>
+      </div>
+      <aside class="tool__side">
+        <h3 class="field__label">Hallazgos de pantalla</h3>
+        <ul class="findings">
+          <li class="finding finding--aviso"><span class="badge badge--aviso">Aviso</span><p>El dato más fuerte está enterrado: $104,103.68 contra $123,765.85, casi veinte mil pesos más al mes por lo mismo. Debe ser el encabezado.</p></li>
+          <li class="finding finding--mejora"><span class="badge badge--mejora">Mejora</span><p>Ordenar la tabla de mayor a menor % del total.</p></li>
+          <li class="finding finding--mejora"><span class="badge badge--mejora">Mejora</span><p>Las gráficas de pastel con 100% de una sola subcategoría no aportan; mostrar solo el monto en texto.</p></li>
+          <li class="finding finding--mejora"><span class="badge badge--mejora">Mejora</span><p>Falta el cierre: comparar el gasto proyectado contra la pensión estimada.</p></li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 ============ -->
+<section class="tool" id="t05">
+  <div class="wrap">
+    <div class="tool__head"><span class="tool__num" aria-hidden="true">05</span><h2>Proyección de ahorros</h2></div>
+    <div class="tool__rule" aria-hidden="true"></div>
+    <div class="tool__grid">
+      <div class="tool__main">
+        <div class="field">
+          <h3 class="field__label">Subtítulo recomendado</h3>
+          <div class="hero-card copyunit"><p class="copytext prop prop--hero">Cuánto tendrás el día que dejes de trabajar</p></div>
+        </div>
+        <div class="field">
+          <h3 class="field__label">Alternativas descartadas</h3>
+          <ul class="alts">
+            <li class="copyunit"><p class="copytext prop prop--alt">Lo que tu ahorro puede convertirse antes de tu retiro</p></li>
+            <li class="copyunit"><p class="copytext prop prop--alt">Tu ahorro de hoy, con intereses hasta tu retiro</p></li>
+          </ul>
+        </div>
+        <div class="field">
+          <h3 class="field__label">Texto de entrada</h3>
+          <div class="entry">
+            <div class="entry__part copyunit"><div><p class="entry__mini">Título</p><p class="copytext prop prop--md">Tu ahorro el día que dejes de trabajar</p></div></div>
+            <div class="entry__part copyunit"><div><p class="entry__mini">Cuerpo</p><p class="copytext prop prop--body">Sumamos lo que ya tienes, lo que aportas cada mes y los intereses que ambos generan. Verás cuánto pone cada parte y cuánto trabaja el dinero por ti.</p></div></div>
+          </div>
+        </div>
+        <div class="field">
+          <h3 class="field__label">Frase gancho</h3>
+          <div class="hook copyunit"><p class="copytext prop prop--md">Tu ahorro no se queda quieto: los intereses también aportan. Descubre en cuánto se convierte el tuyo al llegar a tu retiro.</p></div>
+        </div>
+      </div>
+      <aside class="tool__side">
+        <h3 class="field__label">Hallazgos de pantalla</h3>
+        <ul class="findings">
+          <li class="finding finding--grave"><span class="badge badge--grave">Grave</span><p>Textos encimados en “Detalle de aportaciones mensuales”: se lee “$240,000gaados”.</p></li>
+          <li class="finding finding--mejora"><span class="badge badge--mejora">Mejora</span><p>El total de $650,584.69 debe ir hasta arriba; hoy queda a dos pantallas.</p></li>
+          <li class="finding finding--mejora"><span class="badge badge--mejora">Mejora</span><p>Falta el dato más vendedor: $540,000 los pusiste tú, $110,584.69 los generó el interés.</p></li>
+          <li class="finding finding--mejora"><span class="badge badge--mejora">Mejora</span><p>La fórmula VF y el factor de crecimiento son datos de asesor: esconderlos tras “Ver cómo se calcula”.</p></li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 ============ -->
+<section class="tool" id="t06">
+  <div class="wrap">
+    <div class="tool__head"><span class="tool__num" aria-hidden="true">06</span><h2>Simulador de jubilación</h2><span class="pro">Premium</span></div>
+    <div class="tool__rule" aria-hidden="true"></div>
+    <div class="tool__grid">
+      <div class="tool__main">
+        <div class="field">
+          <h3 class="field__label">Subtítulo recomendado</h3>
+          <div class="hero-card copyunit"><p class="copytext prop prop--hero">¿Hasta qué edad te alcanza el dinero?</p></div>
+        </div>
+        <div class="field">
+          <h3 class="field__label">Alternativas descartadas</h3>
+          <ul class="alts">
+            <li class="copyunit"><p class="copytext prop prop--alt">Cambia una variable y mira cómo cambia tu retiro</p></li>
+            <li class="copyunit"><p class="copytext prop prop--alt">Prueba escenarios antes de que sea tu realidad</p></li>
+          </ul>
+        </div>
+        <div class="field">
+          <h3 class="field__label">Texto de entrada</h3>
+          <div class="entry">
+            <div class="entry__part copyunit"><div><p class="entry__mini">Título</p><p class="copytext prop prop--md">¿Hasta qué edad te alcanza el dinero?</p></div></div>
+            <div class="entry__part copyunit"><div><p class="entry__mini">Cuerpo</p><p class="copytext prop prop--body">Cruzamos tu pensión, tus ahorros, tus otros ingresos y tus gastos con inflación, año por año. Si el dinero se acaba antes de tiempo, te decimos cuánto falta y cómo conseguirlo.</p></div></div>
+          </div>
+        </div>
+        <div class="field">
+          <h3 class="field__label">Frase gancho</h3>
+          <div class="hook copyunit"><p class="copytext prop prop--md">Saber cuánto te falta a tiempo todavía es un plan. Descubrirlo después ya no.</p></div>
+        </div>
+      </div>
+      <aside class="tool__side">
+        <h3 class="field__label">Hallazgos de pantalla</h3>
+        <ul class="findings">
+          <li class="finding finding--grave"><span class="badge badge--grave">Grave</span><p>El modal dice “Fondos insuficientes” y la tarjeta de resultados dice “Fondos suficientes”, con balance final de −$9,638,000. Destruye la credibilidad de la herramienta.</p></li>
+          <li class="finding finding--grave"><span class="badge badge--grave">Grave</span><p>El modal dice que los ahorros se agotan a los 60, que es la edad de retiro. La tabla muestra saldo negativo a los 61.</p></li>
+          <li class="finding finding--aviso"><span class="badge badge--aviso">Aviso</span><p>Celdas vacías en la tarjeta de resultados (Años de Jubilación y Fondos Suficientes) y el balance final aparece cortado dentro de su tarjeta.</p></li>
+          <li class="finding finding--aviso"><span class="badge badge--aviso">Aviso</span><p>Textos encimados: “Pensión$1,513,016.28”.</p></li>
+          <li class="finding finding--mejora"><span class="badge badge--mejora">Mejora</span><p>Las estrategias de inversión están hasta el fondo. Deben ir justo después de la alerta.</p></li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 07 ============ -->
+<section class="tool" id="t07">
+  <div class="wrap">
+    <div class="tool__head"><span class="tool__num" aria-hidden="true">07</span><h2>Modalidad 40</h2></div>
+    <div class="tool__rule" aria-hidden="true"></div>
+    <div class="tool__grid">
+      <div class="tool__main">
+        <div class="field">
+          <h3 class="field__label">Subtítulo recomendado</h3>
+          <div class="hero-card copyunit"><p class="copytext prop prop--hero">Cuánto cuesta la Modalidad 40 y cuánto sube cada año</p></div>
+        </div>
+        <div class="field">
+          <h3 class="field__label">Alternativas descartadas</h3>
+          <ul class="alts">
+            <li class="copyunit"><p class="copytext prop prop--alt">El costo completo de la Modalidad 40, año por año</p></li>
+            <li class="copyunit"><p class="copytext prop prop--alt">Calcula tu cuota mensual de Modalidad 40</p></li>
+          </ul>
+        </div>
+        <div class="field">
+          <h3 class="field__label">Texto de entrada</h3>
+          <div class="entry">
+            <div class="entry__part copyunit"><div><p class="entry__mini">Título</p><p class="copytext prop prop--md">Cuánto cuesta la Modalidad 40, de principio a fin</p></div></div>
+            <div class="entry__part copyunit"><div><p class="entry__mini">Cuerpo</p><p class="copytext prop prop--body">Calculamos tu cuota mensual, lo que pagarías en total y cómo aumenta año con año, porque el porcentaje que cobra el IMSS no es el mismo cada año.</p></div></div>
+          </div>
+        </div>
+        <div class="field">
+          <h3 class="field__label">Frase gancho</h3>
+          <div class="hook copyunit"><p class="copytext prop prop--md">La cuota de la Modalidad 40 no es fija: sube cada año por ley. Calcula lo que realmente pagarías de principio a fin.</p></div>
+        </div>
+      </div>
+      <aside class="tool__side">
+        <h3 class="field__label">Hallazgos de pantalla</h3>
+        <ul class="findings">
+          <li class="finding finding--grave"><span class="badge badge--grave">Grave</span><p>Contradicción en la UMA: la tabla la muestra fija en $117.31 los cinco años y la gráfica la muestra subiendo de $117 a $140.</p></li>
+          <li class="finding finding--grave"><span class="badge badge--grave">Grave</span><p>Dice “% IMSS fijo (2026): 14.438%” pero la tabla muestra que sube hasta 18.800% en 2030. Cambiar a “Cuota IMSS del primer año”.</p></li>
+          <li class="finding finding--grave"><span class="badge badge--grave">Grave</span><p>Edad actual 53 aquí contra 56 en el Simulador de Jubilación y en Proyección de Ahorros.</p></li>
+          <li class="finding finding--mejora"><span class="badge badge--mejora">Mejora</span><p>La tabla tiene once columnas y exige cuatro barridos laterales para leer una fila. Eliminar “Estado” (todas dicen “Mod 40 Activa”) y subir al encabezado No. UMAs, UMA de contratación, Salario Diario y Salario Mensual, que son idénticos en todas las filas. Quedan cinco columnas legibles de una vez.</p></li>
+          <li class="finding finding--mejora"><span class="badge badge--mejora">Mejora</span><p>Falta el aumento acumulado: de $12,872 a $16,761 es 30% más al final del periodo.</p></li>
+          <li class="finding finding--mejora"><span class="badge badge--mejora">Mejora</span><p>Unificar el nombre del mismo dato: aparece como “Costo Mensual Inicial” y como “Costo mensual base”.</p></li>
+        </ul>
+      </aside>
+    </div>
+
+    <div class="subsection" id="columnas">
+      <h3>Nombres de columna</h3>
+      <p>Los encabezados de la tabla de Modalidad 40 están escritos para quien programó el cálculo, no para quien va a pagarlo. Esta es la traducción propuesta.</p>
+      <div class="table-wrap">
+        <table>
+          <caption class="sr-only">Nombres de columna actuales y propuestos para la tabla de Modalidad 40</caption>
+          <thead>
+            <tr><th scope="col">Nombre actual</th><th scope="col">Nombre propuesto</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="col-old" data-label="Nombre actual"><span>Meses Restantes</span></td><td class="col-new" data-label="Nombre propuesto">Meses que te faltan por pagar</td></tr>
+            <tr><td class="col-old" data-label="Nombre actual"><span>Var%</span></td><td class="col-new" data-label="Nombre propuesto">Aumento vs. año anterior</td></tr>
+            <tr><td class="col-old" data-label="Nombre actual"><span>% IMSS Mod 40</span></td><td class="col-new" data-label="Nombre propuesto">Cuota IMSS del año (%)</td></tr>
+            <tr><td class="col-old" data-label="Nombre actual"><span>Estado</span></td><td class="col-new" data-label="Nombre propuesto"><span class="kill">Eliminar</span><span class="kill-note">Todas las filas dicen lo mismo.</span></td></tr>
+            <tr><td class="col-old" data-label="Nombre actual"><span>Costo Mensual Inicial</span></td><td class="col-new" data-label="Nombre propuesto">Costo mensual (primer año)</td></tr>
+            <tr><td class="col-old" data-label="Nombre actual"><span>Número de UMAs</span></td><td class="col-new" data-label="Nombre propuesto">Salario a cotizar (en UMAs, máximo 25)</td></tr>
+            <tr><td class="col-old" data-label="Nombre actual"><span>Inflación Anual (%)</span></td><td class="col-new" data-label="Nombre propuesto">Inflación estimada para proyectar la UMA</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REGLAS ============ -->
+<section class="band band--tint" id="reglas">
+  <div class="wrap">
+    <div class="band__head">
+      <p class="band__kicker">Para que el texto se sostenga</p>
+      <h2>Tres reglas de jerarquía</h2>
+      <p>Un buen subtítulo promete algo. Estas tres reglas evitan que la pantalla lo incumpla.</p>
+    </div>
+    <div class="rules">
+      <div class="rule">
+        <p class="rule__n" aria-hidden="true">1</p>
+        <h3>El número prometido va primero</h3>
+        <p>Si el subtítulo ofreció la diferencia, la diferencia es lo primero que se ve.</p>
+      </div>
+      <div class="rule">
+        <p class="rule__n" aria-hidden="true">2</p>
+        <h3>El desglose explica, no compite</h3>
+        <p>Los datos de apoyo van más chicos y debajo, en lista.</p>
+      </div>
+      <div class="rule">
+        <p class="rule__n" aria-hidden="true">3</p>
+        <h3>Las fórmulas se esconden</h3>
+        <p>VF, PMT y factores de crecimiento, detrás de “Ver cómo se calcula”.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap foot">
+  <p>Propuesta de textos de interfaz para monhey.B · Siete herramientas · Los textos propuestos se copian con un clic.</p>
+</div>
+
+</main>
+
+<script>
+(function () {
+  'use strict';
+
+  var CLIP = '<svg class="clip" aria-hidden="true" focusable="false"><use href="#i-clip"></use></svg>';
+  var OK   = '<svg class="ok" aria-hidden="true" focusable="false"><use href="#i-check"></use></svg>';
+  var live = document.getElementById('live');
+
+  // Un botón "Copiar" por cada texto propuesto.
+  var units = document.querySelectorAll('.copyunit');
+  for (var i = 0; i < units.length; i++) {
+    var unit = units[i];
+    if (!unit.querySelector('.copytext')) continue;
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'copybtn';
+    btn.setAttribute('aria-label', 'Copiar este texto');
+    btn.innerHTML = CLIP + OK + '<span class="copybtn__label">Copiar</span>';
+    unit.appendChild(btn);
+  }
+
+  function confirmar(btn, mensaje) {
+    var label = btn.querySelector('.copybtn__label');
+    if (btn.dataset.busy === '1') return;
+    btn.dataset.busy = '1';
+    btn.classList.add('is-done');
+    label.textContent = mensaje;
+    if (live) live.textContent = mensaje;
+    window.setTimeout(function () {
+      btn.classList.remove('is-done');
+      label.textContent = 'Copiar';
+      btn.dataset.busy = '';
+      if (live) live.textContent = '';
+    }, 1600);
+  }
+
+  function copiaDeRespaldo(texto) {
+    var ta = document.createElement('textarea');
+    ta.value = texto;
+    ta.setAttribute('readonly', '');
+    ta.style.position = 'fixed';
+    ta.style.top = '-1000px';
+    document.body.appendChild(ta);
+    ta.select();
+    var ok = false;
+    try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+    document.body.removeChild(ta);
+    return ok;
+  }
+
+  document.addEventListener('click', function (ev) {
+    var btn = ev.target.closest && ev.target.closest('.copybtn');
+    if (!btn) return;
+    var unit = btn.closest('.copyunit');
+    var src = unit && unit.querySelector('.copytext');
+    if (!src) return;
+    var texto = src.textContent.replace(/\s+/g, ' ').trim();
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(texto).then(
+        function () { confirmar(btn, 'Copiado'); },
+        function () { confirmar(btn, copiaDeRespaldo(texto) ? 'Copiado' : 'No se pudo'); }
+      );
+    } else {
+      confirmar(btn, copiaDeRespaldo(texto) ? 'Copiado' : 'No se pudo');
+    }
+  });
+
+  // Resalta en la navegación la sección visible.
+  var links = {};
+  var enlaces = document.querySelectorAll('.navlinks a');
+  for (var j = 0; j < enlaces.length; j++) {
+    links[enlaces[j].getAttribute('href').slice(1)] = enlaces[j];
+  }
+  if ('IntersectionObserver' in window) {
+    var visibles = {};
+    var obs = new IntersectionObserver(function (entries) {
+      for (var k = 0; k < entries.length; k++) {
+        visibles[entries[k].target.id] = entries[k].isIntersecting;
+      }
+      var actual = null;
+      for (var id in links) {
+        if (visibles[id]) { actual = id; break; }
+      }
+      for (var id2 in links) {
+        if (id2 === actual) { links[id2].setAttribute('aria-current', 'true'); }
+        else { links[id2].removeAttribute('aria-current'); }
+      }
+    }, { rootMargin: '-25% 0px -60% 0px' });
+    for (var id3 in links) {
+      var sec = document.getElementById(id3);
+      if (sec) obs.observe(sec);
+    }
+  }
+})();
+</script>
+</body>
+</html>
