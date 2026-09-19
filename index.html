@@ -721,8 +721,15 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
       <aside class="tool__side">
         <h3 class="field__label">Hallazgos de pantalla</h3>
         <ul class="findings">
+          <li class="finding finding--grave"><span class="badge badge--grave">Grave</span><p>Cuando el primer empleo del historial trae salario $0.00, la tarjeta de crecimiento imprime “Infinity%”. Debe decir que no hay punto de partida y por qué.</p></li>
+          <li class="finding finding--aviso"><span class="badge badge--aviso">Aviso</span><p>La diferencia entre las dos pensiones, $20,826.94 al mes, va al pie en una tira gris. Es la cifra que promete el subtítulo: encabeza la pantalla.</p></li>
           <li class="finding finding--aviso"><span class="badge badge--aviso">Aviso</span><p>Dice “Tú Pensión Ahora”; debe ser “Tu”, sin acento.</p></li>
+          <li class="finding finding--aviso"><span class="badge badge--aviso">Aviso</span><p>En la gráfica, las dos etiquetas del escenario con pronóstico se enciman entre sí.</p></li>
+          <li class="finding finding--aviso"><span class="badge badge--aviso">Aviso</span><p>“Crecimiento Anual Compuesto (CAGR)” es jerga. El título nuevo ya lo dice en español.</p></li>
           <li class="finding finding--mejora"><span class="badge badge--mejora">Mejora</span><p>Cambiar esa etiqueta a “Tu pensión con datos actuales” para que contraste con “Pensión con pronóstico”.</p></li>
+          <li class="finding finding--mejora"><span class="badge badge--mejora">Mejora</span><p>Junto a cada porcentaje de crecimiento falta la inflación de 4.40%. Sin esa referencia, el número no dice si se gana o se pierde poder de compra.</p></li>
+          <li class="finding finding--mejora"><span class="badge badge--mejora">Mejora</span><p>Cuatro de los siete campos de “Expectativas de Retiro” dicen “No especificado”, entre ellos Modalidad 40, si cotiza actualmente y el crédito Infonavit. Los tres cambian el resultado, así que conviene pedir que se completen.</p></li>
+          <li class="finding finding--mejora"><span class="badge badge--mejora">Mejora</span><p>El eje derecho de la gráfica arranca en 1,600 y no en cero, lo que hace ver la subida del salario mayor de lo que es. Se conserva así por ahora, por decisión de producto: no cambiarlo sin acordarlo.</p></li>
         </ul>
       </aside>
     </div>

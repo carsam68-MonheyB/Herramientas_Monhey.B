@@ -75,6 +75,18 @@ input[type=email],input[type=password]{width:100%;font-family:var(--sans);font-s
 .panelito h2{font-size:21px;color:var(--navy);margin-bottom:6px}
 .panelito__sub{font-size:16px;color:var(--muted);line-height:1.5;margin-bottom:20px;max-width:56ch}
 
+.graf-leyenda{display:flex;gap:22px;flex-wrap:wrap;margin-bottom:12px}
+.leg{display:inline-flex;align-items:center;gap:8px;font-size:14px;color:var(--muted)}
+.leg__m{width:16px;height:12px;border-radius:3px;flex:0 0 auto}
+.leg__m--barra{background:#4A6BA8}
+.leg__m--linea{height:3px;border-radius:2px;background:#2B3340}
+.graf-caja{overflow-x:auto}
+.graf{width:100%;min-width:560px;height:auto;display:block}
+.graf .ejeT{font-family:var(--sans);font-size:12px;fill:var(--muted);font-variant-numeric:tabular-nums}
+.graf .ejeN{font-family:var(--sans);font-size:12px;font-weight:600;fill:var(--muted)}
+.graf .catT{font-family:var(--sans);font-size:13px;font-weight:600;fill:var(--ink)}
+.graf .valB{font-family:var(--display);font-size:17px;font-weight:800;fill:var(--navy);font-variant-numeric:tabular-nums}
+.graf .valL{font-family:var(--sans);font-size:13px;font-weight:700;fill:#2B3340;font-variant-numeric:tabular-nums}
 .barras{display:grid;gap:18px}
 .barra-fila__top{display:flex;align-items:baseline;gap:12px;margin-bottom:7px;flex-wrap:wrap}
 .barra-fila__nom{font-size:16px;font-weight:600;color:var(--ink)}
@@ -393,41 +405,58 @@ input[type=email],input[type=password]{width:100%;font-family:var(--sans);font-s
           <p class="hero-num__pie">Cada mes, durante toda tu jubilación. Es lo que está en juego en las siguientes seis pantallas.</p>
         </div>
 
-        <div class="dos-graficas">
-          <div class="panelito">
-            <h2>Pensión mensual</h2>
-            <p class="panelito__sub">Lo que cobrarías cada mes.</p>
-            <div class="barras">
-              <div class="barra-fila barra-fila--hoy">
-                <div class="barra-fila__top"><span class="barra-fila__nom">Hoy</span><span class="barra-fila__val">$28,309.78</span></div>
-                <div class="barra-fila__pista"><div class="barra-fila__mark" style="width:57.6%"></div></div>
-              </div>
-              <div class="barra-fila barra-fila--proy">
-                <div class="barra-fila__top"><span class="barra-fila__nom">A los 60 años</span><span class="barra-fila__val">$49,136.72</span></div>
-                <div class="barra-fila__pista"><div class="barra-fila__mark" style="width:100%"></div></div>
-              </div>
-            </div>
-            <p class="crece">Crece <b>73.6%</b></p>
+        <div class="panelito">
+          <h2>Pensión mensual y salario promedio</h2>
+          <p class="panelito__sub">Las barras son la pensión al mes. La línea es el salario base diario, que se lee en el eje de la derecha.</p>
+
+          <div class="graf-leyenda">
+            <span class="leg"><span class="leg__m leg__m--barra"></span>Importe de pensión mensual</span>
+            <span class="leg"><span class="leg__m leg__m--linea"></span>Salario promedio diario</span>
           </div>
 
-          <div class="panelito">
-            <h2>Salario base diario</h2>
-            <p class="panelito__sub">El promedio con el que se calcula la pensión.</p>
-            <div class="barras">
-              <div class="barra-fila barra-fila--hoy">
-                <div class="barra-fila__top"><span class="barra-fila__nom">Hoy</span><span class="barra-fila__val">$1,712.91</span></div>
-                <div class="barra-fila__pista"><div class="barra-fila__mark" style="width:71.8%"></div></div>
-              </div>
-              <div class="barra-fila barra-fila--proy">
-                <div class="barra-fila__top"><span class="barra-fila__nom">A los 60 años</span><span class="barra-fila__val">$2,384.15</span></div>
-                <div class="barra-fila__pista"><div class="barra-fila__mark" style="width:100%"></div></div>
-              </div>
-            </div>
-            <p class="crece">Crece <b>39.2%</b></p>
+          <div class="graf-caja">
+            <svg viewBox="0 0 760 380" class="graf" role="img"
+                 aria-label="Con datos actuales, la pensión mensual es de 28,309.78 pesos y el salario promedio diario de 1,712.91 pesos. Con pronóstico a la edad de retiro, la pensión mensual es de 49,136.72 pesos y el salario promedio diario de 2,384.15 pesos.">
+              <g stroke="#E6EAF1" stroke-width="1">
+                <line x1="70" y1="320" x2="690" y2="320"/><line x1="70" y1="264" x2="690" y2="264"/>
+                <line x1="70" y1="208" x2="690" y2="208"/><line x1="70" y1="152" x2="690" y2="152"/>
+                <line x1="70" y1="96"  x2="690" y2="96"/><line  x1="70" y1="40"  x2="690" y2="40"/>
+              </g>
+              <g class="ejeT" text-anchor="end">
+                <text x="62" y="324">0</text><text x="62" y="268">10,000</text><text x="62" y="212">20,000</text>
+                <text x="62" y="156">30,000</text><text x="62" y="100">40,000</text><text x="62" y="44">50,000</text>
+              </g>
+              <g class="ejeT" text-anchor="start">
+                <text x="698" y="324">1,600</text><text x="698" y="268">1,800</text><text x="698" y="212">2,000</text>
+                <text x="698" y="156">2,200</text><text x="698" y="100">2,400</text><text x="698" y="44">2,600</text>
+              </g>
+              <text class="ejeN" x="18" y="180" transform="rotate(-90 18 180)" text-anchor="middle">Pensión mensual</text>
+              <text class="ejeN" x="742" y="180" transform="rotate(90 742 180)" text-anchor="middle">Salario diario</text>
+
+              <rect x="170" y="161.5" width="110" height="158.5" rx="4" fill="#4A6BA8"/>
+              <rect x="480" y="44.8"  width="110" height="275.2" rx="4" fill="#4A6BA8"/>
+
+              <polyline points="225,288.4 535,100.4" fill="none" stroke="#2B3340" stroke-width="2.5" stroke-linecap="round"/>
+              <circle cx="225" cy="288.4" r="5.5" fill="#2B3340" stroke="#fff" stroke-width="2"/>
+              <circle cx="535" cy="100.4" r="5.5" fill="#2B3340" stroke="#fff" stroke-width="2"/>
+
+              <text class="valB" x="225" y="150" text-anchor="middle">$28,309.78</text>
+              <text class="valB" x="535" y="33"  text-anchor="middle">$49,136.72</text>
+
+              <g class="valL">
+                <rect x="177" y="255" width="96" height="24" rx="6" fill="#fff" stroke="#D4DCEA"/>
+                <text x="225" y="271" text-anchor="middle">$1,712.91</text>
+                <rect x="487" y="112" width="96" height="24" rx="6" fill="#fff" stroke="#D4DCEA"/>
+                <text x="535" y="128" text-anchor="middle">$2,384.15</text>
+              </g>
+
+              <g class="catT" text-anchor="middle">
+                <text x="225" y="345">Datos actuales</text>
+                <text x="535" y="345">Pronóstico a los 60</text>
+              </g>
+            </svg>
           </div>
         </div>
-
-        <p class="nota-graf">Las dos empiezan en cero y cada una tiene su propia escala, porque una son pesos al mes y la otra pesos al día. Así se ve que tu pensión crece casi al doble de velocidad que tu salario.</p>
 
         <div class="fichas">
           <div class="ficha">
