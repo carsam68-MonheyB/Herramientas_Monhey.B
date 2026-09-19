@@ -27,7 +27,8 @@ button{font-family:inherit}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 [hidden]{display:none !important}
 
-.logo{display:inline-flex;flex-direction:column;gap:2px;line-height:1}
+.logo{display:block}
+.logo img{display:block;width:auto;height:var(--logo-h, 52px)}
 .logo__word{font-family:var(--display);font-size:30px;font-weight:800;color:var(--navy);letter-spacing:-0.02em}
 .logo__word em{font-style:normal;position:relative}
 .logo__word em::after{content:"";position:absolute;left:-1px;right:-1px;bottom:2px;height:6px;background:var(--yellow);border-radius:3px;z-index:-1}
@@ -49,13 +50,30 @@ input[type=email],input[type=password]{width:100%;font-family:var(--sans);font-s
 .trust{list-style:none;margin:40px 0 0;padding:0;display:grid;gap:13px}
 .trust li{display:flex;gap:12px;align-items:flex-start;font-size:15px;color:var(--muted);line-height:1.5}
 .trust svg{width:18px;height:18px;flex:0 0 auto;color:var(--navy);margin-top:2px}
-.acceso__foto{position:relative;min-height:340px;overflow:hidden;background:var(--navy-deep)}
-.acceso__foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:56% 50%;display:block}
-.acceso__velo{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,26,54,.86) 0%,rgba(10,26,54,.62) 34%,rgba(10,26,54,.12) 62%,rgba(10,26,54,.30) 100%)}
-.acceso__msg{position:absolute;left:0;right:0;top:0;padding:clamp(30px,4vw,56px);color:#fff}
-.acceso__msg h2{font-size:clamp(28px,3.2vw,40px);color:#fff;text-wrap:balance;max-width:16ch}
-.acceso__msg p{font-size:clamp(17px,1.5vw,19px);line-height:1.6;color:rgba(255,255,255,.92);margin-top:16px;max-width:42ch}
-.acceso__credito{position:absolute;bottom:0;right:0;padding:14px 18px;font-size:12px;color:rgba(255,255,255,.8)}
+.acceso__foto{position:relative;min-height:340px;overflow:hidden;background:var(--navy-deep);display:flex;flex-direction:column}
+.acceso__lienzo{position:relative;flex:1 1 auto;min-height:0;width:100%;line-height:0}
+.acceso__foto img{display:block;width:100%;height:100%;object-fit:contain;object-position:center bottom}
+.acceso__velo{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(10,26,54,0) 72%,rgba(10,26,54,.45) 100%)}
+.acceso__msg{position:relative;z-index:1;flex:0 0 auto;padding:clamp(26px,3vw,44px) clamp(28px,3.2vw,48px) clamp(18px,2.2vw,28px);color:#fff}
+.acceso__msg h2{font-size:clamp(25px,2.5vw,34px);color:#fff;text-wrap:balance;max-width:24ch}
+.acceso__msg p{font-size:clamp(16px,1.35vw,18px);line-height:1.55;color:rgba(255,255,255,.92);margin-top:12px;max-width:46ch}
+.acceso__credito{position:absolute;bottom:0;right:0;z-index:1;padding:14px 18px;font-size:12px;color:rgba(255,255,255,.85)}
+@media (min-width:861px) and (max-height:860px){
+  .acceso{height:100vh}
+  .acceso__form{padding:20px clamp(24px,4vw,60px)}
+  .logo{--logo-h:42px}
+  .acceso__form h1{font-size:clamp(26px,2.6vw,32px);margin:20px 0 8px}
+  .acceso__sub{font-size:16px}
+  form{margin-top:18px;gap:12px}
+  input[type=email],input[type=password]{padding:11px 14px;font-size:16px}
+  label{margin-bottom:5px}
+  .btn{padding:13px 20px}
+  .trust{margin-top:18px;gap:8px}
+  .trust li{font-size:14px}
+  .acceso__msg{padding:22px clamp(24px,3vw,40px) 16px}
+  .acceso__msg h2{font-size:clamp(22px,2.1vw,28px)}
+  .acceso__msg p{font-size:15px;margin-top:9px}
+}
 
 /* ============ VISTA DE HERRAMIENTA ============ */
 .volver{display:inline-flex;align-items:center;gap:8px;background:none;border:none;color:var(--navy);font-size:15px;font-weight:600;cursor:pointer;padding:6px 0;margin-bottom:14px}
@@ -283,11 +301,8 @@ table.proy .pct{font-weight:600}
 /* ============ PANEL ============ */
 .app{display:grid;grid-template-columns:var(--side) minmax(0,1fr);min-height:100%;background:var(--canvas)}
 .side{background:var(--white);border-right:1px solid var(--line);display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto}
-.side__top{padding:18px 18px 14px;display:flex;align-items:center;gap:11px}
-.side__mark{width:38px;height:38px;border-radius:11px;background:var(--yellow);display:grid;place-items:center;flex:0 0 auto}
-.side__mark span{font-family:var(--display);font-size:20px;font-weight:800;color:var(--navy);line-height:1}
-.side__name{font-size:16px;font-weight:700;color:var(--ink);line-height:1.2}
-.side__role{font-size:12px;color:var(--muted)}
+.side__top{padding:20px 18px 14px;display:flex;flex-direction:column;align-items:flex-start;gap:7px}
+.side__role{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--muted)}
 .side__search{margin:0 18px 16px;position:relative}
 .side__search input{width:100%;font-family:var(--sans);font-size:14px;background:var(--canvas);border:1px solid var(--line);border-radius:10px;padding:10px 12px 10px 34px;color:var(--ink)}
 .side__search svg{position:absolute;left:11px;top:50%;transform:translateY(-50%);width:15px;height:15px;color:var(--muted)}
@@ -301,7 +316,7 @@ table.proy .pct{font-weight:600}
 .side__num{font-size:12px;font-weight:700;color:var(--muted);width:17px;flex:0 0 auto;font-variant-numeric:tabular-nums;text-align:right}
 .side__link[aria-current="true"] .side__num{color:var(--yellow)}
 .side__pro{margin-left:auto;font-size:9px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;background:var(--yellow);color:var(--navy-deep);padding:2px 6px;border-radius:999px}
-.side__foot{margin-top:auto;padding:20px 18px;border-top:1px solid var(--line-soft)}
+
 
 .main{min-width:0;display:flex;flex-direction:column}
 .top{height:var(--top);background:var(--white);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:14px;padding:0 clamp(16px,2.5vw,28px);position:sticky;top:0;z-index:20}
@@ -365,8 +380,9 @@ table.proy .pct{font-weight:600}
 }
 @media (max-width:900px){
   .acceso{grid-template-columns:1fr;min-height:0}
-  .acceso__foto{order:-1;min-height:min(68vw,340px)}
-  .acceso__foto img{object-position:56% 62%}
+  .acceso__foto{order:-1;min-height:0}
+  .acceso__lienzo{flex:0 0 auto}
+  .acceso__foto img{height:auto}
   .acceso__form{padding:32px 20px 48px;margin:0 auto}
   .acceso__msg{padding:20px}
   .acceso__msg h2{font-size:26px;max-width:none}
@@ -419,7 +435,7 @@ table.proy .pct{font-weight:600}
 <!-- ============ PANTALLA: ACCESO ============ -->
 <main class="acceso" id="p-acceso">
   <div class="acceso__form">
-    <span class="logo"><span class="logo__word">mon<em><span>h</span></em>ey.B</span><span class="logo__tag">Planea tus finanzas</span></span>
+    <span class="logo"><img src="img/logo.png" alt="monhey.B · Planea tus finanzas" width="660" height="206"></span>
     <h1>Bienvenido de vuelta</h1>
     <p class="acceso__sub">Entra para ver en qué va tu retiro.</p>
     <form id="form-acceso" novalidate>
@@ -435,12 +451,14 @@ table.proy .pct{font-weight:600}
     </ul>
   </div>
   <div class="acceso__foto">
-    <img src="img/acceso.jpg" alt="Una mujer nada en una laguna de agua turquesa rodeada de palmeras, en Xcaret.">
-    <div class="acceso__velo"></div>
-    <p class="acceso__credito">Prototipo · sin cálculos</p>
     <div class="acceso__msg">
       <h2>Que el dinero te alcance hasta el final</h2>
       <p>Tu pensión, tus ahorros y tus gastos en un solo estudio. Aquí sabes si alcanza, y qué hacer si no.</p>
+    </div>
+    <div class="acceso__lienzo">
+      <img src="img/acceso.jpg" alt="Una mujer nada en una laguna de agua turquesa rodeada de palmeras, en Xcaret." width="1400" height="1050">
+      <div class="acceso__velo"></div>
+      <p class="acceso__credito">Prototipo · sin cálculos</p>
     </div>
   </div>
 </main>
@@ -449,8 +467,8 @@ table.proy .pct{font-weight:600}
 <div class="app" id="p-panel" hidden>
   <aside class="side" id="side">
     <div class="side__top">
-      <span class="side__mark" aria-hidden="true"><span>h</span></span>
-      <span><span class="side__name">monhey.B</span><br><span class="side__role">Panel de control</span></span>
+      <span class="logo" style="--logo-h:34px"><img src="img/logo.png" alt="monhey.B · Planea tus finanzas" width="660" height="206"></span>
+      <span class="side__role">Panel de control</span>
     </div>
     <div class="side__search">
       <svg aria-hidden="true"><use href="#i-buscar"></use></svg>
@@ -473,9 +491,6 @@ table.proy .pct{font-weight:600}
       <button class="side__link" type="button"><svg aria-hidden="true"><use href="#i-pagos"></use></svg>Facturación</button>
       <button class="side__link" type="button"><svg aria-hidden="true"><use href="#i-cuenta"></use></svg>Mi cuenta</button>
     </nav>
-    <div class="side__foot">
-      <span class="logo"><span class="logo__word" style="font-size:22px">mon<em><span>h</span></em>ey.B</span><span class="logo__tag">Planea tus finanzas</span></span>
-    </div>
   </aside>
 
   <div class="main">
