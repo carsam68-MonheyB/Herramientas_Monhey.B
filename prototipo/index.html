@@ -135,6 +135,22 @@ table.gastos tfoot td{background:var(--navy-soft);font-weight:700;border-bottom:
 .salud-c__par{display:flex;gap:30px;flex-wrap:wrap;margin-top:14px}
 .salud-c__par span{font-size:15px;color:#5C3B00}
 .salud-c__par b{display:block;font-family:var(--display);font-size:24px;color:#5C3B00;font-variant-numeric:tabular-nums;margin-top:2px}
+.base-datos{display:flex;flex-wrap:wrap;gap:12px 32px;background:var(--navy-soft);border:1px solid #CBD7EA;border-radius:var(--radius);padding:18px 22px;margin-bottom:22px}
+.base-datos__i{display:flex;flex-direction:column;gap:2px}
+.base-datos__l{font-size:13px;color:var(--muted)}
+.base-datos__v{font-size:19px;font-weight:700;color:var(--navy);font-variant-numeric:tabular-nums}
+.falta-dato{background:var(--white);border:2px dashed #C98F1E;border-radius:var(--radius);padding:20px 22px;margin-bottom:22px}
+.falta-dato h3{font-family:var(--sans);font-size:17px;font-weight:700;color:#5C3B00;margin-bottom:8px}
+.falta-dato p{font-size:16px;color:#5C3B00;line-height:1.55;max-width:68ch}
+table.mod40{width:100%;border-collapse:collapse;min-width:680px}
+table.mod40 th{background:var(--navy);color:#fff;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:13px 14px;text-align:right;white-space:nowrap}
+table.mod40 th:first-child{text-align:left}
+table.mod40 td{padding:13px 14px;border-bottom:1px solid var(--line-soft);font-size:16px;color:var(--ink);font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+table.mod40 td:first-child{text-align:left;font-weight:700;color:var(--navy)}
+table.mod40 tbody tr:last-child td{border-bottom:none}
+table.mod40 tbody tr:last-child{background:var(--navy-soft)}
+table.mod40 .costo{font-weight:700;color:var(--navy)}
+table.mod40 .var{color:#8A5300;font-weight:600}
 .resumen-l{display:flex;flex-wrap:wrap;gap:10px 28px;background:var(--navy);border-radius:var(--radius);padding:20px 24px;margin-bottom:22px;color:#fff}
 .resumen-l__it{display:flex;flex-direction:column;gap:2px}
 .resumen-l__n{font-family:var(--display);font-size:28px;font-weight:800;line-height:1;font-variant-numeric:tabular-nums;letter-spacing:-0.02em}
@@ -1005,6 +1021,66 @@ table.proy .pct{font-weight:600}
 
         <p class="cierre">Ya están las tres cifras: lo que vas a recibir, lo que vas a gastar y lo que habrás juntado. Falta cruzarlas.</p>
       </div>
+
+      <!-- ===== 07 · MODALIDAD 40 ===== -->
+      <div id="v-t07" hidden>
+        <button class="volver" type="button" data-volver><svg aria-hidden="true"><use href="#i-atras"></use></svg>Volver al panel</button>
+
+        <div class="vista__h">
+          <p class="vista__num">Herramienta 07 · Premium</p>
+          <h1>Modalidad 40</h1>
+          <p class="ent-t">Lo que sí puedes mover</p>
+          <p class="ent-c">La Modalidad 40 es la vía legal para subir la pensión antes de retirarte. Esto es lo que costaría en tu caso, mes por mes y año por año, hasta el último pago.</p>
+        </div>
+
+        <div class="hero-num">
+          <p class="hero-num__lab">Lo que pagarías en total, de principio a fin</p>
+          <p class="hero-num__n">$888,995.45</p>
+          <p class="hero-num__pie">60 meses, de 2026 a 2030. Empiezas pagando $12,872.29 al mes y terminas pagando $16,761.25: <b>30% más</b>, porque la cuota que cobra el IMSS sube cada año por ley.</p>
+        </div>
+
+        <div class="falta-dato">
+          <h3>Falta la otra mitad: cuánto sube tu pensión</h3>
+          <p>La pantalla dice cuánto cuesta, pero no cuánto se gana. Nadie puede decidir sobre $888,995.45 sin saber en cuánto queda su pensión al terminar de pagarlos. Ese dato lo tienen las Proyecciones de pensión y aquí no aparece.</p>
+        </div>
+
+        <div class="base-datos">
+          <span class="base-datos__i"><span class="base-datos__l">Salario a cotizar</span><span class="base-datos__v">25 UMAs</span></span>
+          <span class="base-datos__i"><span class="base-datos__l">UMA de contratación (2026)</span><span class="base-datos__v">$117.31 diarios</span></span>
+          <span class="base-datos__i"><span class="base-datos__l">Salario diario</span><span class="base-datos__v">$2,932.75</span></span>
+          <span class="base-datos__i"><span class="base-datos__l">Salario mensual</span><span class="base-datos__v">$89,155.60</span></span>
+          <span class="base-datos__i"><span class="base-datos__l">Duración</span><span class="base-datos__v">60 meses</span></span>
+        </div>
+
+        <div class="panelito">
+          <h2>Año por año</h2>
+          <p class="panelito__sub">Los cinco datos de arriba son iguales en todos los años, así que salen de la tabla. Lo único que cambia es la cuota que cobra el IMSS.</p>
+          <div class="tabla-caja">
+            <table class="mod40">
+              <thead><tr>
+                <th scope="col">Año</th>
+                <th scope="col">Cuota IMSS del año (%)</th>
+                <th scope="col">Costo mensual</th>
+                <th scope="col">Costo anual</th>
+                <th scope="col">Aumento vs. año anterior</th>
+                <th scope="col">Meses que te faltan por pagar</th>
+              </tr></thead>
+              <tbody>
+                <tr><td>2026</td><td>14.438%</td><td class="costo">$12,872.29</td><td>$154,467.43</td><td class="var">—</td><td>60</td></tr>
+                <tr><td>2027</td><td>15.528%</td><td class="costo">$13,844.08</td><td>$166,128.98</td><td class="var">+7.55%</td><td>48</td></tr>
+                <tr><td>2028</td><td>16.619%</td><td class="costo">$14,816.77</td><td>$177,801.23</td><td class="var">+7.03%</td><td>36</td></tr>
+                <tr><td>2029</td><td>17.709%</td><td class="costo">$15,788.57</td><td>$189,462.78</td><td class="var">+6.56%</td><td>24</td></tr>
+                <tr><td>2030</td><td>18.800%</td><td class="costo">$16,761.25</td><td>$201,135.03</td><td class="var">+6.16%</td><td>12</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="tabla-pie">La cuota sube de 14.438% a 18.800% por calendario de ley. El salario que cotizas no cambia: por eso el costo sube solo por la cuota.</p>
+        </div>
+
+        <p class="invita">Decidir si te conviene y llevar el trámite exige experiencia. Un facilitador monhey.B lo hace por ti. <b>Solicita ahora mismo su ayuda.</b></p>
+
+        <p class="cierre">Con esto cierra el estudio. Vuelve al resumen para ver el panorama con los ajustes aplicados.</p>
+      </div>
     </div>
   </div>
 </div>
@@ -1042,7 +1118,7 @@ table.proy .pct{font-weight:600}
   });
 
   var pendiente = document.getElementById('pendiente');
-  var LISTAS = ['01', '02', '03', '04', '05'];   // herramientas ya construidas
+  var LISTAS = ['01', '02', '03', '04', '05', '07'];   // herramientas ya construidas
 
   function verPanel() {
     document.querySelectorAll('[id^="v-"]').forEach(function (v) { v.hidden = v.id !== 'v-panel'; });
@@ -1060,7 +1136,7 @@ table.proy .pct{font-weight:600}
     document.querySelectorAll('[id^="v-"]').forEach(function (v) { v.hidden = v.id !== 'v-t' + num; });
     var sel = document.getElementById('sel-reporte');
     for (var k = 0; k < sel.options.length; k++) {
-      if (sel.options[k].value === (['03','04','05'].indexOf(num) >= 0 ? '02' : num)) { sel.selectedIndex = k; }
+      if (sel.options[k].value === (['03','04','05','06','07'].indexOf(num) >= 0 ? '02' : num)) { sel.selectedIndex = k; }
     }
     document.querySelectorAll('.side__link[data-tool]').forEach(function (l) {
       if (l.dataset.tool === num) { l.setAttribute('aria-current', 'true'); }
