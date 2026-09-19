@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>monhey.B · Prototipo</title>
+<title>Prototipo monhey.B</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -12,25 +12,21 @@
   --navy:#16386E; --navy-deep:#0E2247; --navy-soft:#EDF1F8;
   --yellow:#F7C822; --yellow-soft:#FEF6D8;
   --ink:#14171C; --muted:#525B6B; --line:#DFE4EC; --line-soft:#EEF1F6;
-  --white:#FFFFFF; --field:#EEF2FB;
+  --white:#FFFFFF; --field:#EEF2FB; --canvas:#F6F8FB;
   --sans:"Instrument Sans","Segoe UI",system-ui,-apple-system,sans-serif;
   --display:"Fraunces",Georgia,serif;
-  --radius:14px;
+  --radius:14px; --side:250px; --top:64px;
 }
 *,*::before,*::after{box-sizing:border-box}
 html,body{height:100%}
-body{
-  margin:0;background:var(--white);color:var(--ink);
-  font-family:var(--sans);font-size:17px;line-height:1.6;
-  -webkit-font-smoothing:antialiased;
-}
+body{margin:0;background:var(--white);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
 h1,h2,h3{font-family:var(--display);font-weight:800;line-height:1.15;margin:0;letter-spacing:-0.01em}
 p{margin:0}
+button{font-family:inherit}
 :focus-visible{outline:3px solid var(--navy);outline-offset:3px;border-radius:6px}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 [hidden]{display:none !important}
 
-/* ---------- Marca ---------- */
 .logo{display:inline-flex;flex-direction:column;gap:2px;line-height:1}
 .logo__word{font-family:var(--display);font-size:30px;font-weight:800;color:var(--navy);letter-spacing:-0.02em}
 .logo__word em{font-style:normal;position:relative}
@@ -38,42 +34,112 @@ p{margin:0}
 .logo__word span{position:relative;z-index:1}
 .logo__tag{font-size:9px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
 
-/* ---------- Pantalla de acceso ---------- */
+/* ============ ACCESO ============ */
 .acceso{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);min-height:100%}
 .acceso__form{display:flex;flex-direction:column;justify-content:center;padding:48px clamp(24px,5vw,72px);max-width:620px;width:100%;margin-left:auto}
 .acceso__form h1{font-size:clamp(30px,3.6vw,40px);color:var(--navy);margin:34px 0 10px}
 .acceso__sub{font-size:18px;color:var(--muted);line-height:1.55;max-width:36ch}
 form{margin-top:32px;display:grid;gap:18px}
 label{display:block;font-size:14px;font-weight:600;color:var(--muted);margin-bottom:7px}
-input[type=email],input[type=password]{
-  width:100%;font-family:var(--sans);font-size:17px;color:var(--ink);
-  background:var(--field);border:1.5px solid #D6DEF0;border-radius:11px;padding:14px 16px;
-}
+input[type=email],input[type=password]{width:100%;font-family:var(--sans);font-size:17px;color:var(--ink);background:var(--field);border:1.5px solid #D6DEF0;border-radius:11px;padding:14px 16px}
 .recuerda{display:flex;align-items:center;gap:10px;font-size:16px;color:var(--muted)}
 .recuerda input{width:19px;height:19px;accent-color:var(--navy);margin:0}
-.btn{
-  font-family:var(--sans);font-size:16px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
-  background:var(--navy);color:#fff;border:none;border-radius:11px;padding:16px 20px;cursor:pointer;
-  transition:background .15s ease;
-}
+.btn{font-size:16px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;background:var(--navy);color:#fff;border:none;border-radius:11px;padding:16px 20px;cursor:pointer;transition:background .15s ease}
 .btn:hover{background:var(--navy-deep)}
-.pendiente{margin-top:18px;font-size:16px;line-height:1.55;color:var(--navy);background:var(--yellow-soft);border-left:4px solid var(--yellow);border-radius:0 10px 10px 0;padding:14px 16px}
 .trust{list-style:none;margin:40px 0 0;padding:0;display:grid;gap:13px}
 .trust li{display:flex;gap:12px;align-items:flex-start;font-size:15px;color:var(--muted);line-height:1.5}
 .trust svg{width:18px;height:18px;flex:0 0 auto;color:var(--navy);margin-top:2px}
-
 .acceso__foto{position:relative;min-height:340px;overflow:hidden;background:var(--navy-deep)}
-.acceso__foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
-.acceso__foto img{object-position:56% 50%}
-.acceso__velo{
-  position:absolute;inset:0;
-  background:linear-gradient(180deg, rgba(10,26,54,.86) 0%, rgba(10,26,54,.62) 34%, rgba(10,26,54,.12) 62%, rgba(10,26,54,.30) 100%);
-}
+.acceso__foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:56% 50%;display:block}
+.acceso__velo{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,26,54,.86) 0%,rgba(10,26,54,.62) 34%,rgba(10,26,54,.12) 62%,rgba(10,26,54,.30) 100%)}
 .acceso__msg{position:absolute;left:0;right:0;top:0;padding:clamp(30px,4vw,56px);color:#fff}
 .acceso__msg h2{font-size:clamp(28px,3.2vw,40px);color:#fff;text-wrap:balance;max-width:16ch}
 .acceso__msg p{font-size:clamp(17px,1.5vw,19px);line-height:1.6;color:rgba(255,255,255,.92);margin-top:16px;max-width:42ch}
 .acceso__credito{position:absolute;bottom:0;right:0;padding:14px 18px;font-size:12px;color:rgba(255,255,255,.8)}
 
+/* ============ PANEL ============ */
+.app{display:grid;grid-template-columns:var(--side) minmax(0,1fr);min-height:100%;background:var(--canvas)}
+.side{background:var(--white);border-right:1px solid var(--line);display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto}
+.side__top{padding:18px 18px 14px;display:flex;align-items:center;gap:11px}
+.side__mark{width:38px;height:38px;border-radius:11px;background:var(--yellow);display:grid;place-items:center;flex:0 0 auto}
+.side__mark span{font-family:var(--display);font-size:20px;font-weight:800;color:var(--navy);line-height:1}
+.side__name{font-size:16px;font-weight:700;color:var(--ink);line-height:1.2}
+.side__role{font-size:12px;color:var(--muted)}
+.side__search{margin:0 18px 16px;position:relative}
+.side__search input{width:100%;font-family:var(--sans);font-size:14px;background:var(--canvas);border:1px solid var(--line);border-radius:10px;padding:10px 12px 10px 34px;color:var(--ink)}
+.side__search svg{position:absolute;left:11px;top:50%;transform:translateY(-50%);width:15px;height:15px;color:var(--muted)}
+.side nav{padding:0 12px 20px;display:grid;gap:3px}
+.side__group{font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);padding:16px 10px 7px}
+.side__link{display:flex;align-items:center;gap:11px;padding:10px 10px;border-radius:10px;background:none;border:none;width:100%;text-align:left;cursor:pointer;color:var(--ink);font-size:15px;font-weight:500;line-height:1.3}
+.side__link svg{width:17px;height:17px;flex:0 0 auto;color:var(--muted)}
+.side__link:hover{background:var(--navy-soft)}
+.side__link[aria-current="true"]{background:var(--navy);color:#fff;font-weight:600}
+.side__link[aria-current="true"] svg{color:var(--yellow)}
+.side__num{font-size:12px;font-weight:700;color:var(--muted);width:17px;flex:0 0 auto;font-variant-numeric:tabular-nums;text-align:right}
+.side__link[aria-current="true"] .side__num{color:var(--yellow)}
+.side__pro{margin-left:auto;font-size:9px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;background:var(--yellow);color:var(--navy-deep);padding:2px 6px;border-radius:999px}
+.side__foot{margin-top:auto;padding:20px 18px;border-top:1px solid var(--line-soft)}
+
+.main{min-width:0;display:flex;flex-direction:column}
+.top{height:var(--top);background:var(--white);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:14px;padding:0 clamp(16px,2.5vw,28px);position:sticky;top:0;z-index:20}
+.top__hola{font-size:15px;color:var(--muted)}
+.top__acciones{margin-left:auto;display:flex;align-items:center;gap:8px}
+.icono{width:38px;height:38px;border-radius:10px;border:none;background:none;display:grid;place-items:center;cursor:pointer;color:var(--muted);position:relative}
+.icono:hover{background:var(--canvas)}
+.icono svg{width:19px;height:19px}
+.icono .punto{position:absolute;top:8px;right:9px;width:7px;height:7px;border-radius:50%;background:#C0392B}
+.usuario{display:flex;align-items:center;gap:9px;padding:6px 10px 6px 6px;border-radius:999px;border:1px solid var(--line);background:var(--white);cursor:pointer;font-size:14px;font-weight:600;color:var(--ink)}
+.usuario__ini{width:28px;height:28px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font-size:13px;font-weight:700}
+.menu-btn{display:none}
+
+.lienzo{padding:clamp(20px,3vw,34px) clamp(16px,2.5vw,28px) 64px;max-width:1120px;width:100%;margin:0 auto}
+
+.reporte{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:14px 18px;margin-bottom:22px}
+.reporte__lab{font-size:15px;font-weight:600;color:var(--muted)}
+.reporte select{font-family:var(--sans);font-size:15px;color:var(--ink);background:var(--canvas);border:1px solid var(--line);border-radius:10px;padding:9px 12px;max-width:100%}
+.reporte__acc{margin-left:auto;display:flex;gap:9px;flex-wrap:wrap}
+.btn-sec,.btn-pri{font-size:14px;font-weight:600;border-radius:10px;padding:10px 15px;cursor:pointer;border:1px solid var(--navy);display:inline-flex;align-items:center;gap:8px}
+.btn-sec{background:var(--white);color:var(--navy)}
+.btn-sec:hover{background:var(--navy-soft)}
+.btn-pri{background:var(--navy);color:#fff;border-color:var(--navy)}
+.btn-pri:hover{background:var(--navy-deep)}
+.btn-sec svg,.btn-pri svg{width:15px;height:15px}
+
+.cifras{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:34px}
+.cifra{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px}
+.cifra__lab{display:flex;align-items:flex-start;gap:10px;font-size:14px;font-weight:600;color:var(--muted);line-height:1.35;min-height:38px}
+.cifra__lab svg{width:18px;height:18px;flex:0 0 auto;color:var(--navy);margin-left:auto}
+.cifra__n{font-family:var(--display);font-size:30px;font-weight:800;color:var(--navy);line-height:1.1;margin:8px 0 6px;font-variant-numeric:tabular-nums;letter-spacing:-0.02em}
+.cifra__n small{font-family:var(--sans);font-size:15px;font-weight:600;color:var(--muted);letter-spacing:0}
+.cifra__pie{font-size:13px;color:var(--muted);line-height:1.45}
+.barra{height:6px;border-radius:99px;background:var(--line-soft);overflow:hidden;margin:2px 0 8px}
+.barra span{display:block;height:100%;background:var(--navy);border-radius:99px}
+.cifra--pro{border-color:#E8D49A;background:#FFFDF6}
+
+.seccion__h{margin-bottom:22px}
+.seccion__h h2{font-size:clamp(24px,2.6vw,30px);color:var(--navy)}
+.seccion__h p{font-size:17px;color:var(--muted);margin-top:8px;max-width:56ch}
+
+.tarjetas{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.tarjeta{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:22px;text-align:left;cursor:pointer;display:flex;flex-direction:column;gap:12px;position:relative;transition:border-color .15s ease, box-shadow .15s ease}
+.tarjeta:hover{border-color:var(--navy);box-shadow:0 6px 20px rgba(22,56,110,.10)}
+.tarjeta__top{display:flex;align-items:center;gap:12px}
+.tarjeta__ico{width:42px;height:42px;border-radius:12px;background:var(--navy-soft);display:grid;place-items:center;color:var(--navy);flex:0 0 auto}
+.tarjeta__ico svg{width:21px;height:21px}
+.tarjeta--pro .tarjeta__ico{background:var(--yellow-soft);color:#8A5300}
+.tarjeta__num{font-family:var(--display);font-size:14px;font-weight:800;color:var(--muted);font-variant-numeric:tabular-nums}
+.tarjeta__pro{margin-left:auto;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:var(--yellow);color:var(--navy-deep);padding:3px 8px;border-radius:999px}
+.tarjeta__nom{font-size:15px;font-weight:700;color:var(--navy);line-height:1.3}
+.tarjeta__sub{font-size:19px;font-weight:500;color:var(--ink);line-height:1.4;letter-spacing:-0.005em}
+.pendiente{margin-top:26px;font-size:16px;line-height:1.55;color:var(--navy);background:var(--yellow-soft);border-left:4px solid var(--yellow);border-radius:0 10px 10px 0;padding:14px 16px}
+
+@media (max-width:1000px){
+  .app{grid-template-columns:1fr}
+  .side{position:fixed;left:0;top:0;bottom:0;width:min(84vw,290px);z-index:60;transform:translateX(-102%);transition:transform .2s ease;box-shadow:0 0 40px rgba(11,26,51,.22)}
+  .side.abierto{transform:none}
+  .menu-btn{display:grid}
+  .velo-menu{position:fixed;inset:0;background:rgba(11,26,51,.45);z-index:50}
+}
 @media (max-width:900px){
   .acceso{grid-template-columns:1fr;min-height:0}
   .acceso__foto{order:-1;min-height:min(68vw,340px)}
@@ -82,6 +148,11 @@ input[type=email],input[type=password]{
   .acceso__msg{padding:20px}
   .acceso__msg h2{font-size:26px;max-width:none}
   .acceso__msg p{font-size:17px;margin-top:11px}
+}
+@media (max-width:560px){
+  .top__hola{display:none}
+  .usuario__nom{display:none}
+  .reporte__acc{margin-left:0;width:100%}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{transition-duration:.001ms !important;animation-duration:.001ms !important}
@@ -95,43 +166,49 @@ input[type=email],input[type=password]{
     <symbol id="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></symbol>
     <symbol id="i-grid" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></symbol>
     <symbol id="i-sync" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 0 1-13.7 5.6"/><path d="M4 12a8 8 0 0 1 13.7-5.6"/><path d="M4 7v5h5"/><path d="M20 17v-5h-5"/></symbol>
+    <symbol id="i-buscar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></symbol>
+    <symbol id="i-ayuda" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.4 2.3c-.6.25-.9.8-.9 1.45V14"/><path d="M12 17.2h.01"/></symbol>
+    <symbol id="i-campana" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 1 0-12 0c0 6-2 7-2 7h16s-2-1-2-7"/><path d="M13.7 20a2 2 0 0 1-3.4 0"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-descarga" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11"/><path d="M8 11l4 4 4-4"/><path d="M4 19h16"/></symbol>
+    <symbol id="i-mas" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-panel" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V20h14V9.5"/></symbol>
+    <symbol id="i-form" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/></symbol>
+    <symbol id="i-reportes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/><path d="M8 13h8"/></symbol>
+    <symbol id="i-pagos" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18"/></symbol>
+    <symbol id="i-cuenta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.5" r="3.5"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></symbol>
+    <symbol id="i-salario" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.2l2.4 2.4 4.6-4.8"/></symbol>
+    <symbol id="i-escudo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/></symbol>
+    <symbol id="i-ficha" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 8.5v7M10 10.5h4M10 13.5h4"/></symbol>
+    <symbol id="i-resumen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18"/><rect x="5" y="11" width="4" height="7"/><rect x="11" y="7" width="4" height="11"/><rect x="17" y="4" width="4" height="14"/></symbol>
+    <symbol id="i-proy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-5 4 3 7-8"/><path d="M15 7h5v5"/></symbol>
+    <symbol id="i-hist" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><path d="M3 12h18"/></symbol>
+    <symbol id="i-gastos" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-9-9v9z"/><path d="M15 3.5A9 9 0 0 1 20.5 9H15z"/></symbol>
+    <symbol id="i-ahorro" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></symbol>
+    <symbol id="i-simul" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"/><circle cx="9" cy="6" r="2.2"/><circle cx="15" cy="12" r="2.2"/><circle cx="8" cy="18" r="2.2"/></symbol>
+    <symbol id="i-mod40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2.5" width="16" height="19" rx="2"/><path d="M8 7h8"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01M8.5 16h.01M12 16h.01M15.5 16h.01"/></symbol>
   </defs>
 </svg>
 
-<main class="acceso" id="pantalla-acceso">
+<!-- ============ PANTALLA: ACCESO ============ -->
+<main class="acceso" id="p-acceso">
   <div class="acceso__form">
-    <span class="logo">
-      <span class="logo__word">mon<em><span>h</span></em>ey.B</span>
-      <span class="logo__tag">Planea tus finanzas</span>
-    </span>
-
+    <span class="logo"><span class="logo__word">mon<em><span>h</span></em>ey.B</span><span class="logo__tag">Planea tus finanzas</span></span>
     <h1>Bienvenido de vuelta</h1>
     <p class="acceso__sub">Entra para ver en qué va tu retiro.</p>
-
     <form id="form-acceso" novalidate>
-      <div>
-        <label for="email">Correo</label>
-        <input type="email" id="email" name="email" value="carsam68@gmail.com" autocomplete="username">
-      </div>
-      <div>
-        <label for="password">Contraseña</label>
-        <input type="password" id="password" name="password" value="000000000000" autocomplete="current-password">
-      </div>
-      <label class="recuerda" for="recuerda">
-        <input type="checkbox" id="recuerda" name="recuerda">
-        Mantener la sesión abierta
-      </label>
+      <div><label for="email">Correo</label><input type="email" id="email" value="carsam68@gmail.com" autocomplete="username"></div>
+      <div><label for="password">Contraseña</label><input type="password" id="password" value="000000000000" autocomplete="current-password"></div>
+      <label class="recuerda" for="recuerda"><input type="checkbox" id="recuerda"> Mantener la sesión abierta</label>
       <button class="btn" type="submit">Entrar</button>
     </form>
-    <p class="pendiente" id="pendiente" role="status" hidden>Aquí entra el menú de herramientas. Pendiente de la siguiente captura.</p>
-
     <ul class="trust">
       <li><svg aria-hidden="true"><use href="#i-lock"></use></svg>Tus datos se guardan cifrados.</li>
       <li><svg aria-hidden="true"><use href="#i-grid"></use></svg>Tus siete herramientas, listas al entrar.</li>
       <li><svg aria-hidden="true"><use href="#i-sync"></use></svg>Lo que cambies aquí lo ves en cualquier dispositivo.</li>
     </ul>
   </div>
-
   <div class="acceso__foto">
     <img src="img/acceso.jpg" alt="Una mujer nada en una laguna de agua turquesa rodeada de palmeras, en Xcaret.">
     <div class="acceso__velo"></div>
@@ -143,14 +220,168 @@ input[type=email],input[type=password]{
   </div>
 </main>
 
+<!-- ============ PANTALLA: PANEL ============ -->
+<div class="app" id="p-panel" hidden>
+  <aside class="side" id="side">
+    <div class="side__top">
+      <span class="side__mark" aria-hidden="true"><span>h</span></span>
+      <span><span class="side__name">monhey.B</span><br><span class="side__role">Panel de control</span></span>
+    </div>
+    <div class="side__search">
+      <svg aria-hidden="true"><use href="#i-buscar"></use></svg>
+      <label class="sr-only" for="buscar">Buscar secciones</label>
+      <input type="search" id="buscar" placeholder="Buscar secciones">
+    </div>
+    <nav aria-label="Secciones">
+      <button class="side__link" type="button" aria-current="true"><svg aria-hidden="true"><use href="#i-panel"></use></svg>Panel</button>
+      <p class="side__group">Tu estudio</p>
+      <button class="side__link" type="button" data-tool="01"><span class="side__num">01</span>Resumen financiero</button>
+      <button class="side__link" type="button" data-tool="02"><span class="side__num">02</span>Proyecciones de pensión</button>
+      <button class="side__link" type="button" data-tool="03"><span class="side__num">03</span>Historial laboral</button>
+      <button class="side__link" type="button" data-tool="04"><span class="side__num">04</span>Análisis de gastos</button>
+      <button class="side__link" type="button" data-tool="05"><span class="side__num">05</span>Proyección de ahorros</button>
+      <button class="side__link" type="button" data-tool="06"><span class="side__num">06</span>Simulador de jubilación<span class="side__pro">Premium</span></button>
+      <button class="side__link" type="button" data-tool="07"><span class="side__num">07</span>Modalidad 40<span class="side__pro">Premium</span></button>
+      <p class="side__group">Cuenta</p>
+      <button class="side__link" type="button"><svg aria-hidden="true"><use href="#i-form"></use></svg>Formulario</button>
+      <button class="side__link" type="button"><svg aria-hidden="true"><use href="#i-reportes"></use></svg>Reportes</button>
+      <button class="side__link" type="button"><svg aria-hidden="true"><use href="#i-pagos"></use></svg>Facturación</button>
+      <button class="side__link" type="button"><svg aria-hidden="true"><use href="#i-cuenta"></use></svg>Mi cuenta</button>
+    </nav>
+    <div class="side__foot">
+      <span class="logo"><span class="logo__word" style="font-size:22px">mon<em><span>h</span></em>ey.B</span><span class="logo__tag">Planea tus finanzas</span></span>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="top">
+      <button class="icono menu-btn" type="button" id="abrir-menu" aria-label="Abrir menú"><svg aria-hidden="true"><use href="#i-menu"></use></svg></button>
+      <p class="top__hola">Bienvenido de vuelta, Carlos</p>
+      <div class="top__acciones">
+        <button class="icono" type="button" aria-label="Ayuda"><svg aria-hidden="true"><use href="#i-ayuda"></use></svg></button>
+        <button class="icono" type="button" aria-label="Avisos (1 sin leer)"><svg aria-hidden="true"><use href="#i-campana"></use></svg><span class="punto"></span></button>
+        <button class="usuario" type="button"><span class="usuario__ini" aria-hidden="true">C</span><span class="usuario__nom">Carlos Samaniego Mota</span></button>
+      </div>
+    </header>
+
+    <div class="lienzo">
+      <div class="reporte">
+        <label class="reporte__lab" for="sel-reporte">Reporte</label>
+        <select id="sel-reporte">
+          <option>13/9/2026 · CALV721108HCLMPC03</option>
+        </select>
+        <div class="reporte__acc">
+          <button class="btn-sec" type="button"><svg aria-hidden="true"><use href="#i-descarga"></use></svg>Descargar el estudio</button>
+          <button class="btn-pri" type="button"><svg aria-hidden="true"><use href="#i-mas"></use></svg>Nuevo estudio</button>
+        </div>
+      </div>
+
+      <div class="cifras">
+        <div class="cifra">
+          <p class="cifra__lab">Salario base diario <svg aria-hidden="true"><use href="#i-salario"></use></svg></p>
+          <p class="cifra__n">$1,712.91</p>
+          <p class="cifra__pie">Último salario registrado ante el IMSS.</p>
+        </div>
+        <div class="cifra">
+          <p class="cifra__lab">Pensión mensual estimada <svg aria-hidden="true"><use href="#i-ficha"></use></svg></p>
+          <p class="cifra__n">$28,309.78</p>
+          <p class="cifra__pie">Con tus datos actuales.</p>
+        </div>
+        <div class="cifra">
+          <p class="cifra__lab">Semanas cotizadas <svg aria-hidden="true"><use href="#i-check"></use></svg></p>
+          <p class="cifra__n">1,483</p>
+          <div class="barra" role="img" aria-label="1,483 semanas de las 500 requeridas"><span style="width:100%"></span></div>
+          <p class="cifra__pie">Ya superaste las 500 que se piden. Te sobran 983.</p>
+        </div>
+        <div class="cifra">
+          <p class="cifra__lab">Conservación de derechos <svg aria-hidden="true"><use href="#i-escudo"></use></svg></p>
+          <p class="cifra__n">7.13 <small>años</small></p>
+          <p class="cifra__pie">Lo que conservas tu pensión si dejas de cotizar hoy.</p>
+        </div>
+        <div class="cifra cifra--pro">
+          <p class="cifra__lab">Reportes disponibles <svg aria-hidden="true"><use href="#i-reportes"></use></svg></p>
+          <p class="cifra__n">1</p>
+          <p class="cifra__pie">Te queda 1 reporte de tu plan Premium.</p>
+        </div>
+      </div>
+
+      <div class="seccion__h">
+        <h2>Tu estudio, en siete pasos</h2>
+        <p>Van en orden: primero cuánto vas a recibir, después cuánto vas a necesitar, después cuánto vas a tener. Puedes entrar al que quieras.</p>
+      </div>
+
+      <div class="tarjetas" id="tarjetas"></div>
+      <p class="pendiente" id="pendiente" hidden role="status"></p>
+    </div>
+  </div>
+</div>
+
 <script>
 (function () {
   'use strict';
-  // El prototipo no valida nada: el botón solo avanza.
+  document.documentElement.lang = 'es-MX';
+
+  var HERRAMIENTAS = [
+    {n:'01', ico:'i-resumen', nom:'Resumen financiero',      sub:'Tu pensión hoy y la que puedes alcanzar'},
+    {n:'02', ico:'i-proy',    nom:'Proyecciones de pensión',  sub:'La pensión que te corresponde a cada edad'},
+    {n:'03', ico:'i-hist',    nom:'Historial laboral',        sub:'Un dato mal registrado te baja la pensión'},
+    {n:'04', ico:'i-gastos',  nom:'Análisis de gastos',       sub:'Cuánto necesitas al mes para vivir igual'},
+    {n:'05', ico:'i-ahorro',  nom:'Proyección de ahorros',    sub:'Cuánto habrás juntado cuando te retires'},
+    {n:'06', ico:'i-simul',   nom:'Simulador de jubilación',  sub:'¿Hasta qué edad te alcanza el dinero?', pro:true},
+    {n:'07', ico:'i-mod40',   nom:'Modalidad 40',             sub:'Cuánto cuesta subir tu pensión', pro:true}
+  ];
+
+  var cont = document.getElementById('tarjetas');
+  HERRAMIENTAS.forEach(function (h) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'tarjeta' + (h.pro ? ' tarjeta--pro' : '');
+    b.dataset.tool = h.n;
+    b.innerHTML =
+      '<span class="tarjeta__top">' +
+        '<span class="tarjeta__ico"><svg aria-hidden="true"><use href="#' + h.ico + '"></use></svg></span>' +
+        '<span class="tarjeta__num">' + h.n + '</span>' +
+        (h.pro ? '<span class="tarjeta__pro">Premium</span>' : '') +
+      '</span>' +
+      '<span class="tarjeta__nom">' + h.nom + '</span>' +
+      '<span class="tarjeta__sub">' + h.sub + '</span>';
+    cont.appendChild(b);
+  });
+
+  var pendiente = document.getElementById('pendiente');
+  function avisar(num) {
+    var h = HERRAMIENTAS.filter(function (x) { return x.n === num; })[0];
+    pendiente.textContent = 'Pantalla ' + num + ' · ' + h.nom + ': pendiente de su captura.';
+    pendiente.hidden = false;
+    pendiente.scrollIntoView({block:'nearest'});
+  }
+  document.addEventListener('click', function (ev) {
+    var el = ev.target.closest && ev.target.closest('[data-tool]');
+    if (el) avisar(el.dataset.tool);
+  });
+
+  // Acceso -> panel
   document.getElementById('form-acceso').addEventListener('submit', function (ev) {
     ev.preventDefault();
-    document.getElementById('pendiente').hidden = false;
+    document.getElementById('p-acceso').hidden = true;
+    document.getElementById('p-panel').hidden = false;
+    window.scrollTo(0, 0);
   });
+
+  // Menú lateral en pantallas angostas
+  var side = document.getElementById('side'), velo = null;
+  document.getElementById('abrir-menu').addEventListener('click', function () {
+    side.classList.add('abierto');
+    velo = document.createElement('div');
+    velo.className = 'velo-menu';
+    velo.addEventListener('click', cerrar);
+    document.body.appendChild(velo);
+  });
+  function cerrar() {
+    side.classList.remove('abierto');
+    if (velo) { velo.remove(); velo = null; }
+  }
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') cerrar(); });
 })();
 </script>
 </body>

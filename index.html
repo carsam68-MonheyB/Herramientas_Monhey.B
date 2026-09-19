@@ -378,6 +378,7 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
     <div class="navlinks">
       <a href="#guia">Cómo leer</a>
       <a href="#acceso">Acceso</a>
+      <a href="#panel">Panel</a>
       <a href="#t01"><span class="n">01</span>Resumen</a>
       <a href="#t02"><span class="n">02</span>Proyecciones</a>
       <a href="#t03"><span class="n">03</span>Historial</a>
@@ -592,9 +593,9 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
 
 <section class="tool" id="acceso">
   <div class="wrap">
-    <div class="tool__head"><span class="tool__num tool__num--alt" aria-hidden="true">00</span><h2>Inicio de sesión</h2></div>
+    <div class="tool__head"><span class="tool__num tool__num--alt" aria-hidden="true">A</span><h2>Inicio de sesión</h2></div>
     <div class="tool__rule" aria-hidden="true"></div>
-    <p class="guia__p">Es la primera pantalla que ve el usuario y no es una de las siete herramientas. Se incluye porque su imagen y sus textos prometen algo distinto de lo que hay adentro.</p>
+    <p class="guia__p">Es la primera pantalla que ve el usuario. Va marcada con letra, no con número, porque no es una de las siete herramientas. Se incluye porque su imagen y sus textos prometen algo distinto de lo que hay adentro.</p>
     <div class="tool__grid">
       <div class="tool__main">
         <div class="field">
@@ -632,6 +633,56 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
           <li class="finding finding--aviso"><span class="badge badge--aviso">Aviso</span><p>“Acceso inmediato a tu dashboard financiero”: “dashboard” es jerga en inglés y el usuario no sabe qué le espera.</p></li>
           <li class="finding finding--mejora"><span class="badge badge--mejora">Mejora</span><p>“Accede a tus reportes, análisis y herramientas personalizadas para mantener tus finanzas en orden” enumera funciones. Se sustituye por el resultado.</p></li>
           <li class="finding finding--mejora"><span class="badge badge--mejora">Mejora</span><p>El botón dice “INICIAR SESIÓN”. “Entrar” es más corto y dice lo mismo.</p></li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section class="tool" id="panel">
+  <div class="wrap">
+    <div class="tool__head"><span class="tool__num tool__num--alt" aria-hidden="true">01</span><h2>Panel</h2></div>
+    <div class="tool__rule" aria-hidden="true"></div>
+    <p class="guia__p">La pantalla desde la que se entra a todo. Tampoco es una de las siete herramientas: es el menú que las ofrece, y el orden en que las presenta importa tanto como los textos.</p>
+    <div class="tool__grid">
+      <div class="tool__main">
+        <div class="field">
+          <h3 class="field__label">Encabezado de las herramientas</h3>
+          <div class="entry">
+            <div class="entry__part copyunit"><div><p class="entry__mini">Título</p><p class="copytext prop prop--md">Tu estudio, en siete pasos</p></div></div>
+            <div class="entry__part copyunit"><div><p class="entry__mini">Bajada</p><p class="copytext prop prop--body">Van en orden: primero cuánto vas a recibir, después cuánto vas a necesitar, después cuánto vas a tener. Puedes entrar al que quieras.</p></div></div>
+          </div>
+        </div>
+        <div class="field">
+          <h3 class="field__label">Tarjetas de cifras</h3>
+          <ul class="alts">
+            <li class="copyunit"><p class="copytext prop prop--alt">Salario base diario · Último salario registrado ante el IMSS.</p></li>
+            <li class="copyunit"><p class="copytext prop prop--alt">Pensión mensual estimada · Con tus datos actuales.</p></li>
+            <li class="copyunit"><p class="copytext prop prop--alt">Semanas cotizadas · Ya superaste las 500 que se piden. Te sobran 983.</p></li>
+            <li class="copyunit"><p class="copytext prop prop--alt">Conservación de derechos · Lo que conservas tu pensión si dejas de cotizar hoy.</p></li>
+            <li class="copyunit"><p class="copytext prop prop--alt">Reportes disponibles · Te queda 1 reporte de tu plan Premium.</p></li>
+          </ul>
+        </div>
+        <div class="field">
+          <h3 class="field__label">Botones</h3>
+          <ul class="alts">
+            <li class="copyunit"><p class="copytext prop prop--alt">Descargar el estudio</p></li>
+            <li class="copyunit"><p class="copytext prop prop--alt">Nuevo estudio</p></li>
+          </ul>
+        </div>
+      </div>
+      <aside class="tool__side">
+        <h3 class="field__label">Hallazgos de pantalla</h3>
+        <ul class="findings">
+          <li class="finding finding--grave"><span class="badge badge--grave">Grave</span><p>El orden de las tarjetas no coincide con el del menú lateral: Historial Laboral aparece quinto en las tarjetas y tercero en el menú. El mismo estudio se ofrece en dos órdenes distintos, y el orden es lo que sostiene el recorrido.</p></li>
+          <li class="finding finding--aviso"><span class="badge badge--aviso">Aviso</span><p>Las siete tarjetas dicen “Disponible”. Una etiqueta que dice lo mismo en todas no informa nada: se elimina, igual que la columna “Estado” de Modalidad 40.</p></li>
+          <li class="finding finding--aviso"><span class="badge badge--aviso">Aviso</span><p>“Tokens MonheyB” no le dice nada al usuario, y debajo dice “1 Disponibles”, con el plural mal concordado. Se cambia por “Reportes disponibles” y “Te queda 1 reporte de tu plan Premium”.</p></li>
+          <li class="finding finding--aviso"><span class="badge badge--aviso">Aviso</span><p>“Semanas Cotizadas: 1483” va sin separador de miles, mientras los importes sí lo llevan. Debe ser 1,483.</p></li>
+          <li class="finding finding--aviso"><span class="badge badge--aviso">Aviso</span><p>“Descargar Reporte Ejecutivo” es jerga corporativa. El usuario descarga su estudio.</p></li>
+          <li class="finding finding--mejora"><span class="badge badge--mejora">Mejora</span><p>El dato útil de las semanas no es “297%”, sino que ya se superó el mínimo: “Ya superaste las 500 que se piden. Te sobran 983.”</p></li>
+          <li class="finding finding--mejora"><span class="badge badge--mejora">Mejora</span><p>“Conservación de Derechos” es un término del IMSS que casi nadie conoce. Falta decir qué significa: lo que conservas la pensión si dejas de cotizar.</p></li>
+          <li class="finding finding--mejora"><span class="badge badge--mejora">Mejora</span><p>Los subtítulos del menú lateral van cortados con puntos suspensivos: “Vista general de tu situaci…”. Un texto cortado no informa. En el menú lateral basta el nombre de la herramienta.</p></li>
+          <li class="finding finding--mejora"><span class="badge badge--mejora">Mejora</span><p>La tarjeta dice “Calculadora Modalidad 40” y el menú dice “Modalidad 40”. Mismo dato, dos nombres.</p></li>
         </ul>
       </aside>
     </div>
