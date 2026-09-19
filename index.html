@@ -70,10 +70,9 @@ a{color:var(--navy);text-decoration-thickness:1.5px;text-underline-offset:3px}
 .navlinks{display:flex;gap:4px;overflow-x:auto;overflow-y:hidden;scrollbar-width:thin;padding:6px 0;margin-left:auto;-webkit-overflow-scrolling:touch}
 .navlinks a{
   flex:0 0 auto;text-decoration:none;color:var(--muted);
-  font-size:14px;font-weight:600;letter-spacing:.01em;
-  padding:7px 9px;border-radius:999px;white-space:nowrap;
+  font-size:13px;font-weight:600;letter-spacing:.01em;
+  padding:7px 8px;border-radius:999px;white-space:nowrap;
 }
-@media (max-width:1320px){ .navlinks a{font-size:13px;padding:7px 8px} }
 .navlinks a:hover{background:var(--navy-soft);color:var(--navy)}
 .navlinks a[aria-current="true"]{background:var(--navy);color:#fff}
 .navlinks a .n{font-variant-numeric:tabular-nums;opacity:.65;margin-right:5px}
@@ -377,7 +376,7 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
     <a class="brand" href="#portada"><span class="brand__dot" aria-hidden="true">m</span>monhey.B</a>
     <div class="navlinks">
       <a href="#guia">Cómo leer</a>
-      <a href="#giro">Qué cambia</a>
+      <a href="#giro">Cambios</a>
       <a href="#recorrido">El orden</a>
       <a href="#t01"><span class="n">01</span>Resumen</a>
       <a href="#t02"><span class="n">02</span>Proyecciones</a>
@@ -398,11 +397,13 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
 <section class="hero" id="portada">
   <div class="wrap hero__grid">
     <div>
-      <span class="eyebrow">Propuesta de textos de interfaz</span>
+      <span class="eyebrow">Textos de interfaz</span>
       <h1>Los textos de las <em>siete herramientas</em></h1>
-      <p class="lede">Este documento propone los textos de las siete herramientas de monhey.B: el subtítulo que se ve en el menú, los textos que reciben al usuario dentro de cada pantalla y la línea que la cierra.</p>
+      <p class="lede">Estos son los textos de las siete herramientas de monhey.B: el subtítulo que se ve en el menú, los textos que reciben al usuario dentro de cada pantalla y la línea que la cierra.</p>
       <p class="lede">Cambian dos cosas. Los subtítulos dejan de describir la pantalla y pasan a <strong>anunciar el dato que entrega</strong>. Y cada pantalla termina con una línea que <strong>nombra la siguiente</strong>, para que las siete se lean en orden.</p>
-      <p class="lede">Cada texto propuesto se copia con un clic. Al costado de cada pantalla van los hallazgos: los errores y mejoras detectados al revisarla.</p>
+      <p class="lede">Cada texto se copia con un clic. Al costado de cada pantalla van los hallazgos: los errores y mejoras detectados al revisarla.</p>
+
+      <p class="aviso-box"><b>Los textos son definitivos.</b> Se implementan tal cual están escritos, con sus mayúsculas, acentos y signos de puntuación. Si alguno no cabe en pantalla, hay que avisarlo antes de recortarlo.</p>
 
       <div class="example">
         <div class="example__row example__row--old">
@@ -454,7 +455,7 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
           </li>
         </ul>
       </div>
-      <p class="phone-caption">Simulación del menú con los siete subtítulos propuestos. Los encabezados azules del teléfono no forman parte de la propuesta.</p>
+      <p class="phone-caption">Simulación del menú con los siete subtítulos. Los encabezados azules del teléfono no forman parte de estos textos.</p>
     </div>
   </div>
 </section>
@@ -465,13 +466,13 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
     <div class="band__head">
       <p class="band__kicker">Cómo leer este documento</p>
       <h2>Qué contiene y qué significa cada cosa</h2>
-      <p>Esta propuesta cubre solo los textos. El contenido de las herramientas —tablas, gráficas y cálculos— queda como está, salvo donde un hallazgo diga lo contrario.</p>
+      <p>Este documento cubre solo los textos. El contenido de las herramientas —tablas, gráficas y cálculos— queda como está, salvo donde un hallazgo diga lo contrario.</p>
     </div>
     <h3 class="guia__h">Las cinco partes, en orden</h3>
     <ol class="idx">
-      <li class="idx__i"><a href="#giro"><span class="idx__n">1</span><span><b>Qué cambia</b><span class="idx__d">Los subtítulos de antes y los propuestos, en tres ejemplos.</span></span></a></li>
+      <li class="idx__i"><a href="#giro"><span class="idx__n">1</span><span><b>Qué cambia</b><span class="idx__d">Los subtítulos de antes y los nuevos, en tres ejemplos.</span></span></a></li>
       <li class="idx__i"><a href="#recorrido"><span class="idx__n">2</span><span><b>El orden de las pantallas</b><span class="idx__d">Por qué las siete van en este orden y qué encadena una con otra.</span></span></a></li>
-      <li class="idx__i"><a href="#pantallas"><span class="idx__n">3</span><span><b>Las siete pantallas</b><span class="idx__d">El detalle de cada una: los textos propuestos y los hallazgos de pantalla.</span></span></a></li>
+      <li class="idx__i"><a href="#pantallas"><span class="idx__n">3</span><span><b>Las siete pantallas</b><span class="idx__d">El detalle de cada una: los textos que van en ella y los hallazgos de pantalla.</span></span></a></li>
       <li class="idx__i"><a href="#columnas"><span class="idx__n">4</span><span><b>Nombres de columna</b><span class="idx__d">La traducción de los once encabezados de Modalidad 40. Va dentro de la pantalla 07.</span></span></a></li>
       <li class="idx__i"><a href="#reglas"><span class="idx__n">5</span><span><b>Cómo está escrito</b><span class="idx__d">Las reglas de tono y de jerarquía que sostienen los textos.</span></span></a></li>
     </ol>
@@ -497,7 +498,7 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
       <li><span class="orden__n">1</span><span><b>Subtítulo</b> <span class="orden__d">El usuario lo lee en el menú y decide entrar.</span></span></li>
       <li><span class="orden__n">2</span><span><b>Entrada · título</b> <span class="orden__d">Lo primero al abrir.</span></span></li>
       <li><span class="orden__n">3</span><span><b>Entrada · cuerpo</b> <span class="orden__d">Qué va a ver y por qué importa.</span></span></li>
-      <li><span class="orden__n">4</span><span><b>El contenido de la herramienta</b> <span class="orden__d">Tablas, gráficas y cifras. No es parte de esta propuesta.</span></span></li>
+      <li><span class="orden__n">4</span><span><b>El contenido de la herramienta</b> <span class="orden__d">Tablas, gráficas y cifras. No es parte de este documento.</span></span></li>
       <li><span class="orden__n">5</span><span><b>Advertencia de lectura</b> <span class="orden__d">Solo donde el dato se presta a una conclusión equivocada.</span></span></li>
       <li><span class="orden__n">6</span><span><b>Invitación a asesoría</b> <span class="orden__d">Solo en las tres pantallas donde el facilitador resuelve algo.</span></span></li>
       <li><span class="orden__n">7</span><span><b>Cierre de pantalla</b> <span class="orden__d">Dice qué falta por saber y en qué herramienta está.</span></span></li>
@@ -515,8 +516,8 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
   <div class="wrap">
     <div class="band__head">
       <p class="band__kicker">Parte 1 · Qué cambia</p>
-      <h2>El subtítulo de antes y el propuesto</h2>
-      <p>El subtítulo actual describe qué contiene la herramienta. El propuesto dice qué dato va a obtener el usuario. Estos tres ejemplos resumen el cambio.</p>
+      <h2>El subtítulo de antes y el nuevo</h2>
+      <p>El subtítulo actual describe qué contiene la herramienta. El nuevo dice qué dato va a obtener el usuario. Estos tres ejemplos resumen el cambio.</p>
     </div>
     <div class="shift">
       <div class="shift__row">
@@ -587,7 +588,7 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
     <div class="band__head">
       <p class="band__kicker">Parte 3 · Las siete pantallas</p>
       <h2>Una por una, con sus hallazgos</h2>
-      <p>Cada bloque trae los textos propuestos a la izquierda y, a la derecha, lo que se detectó al revisar la pantalla real. Los textos se copian con el botón que llevan debajo.</p>
+      <p>Cada bloque trae los textos a la izquierda y, a la derecha, lo que se detectó al revisar la pantalla real. Cada texto se copia con el botón que lleva debajo.</p>
     </div>
   </div>
 </section>
@@ -599,7 +600,7 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
     <div class="tool__grid">
       <div class="tool__main">
         <div class="field">
-          <h3 class="field__label">Subtítulo recomendado</h3>
+          <h3 class="field__label">Subtítulo</h3>
           <div class="hero-card copyunit"><p class="copytext prop prop--hero">Tu pensión hoy y la que puedes alcanzar</p></div>
         </div>
         <div class="field">
@@ -639,7 +640,7 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
     <div class="tool__grid">
       <div class="tool__main">
         <div class="field">
-          <h3 class="field__label">Subtítulo recomendado</h3>
+          <h3 class="field__label">Subtítulo</h3>
           <div class="hero-card copyunit"><p class="copytext prop prop--hero">La pensión que te corresponde a cada edad</p></div>
         </div>
         <div class="field">
@@ -690,7 +691,7 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
     <div class="tool__grid">
       <div class="tool__main">
         <div class="field">
-          <h3 class="field__label">Subtítulo recomendado</h3>
+          <h3 class="field__label">Subtítulo</h3>
           <div class="hero-card copyunit"><p class="copytext prop prop--hero">Un dato mal registrado te baja la pensión</p></div>
         </div>
         <div class="field">
@@ -731,7 +732,7 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
     <div class="tool__grid">
       <div class="tool__main">
         <div class="field">
-          <h3 class="field__label">Subtítulo recomendado</h3>
+          <h3 class="field__label">Subtítulo</h3>
           <div class="hero-card copyunit"><p class="copytext prop prop--hero">Cuánto necesitas al mes para vivir igual</p></div>
         </div>
         <div class="field">
@@ -773,7 +774,7 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
     <div class="tool__grid">
       <div class="tool__main">
         <div class="field">
-          <h3 class="field__label">Subtítulo recomendado</h3>
+          <h3 class="field__label">Subtítulo</h3>
           <div class="hero-card copyunit"><p class="copytext prop prop--hero">Cuánto habrás juntado cuando te retires</p></div>
         </div>
         <div class="field">
@@ -815,7 +816,7 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
     <div class="tool__grid">
       <div class="tool__main">
         <div class="field">
-          <h3 class="field__label">Subtítulo recomendado</h3>
+          <h3 class="field__label">Subtítulo</h3>
           <div class="hero-card copyunit"><p class="copytext prop prop--hero">¿Hasta qué edad te alcanza el dinero?</p></div>
         </div>
         <div class="field">
@@ -862,7 +863,7 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
     <div class="tool__grid">
       <div class="tool__main">
         <div class="field">
-          <h3 class="field__label">Subtítulo recomendado</h3>
+          <h3 class="field__label">Subtítulo</h3>
           <div class="hero-card copyunit"><p class="copytext prop prop--hero">Cuánto cuesta subir tu pensión</p></div>
         </div>
         <div class="field">
@@ -904,19 +905,19 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
     <div class="subsection" id="columnas">
       <p class="band__kicker">Parte 4 · Nombres de columna</p>
       <h3>La traducción de los once encabezados</h3>
-      <p>Los encabezados de la tabla de Modalidad 40 están escritos para quien programó el cálculo, no para quien va a pagarlo. Esta es la traducción propuesta.</p>
+      <p>Los encabezados de la tabla de Modalidad 40 están escritos para quien programó el cálculo, no para quien va a pagarlo. Estos son los nombres que los sustituyen.</p>
       <div class="table-wrap">
         <table>
-          <caption class="sr-only">Nombres de columna actuales y propuestos para la tabla de Modalidad 40</caption>
-          <thead><tr><th scope="col">Nombre actual</th><th scope="col">Nombre propuesto</th></tr></thead>
+          <caption class="sr-only">Nombres de columna actuales y nuevos para la tabla de Modalidad 40</caption>
+          <thead><tr><th scope="col">Nombre actual</th><th scope="col">Nombre nuevo</th></tr></thead>
           <tbody>
-            <tr><td class="col-old" data-label="Nombre actual"><span>Meses Restantes</span></td><td class="col-new" data-label="Nombre propuesto">Meses que te faltan por pagar</td></tr>
-            <tr><td class="col-old" data-label="Nombre actual"><span>Var%</span></td><td class="col-new" data-label="Nombre propuesto">Aumento vs. año anterior</td></tr>
-            <tr><td class="col-old" data-label="Nombre actual"><span>% IMSS Mod 40</span></td><td class="col-new" data-label="Nombre propuesto">Cuota IMSS del año (%)</td></tr>
-            <tr><td class="col-old" data-label="Nombre actual"><span>Estado</span></td><td class="col-new" data-label="Nombre propuesto"><span class="kill">Eliminar</span><span class="kill-note">Todas las filas dicen lo mismo.</span></td></tr>
-            <tr><td class="col-old" data-label="Nombre actual"><span>Costo Mensual Inicial</span></td><td class="col-new" data-label="Nombre propuesto">Costo mensual (primer año)</td></tr>
-            <tr><td class="col-old" data-label="Nombre actual"><span>Número de UMAs</span></td><td class="col-new" data-label="Nombre propuesto">Salario a cotizar (en UMAs, máximo 25)</td></tr>
-            <tr><td class="col-old" data-label="Nombre actual"><span>Inflación Anual (%)</span></td><td class="col-new" data-label="Nombre propuesto">Inflación estimada para proyectar la UMA</td></tr>
+            <tr><td class="col-old" data-label="Nombre actual"><span>Meses Restantes</span></td><td class="col-new" data-label="Nombre nuevo">Meses que te faltan por pagar</td></tr>
+            <tr><td class="col-old" data-label="Nombre actual"><span>Var%</span></td><td class="col-new" data-label="Nombre nuevo">Aumento vs. año anterior</td></tr>
+            <tr><td class="col-old" data-label="Nombre actual"><span>% IMSS Mod 40</span></td><td class="col-new" data-label="Nombre nuevo">Cuota IMSS del año (%)</td></tr>
+            <tr><td class="col-old" data-label="Nombre actual"><span>Estado</span></td><td class="col-new" data-label="Nombre nuevo"><span class="kill">Eliminar</span><span class="kill-note">Todas las filas dicen lo mismo.</span></td></tr>
+            <tr><td class="col-old" data-label="Nombre actual"><span>Costo Mensual Inicial</span></td><td class="col-new" data-label="Nombre nuevo">Costo mensual (primer año)</td></tr>
+            <tr><td class="col-old" data-label="Nombre actual"><span>Número de UMAs</span></td><td class="col-new" data-label="Nombre nuevo">Salario a cotizar (en UMAs, máximo 25)</td></tr>
+            <tr><td class="col-old" data-label="Nombre actual"><span>Inflación Anual (%)</span></td><td class="col-new" data-label="Nombre nuevo">Inflación estimada para proyectar la UMA</td></tr>
           </tbody>
         </table>
       </div>
@@ -929,7 +930,7 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
     <div class="band__head">
       <p class="band__kicker">Parte 5 · Cómo está escrito</p>
       <h2>Cuatro reglas de tono</h2>
-      <p>Estas cuatro reglas son las que se aplicaron al escribir los textos propuestos. Sirven para redactar los que falten.</p>
+      <p>Estas cuatro reglas son las que se aplicaron al escribir estos textos. Sirven para redactar los que falten.</p>
     </div>
     <div class="tono">
       <div class="tono__item"><h3>Primero el dato, después la frase</h3><p>Una cifra concreta retiene más que cualquier adjetivo, y además se puede verificar.</p></div>
@@ -951,7 +952,7 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
 </section>
 
 <div class="wrap foot">
-  <p>Propuesta de textos de interfaz para monhey.B · Siete pantallas en cuatro bloques · Los textos propuestos se copian con un clic.</p>
+  <p>Textos de interfaz para monhey.B · Siete pantallas en cuatro bloques · Cada texto se copia con un clic.</p>
 </div>
 
 </main>
@@ -964,7 +965,7 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
   var OK   = '<svg class="ok" aria-hidden="true" focusable="false"><use href="#i-check"></use></svg>';
   var live = document.getElementById('live');
 
-  // Un botón "Copiar" por cada texto propuesto.
+  // Un botón "Copiar" por cada texto.
   var units = document.querySelectorAll('.copyunit');
   for (var i = 0; i < units.length; i++) {
     var unit = units[i];
