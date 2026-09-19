@@ -75,6 +75,24 @@ input[type=email],input[type=password]{width:100%;font-family:var(--sans);font-s
 .panelito h2{font-size:21px;color:var(--navy);margin-bottom:6px}
 .panelito__sub{font-size:16px;color:var(--muted);line-height:1.5;margin-bottom:20px;max-width:56ch}
 
+.resumen-l{display:flex;flex-wrap:wrap;gap:10px 28px;background:var(--navy);border-radius:var(--radius);padding:20px 24px;margin-bottom:22px;color:#fff}
+.resumen-l__it{display:flex;flex-direction:column;gap:2px}
+.resumen-l__n{font-family:var(--display);font-size:28px;font-weight:800;line-height:1;font-variant-numeric:tabular-nums;letter-spacing:-0.02em}
+.resumen-l__l{font-size:14px;color:rgba(255,255,255,.82)}
+.empleos{display:grid;gap:14px}
+.empleo{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px}
+.empleo__top{display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.empleo__nom{font-size:18px;font-weight:700;color:var(--navy);line-height:1.3;flex:1 1 260px}
+.empleo__sem{font-size:14px;font-weight:700;color:var(--navy);background:var(--navy-soft);padding:5px 12px;border-radius:999px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.empleo__sem--vig{background:var(--yellow);color:var(--navy-deep)}
+.empleo__datos{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px 22px}
+.empleo__d{display:flex;flex-direction:column;gap:2px}
+.empleo__dl{font-size:13px;color:var(--muted)}
+.empleo__dv{font-size:17px;font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums}
+.empleo__pie{margin-top:14px;padding-top:12px;border-top:1px solid var(--line-soft);font-size:14px;color:var(--muted);display:flex;gap:18px;flex-wrap:wrap}
+.vermas{margin-top:16px;font-size:16px;font-weight:600;color:var(--navy);background:var(--white);border:1.5px solid var(--navy);border-radius:11px;padding:13px 20px;cursor:pointer;width:100%}
+.vermas:hover{background:var(--navy-soft)}
+.nota-sem{font-size:15px;color:var(--muted);line-height:1.55;margin-top:14px;max-width:74ch}
 .aviso-barra{display:flex;gap:12px;align-items:flex-start;background:var(--yellow-soft);border:1px solid #E8D49A;border-radius:12px;padding:14px 18px;margin-bottom:22px;font-size:16px;line-height:1.5;color:#5C3B00;max-width:78ch}
 .aviso-barra svg{width:19px;height:19px;flex:0 0 auto;color:#8A5300;margin-top:2px}
 .motivos{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-bottom:22px}
@@ -647,6 +665,66 @@ table.proy .pct{font-weight:600}
 
         <p class="cierre">Todo este cálculo se sostiene en tus semanas cotizadas. Conviene revisar que estén completas.</p>
       </div>
+
+      <!-- ===== 03 · HISTORIAL LABORAL ===== -->
+      <div id="v-t03" hidden>
+        <button class="volver" type="button" data-volver><svg aria-hidden="true"><use href="#i-atras"></use></svg>Volver al panel</button>
+
+        <div class="vista__h">
+          <p class="vista__num">Herramienta 03</p>
+          <h1>Historial laboral</h1>
+          <p class="ent-t">De aquí sale todo lo anterior</p>
+          <p class="ent-c">Cada patrón y cada salario que el IMSS tiene a tu nombre. Si falta un periodo o un sueldo quedó mal capturado, tu pensión se calcula más baja y nadie te va a avisar.</p>
+        </div>
+
+        <div class="resumen-l">
+          <span class="resumen-l__it"><span class="resumen-l__n">8</span><span class="resumen-l__l">empleos registrados</span></span>
+          <span class="resumen-l__it"><span class="resumen-l__n">1,276</span><span class="resumen-l__l">semanas cotizadas</span></span>
+          <span class="resumen-l__it"><span class="resumen-l__n">$1,433.19</span><span class="resumen-l__l">salario base diario actual</span></span>
+        </div>
+
+        <div class="empleos">
+            <div class="empleo">
+              <div class="empleo__top">
+                <p class="empleo__nom">Desarrollo Técnico Contable y Administrativo</p>
+                <span class="empleo__sem empleo__sem--vig">239 semanas · vigente</span>
+              </div>
+              <div class="empleo__datos">
+                <span class="empleo__d"><span class="empleo__dl">Periodo</span><span class="empleo__dv">25 oct 2021 → hoy</span></span>
+                <span class="empleo__d"><span class="empleo__dl">Salario base diario</span><span class="empleo__dv">$1,433.19</span></span>
+              </div>
+              <p class="empleo__pie"><span>Registro patronal: B282120810</span><span>Estado: Durango</span></p>
+            </div>
+            <div class="empleo">
+              <div class="empleo__top">
+                <p class="empleo__nom">Prestadora de Servicios Operacionales</p>
+                <span class="empleo__sem">73 semanas</span>
+              </div>
+              <div class="empleo__datos">
+                <span class="empleo__d"><span class="empleo__dl">Periodo</span><span class="empleo__dv">1 jun 2020 → 24 oct 2021</span></span>
+                <span class="empleo__d"><span class="empleo__dl">Salario base diario</span><span class="empleo__dv">$1,038.26</span></span>
+              </div>
+              <p class="empleo__pie"><span>Registro patronal: A406458410</span><span>Estado: Coahuila de Zaragoza</span></p>
+            </div>
+            <div class="empleo">
+              <div class="empleo__top">
+                <p class="empleo__nom">Prestadora de Servicios Operacionales</p>
+                <span class="empleo__sem">402 semanas</span>
+              </div>
+              <div class="empleo__datos">
+                <span class="empleo__d"><span class="empleo__dl">Periodo</span><span class="empleo__dv">17 sep 2012 → 1 jun 2020</span></span>
+                <span class="empleo__d"><span class="empleo__dl">Salario base diario</span><span class="empleo__dv">$865.78</span></span>
+              </div>
+              <p class="empleo__pie"><span>Registro patronal: B282922310</span><span>Estado: Durango</span></p>
+            </div>
+        </div>
+        <button class="vermas" type="button" id="ver-mas-empleos">Ver los otros 5 empleos</button>
+        <p class="nota-sem" id="nota-empleos" hidden>Los otros cinco empleos no venían en la captura. Suman alrededor de 563 semanas, las que faltan para llegar a 1,276.</p>
+
+        <p class="nota-sem">Las semanas de cada tarjeta salen del periodo registrado. Las que cuentan para tu pensión son las que certifica el IMSS: si alguna no coincide, ese es el dato que hay que reclamar.</p>
+
+        <p class="cierre">Ya sabes cuánto vas a recibir. Ahora la otra mitad de la cuenta: cuánto vas a necesitar.</p>
+      </div>
     </div>
   </div>
 </div>
@@ -684,7 +762,7 @@ table.proy .pct{font-weight:600}
   });
 
   var pendiente = document.getElementById('pendiente');
-  var LISTAS = ['01', '02'];   // herramientas ya construidas
+  var LISTAS = ['01', '02', '03'];   // herramientas ya construidas
 
   function verPanel() {
     document.querySelectorAll('[id^="v-"]').forEach(function (v) { v.hidden = v.id !== 'v-panel'; });
@@ -702,7 +780,7 @@ table.proy .pct{font-weight:600}
     document.querySelectorAll('[id^="v-"]').forEach(function (v) { v.hidden = v.id !== 'v-t' + num; });
     var sel = document.getElementById('sel-reporte');
     for (var k = 0; k < sel.options.length; k++) {
-      if (sel.options[k].value === num) { sel.selectedIndex = k; }
+      if (sel.options[k].value === (num === '03' ? '02' : num)) { sel.selectedIndex = k; }
     }
     document.querySelectorAll('.side__link[data-tool]').forEach(function (l) {
       if (l.dataset.tool === num) { l.setAttribute('aria-current', 'true'); }
@@ -721,6 +799,14 @@ table.proy .pct{font-weight:600}
     var el = ev.target.closest('[data-tool]');
     if (el) verHerramienta(el.dataset.tool);
   });
+
+  var vm = document.getElementById('ver-mas-empleos');
+  if (vm) {
+    vm.addEventListener('click', function () {
+      document.getElementById('nota-empleos').hidden = false;
+      vm.hidden = true;
+    });
+  }
 
   // Acceso -> panel
   document.getElementById('form-acceso').addEventListener('submit', function (ev) {
