@@ -164,6 +164,7 @@ section{scroll-margin-top:calc(var(--navh) + 18px)}
   font-variant-numeric:tabular-nums;flex:0 0 auto;
 }
 .tool__head h2{font-size:clamp(26px,3.2vw,34px);color:var(--navy)}
+.tool__num--alt{background:var(--navy-soft);color:var(--navy)}
 .tool__head .pro{font-size:12px;padding:5px 11px}
 .tool__rule{height:3px;background:var(--navy-soft);border-radius:2px;margin:18px 0 40px}
 .tool__grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:56px;align-items:start}
@@ -376,8 +377,7 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
     <a class="brand" href="#portada"><span class="brand__dot" aria-hidden="true">m</span>monhey.B</a>
     <div class="navlinks">
       <a href="#guia">Cómo leer</a>
-      <a href="#giro">Cambios</a>
-      <a href="#recorrido">El orden</a>
+      <a href="#acceso">Acceso</a>
       <a href="#t01"><span class="n">01</span>Resumen</a>
       <a href="#t02"><span class="n">02</span>Proyecciones</a>
       <a href="#t03"><span class="n">03</span>Historial</a>
@@ -469,7 +469,7 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
     <ol class="idx">
       <li class="idx__i"><a href="#giro"><span class="idx__n">1</span><span><b>Qué cambia</b><span class="idx__d">Los subtítulos de antes y los nuevos, en tres ejemplos.</span></span></a></li>
       <li class="idx__i"><a href="#recorrido"><span class="idx__n">2</span><span><b>El orden de las pantallas</b><span class="idx__d">Por qué las siete van en este orden y qué encadena una con otra.</span></span></a></li>
-      <li class="idx__i"><a href="#pantallas"><span class="idx__n">3</span><span><b>Las siete pantallas</b><span class="idx__d">El detalle de cada una: los textos que van en ella y los hallazgos de pantalla.</span></span></a></li>
+      <li class="idx__i"><a href="#pantallas"><span class="idx__n">3</span><span><b>Las pantallas</b><span class="idx__d">La de acceso y las siete herramientas: los textos de cada una y sus hallazgos.</span></span></a></li>
       <li class="idx__i"><a href="#columnas"><span class="idx__n">4</span><span><b>Nombres de columna</b><span class="idx__d">La traducción de los once encabezados de Modalidad 40. Va dentro de la pantalla 07.</span></span></a></li>
       <li class="idx__i"><a href="#reglas"><span class="idx__n">5</span><span><b>Cómo está escrito</b><span class="idx__d">Las reglas de tono y de jerarquía que sostienen los textos.</span></span></a></li>
     </ol>
@@ -583,9 +583,57 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
 <section class="band" id="pantallas">
   <div class="wrap">
     <div class="band__head">
-      <p class="band__kicker">Parte 3 · Las siete pantallas</p>
+      <p class="band__kicker">Parte 3 · Las pantallas</p>
       <h2>Una por una, con sus hallazgos</h2>
-      <p>Cada bloque trae los textos a la izquierda y, a la derecha, lo que se detectó al revisar la pantalla real. Cada texto se copia con el botón que lleva debajo.</p>
+      <p>La pantalla de acceso y las siete herramientas. Cada bloque trae los textos a la izquierda y, a la derecha, lo que se detectó al revisar la pantalla real. Cada texto se copia con el botón que lleva debajo.</p>
+    </div>
+  </div>
+</section>
+
+<section class="tool" id="acceso">
+  <div class="wrap">
+    <div class="tool__head"><span class="tool__num tool__num--alt" aria-hidden="true">00</span><h2>Inicio de sesión</h2></div>
+    <div class="tool__rule" aria-hidden="true"></div>
+    <p class="guia__p">Es la primera pantalla que ve el usuario y no es una de las siete herramientas. Se incluye porque su imagen y sus textos prometen algo distinto de lo que hay adentro.</p>
+    <div class="tool__grid">
+      <div class="tool__main">
+        <div class="field">
+          <h3 class="field__label">Título y bajada</h3>
+          <div class="entry">
+            <div class="entry__part copyunit"><div><p class="entry__mini">Título</p><p class="copytext prop prop--md">Bienvenido de vuelta</p></div></div>
+            <div class="entry__part copyunit"><div><p class="entry__mini">Bajada</p><p class="copytext prop prop--body">Entra para ver en qué va tu retiro.</p></div></div>
+          </div>
+        </div>
+        <div class="field">
+          <h3 class="field__label">Mensaje sobre la fotografía</h3>
+          <div class="entry">
+            <div class="entry__part copyunit"><div><p class="entry__mini">Título</p><p class="copytext prop prop--md">Que el dinero te alcance hasta el final</p></div></div>
+            <div class="entry__part copyunit"><div><p class="entry__mini">Cuerpo</p><p class="copytext prop prop--body">Tu pensión, tus ahorros y tus gastos en un solo estudio. Aquí sabes si alcanza, y qué hacer si no.</p></div></div>
+          </div>
+        </div>
+        <div class="field">
+          <h3 class="field__label">Avisos de confianza</h3>
+          <ul class="alts">
+            <li class="copyunit"><p class="copytext prop prop--alt">Tus datos se guardan cifrados.</p></li>
+            <li class="copyunit"><p class="copytext prop prop--alt">Tus siete herramientas, listas al entrar.</p></li>
+            <li class="copyunit"><p class="copytext prop prop--alt">Lo que cambies aquí lo ves en cualquier dispositivo.</p></li>
+          </ul>
+        </div>
+        <div class="field">
+          <h3 class="field__label">Botón</h3>
+          <div class="hero-card copyunit"><p class="copytext prop prop--hero">Entrar</p></div>
+        </div>
+      </div>
+      <aside class="tool__side">
+        <h3 class="field__label">Hallazgos de pantalla</h3>
+        <ul class="findings">
+          <li class="finding finding--aviso"><span class="badge badge--aviso">Aviso</span><p>La fotografía muestra gráficas de trading y monedas de bitcoin sobre un teclado. No es la imagen de un retiro que alguien quiera vivir, y sugiere una app de inversión especulativa. Se sustituye por una persona disfrutando su tiempo.</p></li>
+          <li class="finding finding--aviso"><span class="badge badge--aviso">Aviso</span><p>“Continúa tu viaje financiero” es una metáfora que no dice qué hay adentro. Se sustituye por lo que la app entrega.</p></li>
+          <li class="finding finding--aviso"><span class="badge badge--aviso">Aviso</span><p>“Acceso inmediato a tu dashboard financiero”: “dashboard” es jerga en inglés y el usuario no sabe qué le espera.</p></li>
+          <li class="finding finding--mejora"><span class="badge badge--mejora">Mejora</span><p>“Accede a tus reportes, análisis y herramientas personalizadas para mantener tus finanzas en orden” enumera funciones. Se sustituye por el resultado.</p></li>
+          <li class="finding finding--mejora"><span class="badge badge--mejora">Mejora</span><p>El botón dice “INICIAR SESIÓN”. “Entrar” es más corto y dice lo mismo.</p></li>
+        </ul>
+      </aside>
     </div>
   </div>
 </section>
