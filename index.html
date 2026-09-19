@@ -71,8 +71,9 @@ a{color:var(--navy);text-decoration-thickness:1.5px;text-underline-offset:3px}
 .navlinks a{
   flex:0 0 auto;text-decoration:none;color:var(--muted);
   font-size:14px;font-weight:600;letter-spacing:.01em;
-  padding:7px 11px;border-radius:999px;white-space:nowrap;
+  padding:7px 9px;border-radius:999px;white-space:nowrap;
 }
+@media (max-width:1320px){ .navlinks a{font-size:13px;padding:7px 8px} }
 .navlinks a:hover{background:var(--navy-soft);color:var(--navy)}
 .navlinks a[aria-current="true"]{background:var(--navy);color:#fff}
 .navlinks a .n{font-variant-numeric:tabular-nums;opacity:.65;margin-right:5px}
@@ -300,6 +301,36 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
 .step__sub{font-size:20px;font-weight:600;line-height:1.4;color:var(--ink);margin-top:3px;max-width:60ch}
 .step__bridge{font-size:17px;line-height:1.6;color:var(--muted);margin-top:9px;padding-left:16px;border-left:3px solid var(--yellow);max-width:62ch}
 .step__bridge b{font-weight:600;color:var(--navy);font-style:normal}
+/* ---------- Guía del documento ---------- */
+.guia__h{font-family:var(--display);font-size:22px;font-weight:800;color:var(--navy);margin:44px 0 14px;line-height:1.25}
+.guia__h:first-of-type{margin-top:0}
+.guia__p{font-size:17px;color:var(--muted);line-height:1.6;max-width:var(--measure);margin-bottom:22px}
+.idx{list-style:none;margin:0;padding:0;display:grid;gap:10px;counter-reset:none}
+.idx__i a{display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;align-items:baseline;
+  text-decoration:none;color:inherit;border:1px solid var(--line);border-radius:12px;padding:16px 18px;background:var(--white)}
+.idx__i a:hover{border-color:var(--navy);background:var(--navy-soft)}
+.idx__n{font-family:var(--display);font-size:17px;font-weight:800;color:var(--navy);background:var(--yellow);
+  width:32px;height:32px;border-radius:9px;display:grid;place-items:center;font-variant-numeric:tabular-nums;align-self:start}
+.idx__i b{font-size:19px;color:var(--navy);display:block;line-height:1.35}
+.idx__d{display:block;font-size:16px;color:var(--muted);line-height:1.55;margin-top:3px;max-width:60ch}
+.orden{list-style:none;margin:0;padding:0;display:grid;gap:12px;counter-reset:none}
+.orden li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;align-items:baseline}
+.orden__n{font-size:13px;font-weight:700;color:var(--navy);background:var(--navy-soft);width:28px;height:28px;
+  border-radius:8px;display:grid;place-items:center;font-variant-numeric:tabular-nums;align-self:start}
+.orden li b{font-size:18px;color:var(--ink)}
+.orden__d{font-size:17px;color:var(--muted);line-height:1.55}
+.types td{font-size:16px;line-height:1.55;color:#22262E}
+.types td:first-child b{font-size:17px;color:var(--navy)}
+.types--doc td{background:#FAFBFC}
+.nope{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+  background:var(--navy-soft);color:var(--navy);padding:3px 8px;border-radius:999px;margin-left:8px;white-space:nowrap}
+.aviso-box{font-size:17px;line-height:1.6;color:#22262E;background:var(--yellow-soft);border-left:5px solid var(--yellow);
+  border-radius:0 12px 12px 0;padding:16px 20px;margin-top:18px;max-width:64ch}
+.aviso-box b{color:var(--navy)}
+@media (max-width:720px){
+  .guia__h{font-size:20px;margin:34px 0 12px}
+  .types td:first-child{background:var(--navy-soft)}
+}
 /* ---------- Advertencia de lectura ---------- */
 .warn-card{background:var(--white);border:2px solid #C98F1E;border-radius:var(--radius);padding:22px 24px}
 .warn-card .prop{color:#5C3B00}
@@ -345,15 +376,16 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
   <div class="nav__inner">
     <a class="brand" href="#portada"><span class="brand__dot" aria-hidden="true">m</span>monhey.B</a>
     <div class="navlinks">
-      <a href="#recorrido">El recorrido</a>
+      <a href="#guia">Cómo leer</a>
       <a href="#giro">El giro</a>
+      <a href="#recorrido">El recorrido</a>
       <a href="#t01"><span class="n">01</span>Resumen</a>
       <a href="#t02"><span class="n">02</span>Proyecciones</a>
       <a href="#t03"><span class="n">03</span>Historial</a>
       <a href="#t04"><span class="n">04</span>Gastos</a>
       <a href="#t05"><span class="n">05</span>Ahorros</a>
       <a href="#t06"><span class="n">06</span>Simulador</a>
-      <a href="#t07"><span class="n">07</span>Modalidad 40</a>
+      <a href="#t07"><span class="n">07</span>Mod. 40</a>
       <a href="#reglas">Reglas</a>
     </div>
   </div>
@@ -368,8 +400,9 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
     <div>
       <span class="eyebrow">Propuesta de textos de interfaz</span>
       <h1>Siete herramientas, <em>un solo recorrido</em></h1>
-      <p class="lede">Un menú se ojea y se abandona. Un estudio se sigue hasta el final, porque cada dato deja una pregunta que solo contesta el siguiente.</p>
-      <p class="lede">Esta propuesta reescribe los siete subtítulos para que <strong>cada uno prometa una cifra</strong>, y encadena las pantallas para que el lector avance sin que nadie se lo pida.</p>
+      <p class="lede">Este documento propone los textos de las siete herramientas de monhey.B: el subtítulo que se ve en el menú, los textos que reciben al usuario dentro de cada pantalla y la línea que la cierra.</p>
+      <p class="lede">El cambio de fondo son dos cosas. Los subtítulos dejan de describir la pantalla y pasan a <strong>prometer una cifra</strong>. Y las siete dejan de ser un menú suelto para leerse como <strong>un recorrido</strong>, donde cada pantalla entrega el lector a la siguiente.</p>
+      <p class="lede">Cada texto propuesto se copia con un clic. Al costado de cada pantalla van los hallazgos: lo que hay que corregir para que el texto se sostenga.</p>
 
       <div class="example">
         <div class="example__row example__row--old">
@@ -427,12 +460,91 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
 </section>
 
 
+<section class="band" id="guia">
+  <div class="wrap">
+    <div class="band__head">
+      <p class="band__kicker">Cómo leer este documento</p>
+      <h2>Qué contiene y qué significa cada cosa</h2>
+      <p>Esta propuesta cubre solo los textos. El contenido de las herramientas —tablas, gráficas y cálculos— queda como está, salvo donde un hallazgo diga lo contrario.</p>
+    </div>
+    <h3 class="guia__h">Las cinco partes, en orden</h3>
+    <ol class="idx">
+      <li class="idx__i"><a href="#giro"><span class="idx__n">1</span><span><b>El giro</b><span class="idx__d">Qué cambia, en tres ejemplos. Es el resumen de un vistazo.</span></span></a></li>
+      <li class="idx__i"><a href="#recorrido"><span class="idx__n">2</span><span><b>El recorrido</b><span class="idx__d">Por qué las siete pantallas van en ese orden y no en otro.</span></span></a></li>
+      <li class="idx__i"><a href="#pantallas"><span class="idx__n">3</span><span><b>Las siete pantallas</b><span class="idx__d">El detalle de cada una: los textos propuestos y los hallazgos de pantalla.</span></span></a></li>
+      <li class="idx__i"><a href="#columnas"><span class="idx__n">4</span><span><b>Nombres de columna</b><span class="idx__d">La traducción de los once encabezados de Modalidad 40. Va dentro de la pantalla 07.</span></span></a></li>
+      <li class="idx__i"><a href="#reglas"><span class="idx__n">5</span><span><b>Cómo está escrito</b><span class="idx__d">Las reglas de tono y de jerarquía que sostienen los textos.</span></span></a></li>
+    </ol>
+    <h3 class="guia__h">Los ocho tipos de texto</h3>
+    <p class="guia__p">Cada pantalla se presenta siempre con los mismos apartados. Dos de ellos no se programan: son documentación.</p>
+    <div class="table-wrap">
+      <table class="types">
+        <thead><tr><th scope="col">Tipo de texto</th><th scope="col">Qué es</th><th scope="col">Dónde va</th><th scope="col">En cuáles</th></tr></thead>
+        <tbody>
+          <tr><td data-label="Tipo de texto"><b>Subtítulo</b></td><td data-label="Qué es">La línea bajo el nombre de la herramienta.</td><td data-label="Dónde va">En el menú principal, no dentro de la pantalla.</td><td data-label="En cuáles">Las siete.</td></tr>
+          <tr class="types--doc"><td data-label="Tipo de texto"><b>Alternativas descartadas</b> <span class="nope">No va en la app</span></td><td data-label="Qué es">Versiones que se consideraron y no se eligieron.</td><td data-label="Dónde va">No va en la app.</td><td data-label="En cuáles">Las siete.</td></tr>
+          <tr><td data-label="Tipo de texto"><b>Entrada · título</b></td><td data-label="Qué es">El encabezado que recibe al usuario al abrir la herramienta.</td><td data-label="Dónde va">Arriba de todo, antes de cualquier dato.</td><td data-label="En cuáles">Las siete.</td></tr>
+          <tr><td data-label="Tipo de texto"><b>Entrada · cuerpo</b></td><td data-label="Qué es">Uno o dos párrafos que dicen qué va a encontrar y por qué importa.</td><td data-label="Dónde va">Debajo del título de entrada.</td><td data-label="En cuáles">Las siete.</td></tr>
+          <tr><td data-label="Tipo de texto"><b>Advertencia de lectura</b></td><td data-label="Qué es">Frena una conclusión equivocada que el dato invita a sacar.</td><td data-label="Dónde va">Pegada al dato que la provoca, no al final.</td><td data-label="En cuáles">Solo la 02.</td></tr>
+          <tr><td data-label="Tipo de texto"><b>Invitación a asesoría</b></td><td data-label="Qué es">Ofrece al facilitador monhey.B, que es un servicio aparte.</td><td data-label="Dónde va">En bloque propio, visualmente distinto del estudio.</td><td data-label="En cuáles">La 02, la 06 y la 07.</td></tr>
+          <tr><td data-label="Tipo de texto"><b>Puente</b></td><td data-label="Qué es">Entrega al lector a la pantalla siguiente.</td><td data-label="Dónde va">La última línea de la pantalla.</td><td data-label="En cuáles">Las siete.</td></tr>
+          <tr class="types--doc"><td data-label="Tipo de texto"><b>Hallazgos de pantalla</b> <span class="nope">No va en la app</span></td><td data-label="Qué es">Errores y mejoras detectados en la pantalla actual.</td><td data-label="Dónde va">No va en la app: es la lista de correcciones.</td><td data-label="En cuáles">Las siete.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3 class="guia__h">El orden en que aparecen en pantalla</h3>
+    <ol class="orden">
+      <li><span class="orden__n">1</span><span><b>Subtítulo</b> <span class="orden__d">El usuario lo lee en el menú y decide entrar.</span></span></li>
+      <li><span class="orden__n">2</span><span><b>Entrada · título</b> <span class="orden__d">Lo primero al abrir.</span></span></li>
+      <li><span class="orden__n">3</span><span><b>Entrada · cuerpo</b> <span class="orden__d">Qué va a ver y por qué importa.</span></span></li>
+      <li><span class="orden__n">4</span><span><b>El contenido de la herramienta</b> <span class="orden__d">Tablas, gráficas y cifras. No es parte de esta propuesta.</span></span></li>
+      <li><span class="orden__n">5</span><span><b>Advertencia de lectura</b> <span class="orden__d">Solo donde el dato se presta a una conclusión equivocada.</span></span></li>
+      <li><span class="orden__n">6</span><span><b>Invitación a asesoría</b> <span class="orden__d">Solo en las tres pantallas donde el facilitador resuelve algo.</span></span></li>
+      <li><span class="orden__n">7</span><span><b>Puente</b> <span class="orden__d">Cierra y manda a la siguiente.</span></span></li>
+    </ol>
+    <h3 class="guia__h">Cómo se marcan los hallazgos</h3>
+    <div class="legend">
+      <span class="legend__item"><span class="badge badge--grave">Grave</span> Error que hay que corregir antes de publicar.</span>
+      <span class="legend__item"><span class="badge badge--aviso">Aviso</span> Texto o dato que confunde.</span>
+      <span class="legend__item"><span class="badge badge--mejora">Mejora</span> Ajuste de jerarquía o de claridad.</span>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="giro">
+  <div class="wrap">
+    <div class="band__head">
+      <p class="band__kicker">Parte 1 · El giro</p>
+      <h2>De describir la pantalla a dar el dato</h2>
+      <p>El subtítulo viejo dice qué contiene la herramienta. El nuevo dice qué va a saber el usuario al salir de ella. Estos tres ejemplos resumen el cambio completo.</p>
+    </div>
+    <div class="shift">
+      <div class="shift__row">
+        <div class="shift__cell shift__cell--old"><span class="shift__label">Antes</span><p class="old-text">Vista general de tu situación</p></div>
+        <div class="shift__arrow" aria-hidden="true"><svg><use href="#i-arrow"></use></svg></div>
+        <div class="shift__cell shift__cell--new"><span class="shift__label">Después</span><p class="new-text">Tu pensión hoy y la que puedes alcanzar</p></div>
+      </div>
+      <div class="shift__row">
+        <div class="shift__cell shift__cell--old"><span class="shift__label">Antes</span><p class="old-text">Proyecciones por edad de retiro</p></div>
+        <div class="shift__arrow" aria-hidden="true"><svg><use href="#i-arrow"></use></svg></div>
+        <div class="shift__cell shift__cell--new"><span class="shift__label">Después</span><p class="new-text">La pensión que te corresponde a cada edad</p></div>
+      </div>
+      <div class="shift__row">
+        <div class="shift__cell shift__cell--old"><span class="shift__label">Antes</span><p class="old-text">Historial de empleos y salarios</p></div>
+        <div class="shift__arrow" aria-hidden="true"><svg><use href="#i-arrow"></use></svg></div>
+        <div class="shift__cell shift__cell--new"><span class="shift__label">Después</span><p class="new-text">Un dato mal registrado te baja la pensión</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="band band--tint" id="recorrido">
   <div class="wrap">
     <div class="band__head">
-      <p class="band__kicker">El recorrido</p>
+      <p class="band__kicker">Parte 2 · El recorrido</p>
       <h2>Cuatro actos, siete pantallas</h2>
       <p>El orden actual de la app ya casi es una historia. Solo hacía falta que los textos lo dijeran: cuánto vas a recibir, cuánto vas a necesitar, cuánto vas a tener, y qué hacer si no alcanza.</p>
+      <p class="aviso-box"><b>Los actos no se programan.</b> No son etiquetas que aparezcan en la app ni pantallas nuevas. Son la lógica del orden, para que se entienda por qué cada herramienta va donde va. Lo único que los materializa en pantalla es el puente que cierra cada una.</p>
     </div>
     <div class="acts">
       <section class="act">
@@ -470,35 +582,12 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
   </div>
 </section>
 
-<section class="band" id="giro">
+<section class="band" id="pantallas">
   <div class="wrap">
     <div class="band__head">
-      <p class="band__kicker">El giro</p>
-      <h2>De describir la pantalla a dar el dato</h2>
-      <p>El subtítulo viejo dice qué contiene la herramienta. El nuevo dice qué vas a saber al salir de ella.</p>
-    </div>
-    <div class="shift">
-      <div class="shift__row">
-        <div class="shift__cell shift__cell--old"><span class="shift__label">Antes</span><p class="old-text">Vista general de tu situación</p></div>
-        <div class="shift__arrow" aria-hidden="true"><svg><use href="#i-arrow"></use></svg></div>
-        <div class="shift__cell shift__cell--new"><span class="shift__label">Después</span><p class="new-text">Tu pensión hoy y la que puedes alcanzar</p></div>
-      </div>
-      <div class="shift__row">
-        <div class="shift__cell shift__cell--old"><span class="shift__label">Antes</span><p class="old-text">Proyecciones por edad de retiro</p></div>
-        <div class="shift__arrow" aria-hidden="true"><svg><use href="#i-arrow"></use></svg></div>
-        <div class="shift__cell shift__cell--new"><span class="shift__label">Después</span><p class="new-text">La pensión que te corresponde a cada edad</p></div>
-      </div>
-      <div class="shift__row">
-        <div class="shift__cell shift__cell--old"><span class="shift__label">Antes</span><p class="old-text">Historial de empleos y salarios</p></div>
-        <div class="shift__arrow" aria-hidden="true"><svg><use href="#i-arrow"></use></svg></div>
-        <div class="shift__cell shift__cell--new"><span class="shift__label">Después</span><p class="new-text">Un dato mal registrado te baja la pensión</p></div>
-      </div>
-    </div>
-
-    <div class="legend">
-      <span class="legend__item"><span class="badge badge--grave">Grave</span> Error que hay que corregir antes de publicar.</span>
-      <span class="legend__item"><span class="badge badge--aviso">Aviso</span> Texto o dato que confunde.</span>
-      <span class="legend__item"><span class="badge badge--mejora">Mejora</span> Ajuste de jerarquía o de claridad.</span>
+      <p class="band__kicker">Parte 3 · Las siete pantallas</p>
+      <h2>Una por una, con sus hallazgos</h2>
+      <p>Cada bloque trae los textos propuestos a la izquierda y, a la derecha, lo que se detectó al revisar la pantalla real. Los textos se copian con el botón que llevan debajo.</p>
     </div>
   </div>
 </section>
@@ -813,7 +902,8 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
     </div>
 
     <div class="subsection" id="columnas">
-      <h3>Nombres de columna</h3>
+      <p class="band__kicker">Parte 4 · Nombres de columna</p>
+      <h3>La traducción de los once encabezados</h3>
       <p>Los encabezados de la tabla de Modalidad 40 están escritos para quien programó el cálculo, no para quien va a pagarlo. Esta es la traducción propuesta.</p>
       <div class="table-wrap">
         <table>
@@ -837,7 +927,7 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
 <section class="band band--tint" id="reglas">
   <div class="wrap">
     <div class="band__head">
-      <p class="band__kicker">Cómo está escrito</p>
+      <p class="band__kicker">Parte 5 · Cómo está escrito</p>
       <h2>Cuatro reglas de tono</h2>
       <p>Nadie lee por gusto una pantalla de trámites. Se lee lo que promete un dato que importa, dicho por alguien que sabe de qué habla.</p>
     </div>
