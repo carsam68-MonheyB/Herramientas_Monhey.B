@@ -50,16 +50,15 @@ input[type=email],input[type=password]{width:100%;font-family:var(--sans);font-s
 .trust{list-style:none;margin:40px 0 0;padding:0;display:grid;gap:13px}
 .trust li{display:flex;gap:12px;align-items:flex-start;font-size:15px;color:var(--muted);line-height:1.5}
 .trust svg{width:18px;height:18px;flex:0 0 auto;color:var(--navy);margin-top:2px}
-.acceso__foto{position:relative;min-height:340px;overflow:hidden;background:var(--navy-deep);display:flex;flex-direction:column}
-.acceso__lienzo{position:relative;flex:1 1 auto;min-height:0;width:100%;line-height:0}
-.acceso__foto img{display:block;width:100%;height:100%;object-fit:contain;object-position:center bottom}
-.acceso__velo{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(10,26,54,0) 72%,rgba(10,26,54,.45) 100%)}
-.acceso__msg{position:relative;z-index:1;flex:0 0 auto;padding:clamp(26px,3vw,44px) clamp(28px,3.2vw,48px) clamp(18px,2.2vw,28px);color:#fff}
-.acceso__msg h2{font-size:clamp(25px,2.5vw,34px);color:#fff;text-wrap:balance;max-width:24ch}
-.acceso__msg p{font-size:clamp(16px,1.35vw,18px);line-height:1.55;color:rgba(255,255,255,.92);margin-top:12px;max-width:46ch}
+.acceso__foto{position:relative;min-height:340px;overflow:hidden;background:var(--navy-deep)}
+.acceso__fondo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:blur(46px) brightness(.42) saturate(1.2);transform:scale(1.2)}
+.acceso__img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center}
+.acceso__velo{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(8,22,48,.72) 0%,rgba(8,22,48,.46) 20%,rgba(8,22,48,.08) 40%,rgba(8,22,48,0) 58%,rgba(8,22,48,.28) 84%,rgba(8,22,48,.55) 100%)}
+.acceso__msg{position:absolute;left:0;right:0;top:0;z-index:1;padding:clamp(28px,3.4vw,52px) clamp(28px,3.4vw,52px) 0;color:#fff;text-shadow:0 1px 18px rgba(6,18,40,.45)}
+.acceso__msg h2{font-size:clamp(26px,2.7vw,37px);color:#fff;text-wrap:balance;max-width:19ch}
+.acceso__msg p{font-size:clamp(16px,1.4vw,19px);line-height:1.55;color:rgba(255,255,255,.94);margin-top:14px;max-width:40ch}
 .acceso__credito{position:absolute;bottom:0;right:0;z-index:1;padding:14px 18px;font-size:12px;color:rgba(255,255,255,.85)}
 @media (min-width:861px) and (max-height:860px){
-  .acceso{height:100vh}
   .acceso__form{padding:20px clamp(24px,4vw,60px)}
   .logo{--logo-h:42px}
   .acceso__form h1{font-size:clamp(26px,2.6vw,32px);margin:20px 0 8px}
@@ -70,9 +69,9 @@ input[type=email],input[type=password]{width:100%;font-family:var(--sans);font-s
   .btn{padding:13px 20px}
   .trust{margin-top:18px;gap:8px}
   .trust li{font-size:14px}
-  .acceso__msg{padding:22px clamp(24px,3vw,40px) 16px}
-  .acceso__msg h2{font-size:clamp(22px,2.1vw,28px)}
-  .acceso__msg p{font-size:15px;margin-top:9px}
+  .acceso__msg{padding:24px clamp(24px,3vw,40px) 0}
+  .acceso__msg h2{font-size:clamp(23px,2.2vw,29px)}
+  .acceso__msg p{font-size:16px;margin-top:10px}
 }
 
 /* ============ VISTA DE HERRAMIENTA ============ */
@@ -380,9 +379,8 @@ table.proy .pct{font-weight:600}
 }
 @media (max-width:900px){
   .acceso{grid-template-columns:1fr;min-height:0}
-  .acceso__foto{order:-1;min-height:0}
-  .acceso__lienzo{flex:0 0 auto}
-  .acceso__foto img{height:auto}
+  .acceso__foto{order:-1;min-height:0;aspect-ratio:4/3}
+  .acceso__velo{background:linear-gradient(180deg,rgba(8,22,48,.88) 0%,rgba(8,22,48,.72) 30%,rgba(8,22,48,.34) 52%,rgba(8,22,48,.04) 72%,rgba(8,22,48,.30) 100%)}
   .acceso__form{padding:32px 20px 48px;margin:0 auto}
   .acceso__msg{padding:20px}
   .acceso__msg h2{font-size:26px;max-width:none}
@@ -451,15 +449,14 @@ table.proy .pct{font-weight:600}
     </ul>
   </div>
   <div class="acceso__foto">
+    <img class="acceso__fondo" src="img/acceso.jpg" alt="" aria-hidden="true">
+    <img class="acceso__img" src="img/acceso.jpg" alt="Una mujer nada en una laguna de agua turquesa rodeada de palmeras, en Xcaret." width="1400" height="1050">
+    <div class="acceso__velo"></div>
     <div class="acceso__msg">
       <h2>Que el dinero te alcance hasta el final</h2>
       <p>Tu pensión, tus ahorros y tus gastos en un solo estudio. Aquí sabes si alcanza, y qué hacer si no.</p>
     </div>
-    <div class="acceso__lienzo">
-      <img src="img/acceso.jpg" alt="Una mujer nada en una laguna de agua turquesa rodeada de palmeras, en Xcaret." width="1400" height="1050">
-      <div class="acceso__velo"></div>
-      <p class="acceso__credito">Prototipo · sin cálculos</p>
-    </div>
+    <p class="acceso__credito">Prototipo · sin cálculos</p>
   </div>
 </main>
 
