@@ -86,6 +86,11 @@ input[type=email],input[type=password]{width:100%;font-family:var(--sans);font-s
 .barra-fila--proy .barra-fila__mark{background:var(--navy)}
 .barra-fila__pie{font-size:14px;color:var(--muted);margin-top:6px}
 
+.dos-graficas{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px;align-items:start}
+.dos-graficas .panelito{margin-bottom:0}
+.crece{margin-top:16px;padding-top:14px;border-top:1px solid var(--line-soft);font-size:16px;color:var(--muted)}
+.crece b{font-family:var(--display);font-size:21px;color:var(--navy);font-variant-numeric:tabular-nums}
+.nota-graf{font-size:16px;color:var(--muted);line-height:1.55;max-width:70ch;margin:14px 0 22px}
 .par{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:4px}
 .par__it{border-left:3px solid var(--line);padding-left:14px}
 .par__lab{font-size:14px;font-weight:600;color:var(--muted)}
@@ -384,24 +389,41 @@ input[type=email],input[type=password]{width:100%;font-family:var(--sans);font-s
           <p class="hero-num__pie">Cada mes, durante toda tu jubilación. Es lo que está en juego en las siguientes seis pantallas.</p>
         </div>
 
-        <div class="panelito">
-          <h2>Tu pensión mensual</h2>
-          <p class="panelito__sub">Con tus datos actuales, y con la proyección a tu edad de retiro.</p>
-          <div class="barras">
-            <div class="barra-fila barra-fila--hoy">
-              <div class="barra-fila__top"><span class="barra-fila__nom">Con datos actuales</span><span class="barra-fila__val">$28,309.78</span></div>
-              <div class="barra-fila__pista"><div class="barra-fila__mark" style="width:57.6%"></div></div>
+        <div class="dos-graficas">
+          <div class="panelito">
+            <h2>Pensión mensual</h2>
+            <p class="panelito__sub">Lo que cobrarías cada mes.</p>
+            <div class="barras">
+              <div class="barra-fila barra-fila--hoy">
+                <div class="barra-fila__top"><span class="barra-fila__nom">Hoy</span><span class="barra-fila__val">$28,309.78</span></div>
+                <div class="barra-fila__pista"><div class="barra-fila__mark" style="width:57.6%"></div></div>
+              </div>
+              <div class="barra-fila barra-fila--proy">
+                <div class="barra-fila__top"><span class="barra-fila__nom">A los 60 años</span><span class="barra-fila__val">$49,136.72</span></div>
+                <div class="barra-fila__pista"><div class="barra-fila__mark" style="width:100%"></div></div>
+              </div>
             </div>
-            <div class="barra-fila barra-fila--proy">
-              <div class="barra-fila__top"><span class="barra-fila__nom">Con pronóstico a los 60 años</span><span class="barra-fila__val">$49,136.72</span></div>
-              <div class="barra-fila__pista"><div class="barra-fila__mark" style="width:100%"></div></div>
-            </div>
+            <p class="crece">Crece <b>73.6%</b></p>
           </div>
-          <div class="par">
-            <div class="par__it"><p class="par__lab">Salario base diario hoy</p><p class="par__n">$1,712.91</p></div>
-            <div class="par__it"><p class="par__lab">Salario base diario al retirarte</p><p class="par__n">$2,384.15</p></div>
+
+          <div class="panelito">
+            <h2>Salario base diario</h2>
+            <p class="panelito__sub">El promedio con el que se calcula la pensión.</p>
+            <div class="barras">
+              <div class="barra-fila barra-fila--hoy">
+                <div class="barra-fila__top"><span class="barra-fila__nom">Hoy</span><span class="barra-fila__val">$1,712.91</span></div>
+                <div class="barra-fila__pista"><div class="barra-fila__mark" style="width:71.8%"></div></div>
+              </div>
+              <div class="barra-fila barra-fila--proy">
+                <div class="barra-fila__top"><span class="barra-fila__nom">A los 60 años</span><span class="barra-fila__val">$2,384.15</span></div>
+                <div class="barra-fila__pista"><div class="barra-fila__mark" style="width:100%"></div></div>
+              </div>
+            </div>
+            <p class="crece">Crece <b>39.2%</b></p>
           </div>
         </div>
+
+        <p class="nota-graf">Las dos empiezan en cero y cada una tiene su propia escala, porque una son pesos al mes y la otra pesos al día. Así se ve que tu pensión crece casi al doble de velocidad que tu salario.</p>
 
         <div class="fichas">
           <div class="ficha">
