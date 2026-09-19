@@ -92,6 +92,16 @@ html[data-tema="mixto"]{
   --foto-marco:#072633;
   --armazon:#0B3041; --armazon-linea:#22596B;
 }
+
+html[data-tema="nieve"]{
+  --canvas:#F5F5F7; --white:#FFFFFF; --field:#F0F0F2;
+  --ink:#1D1D1F; --ink-fuerte:#000000; --muted:#6B6B70;
+  --line:#D2D2D7; --line-soft:#E8E8ED;
+  --borde-campo:#D2D2D7; --borde-datos:#D2D2D7;
+  --navy-soft:#F0F0F2;
+  --rejilla:#E8E8ED; --rejilla-fuerte:#D2D2D7;
+  --radius:18px;
+}
 html[data-tema="mixto"] .side,
 html[data-tema="mixto"] .top{background:var(--armazon);border-color:var(--armazon-linea)}
 html[data-tema="mixto"] .side__search input{background:#0D3647;border-color:#22596B}
@@ -118,9 +128,13 @@ button{font-family:inherit}
 
 .logo{display:block}
 .logo img{display:block;width:auto;height:var(--logo-h, 52px)}
-.logo__clr{display:none}
-html[data-tema] .logo__osc{display:none}
-html[data-tema] .logo__clr{display:block}
+.logo img.logo__clr{display:none}
+html[data-tema="petroleo"] .logo img.logo__osc,
+html[data-tema="grafito"] .logo img.logo__osc,
+html[data-tema="mixto"] .logo img.logo__osc{display:none}
+html[data-tema="petroleo"] .logo img.logo__clr,
+html[data-tema="grafito"] .logo img.logo__clr,
+html[data-tema="mixto"] .logo img.logo__clr{display:block}
 .logo__word{font-family:var(--display);font-size:30px;font-weight:800;color:var(--navy);letter-spacing:-0.02em}
 .logo__word em{font-style:normal;position:relative}
 .logo__word em::after{content:"";position:absolute;left:-1px;right:-1px;bottom:2px;height:6px;background:var(--yellow);border-radius:3px;z-index:-1}
@@ -1374,6 +1388,7 @@ table.proy .pct{font-weight:600}
   <button class="tema__b" type="button" data-tema="petroleo" aria-pressed="true">Petróleo</button>
   <button class="tema__b" type="button" data-tema="grafito" aria-pressed="false">Grafito</button>
   <button class="tema__b" type="button" data-tema="mixto" aria-pressed="false">Mixto</button>
+  <button class="tema__b" type="button" data-tema="nieve" aria-pressed="false">Nieve</button>
 </div>
 
 <script>
