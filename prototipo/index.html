@@ -57,6 +57,57 @@ input[type=email],input[type=password]{width:100%;font-family:var(--sans);font-s
 .acceso__msg p{font-size:clamp(17px,1.5vw,19px);line-height:1.6;color:rgba(255,255,255,.92);margin-top:16px;max-width:42ch}
 .acceso__credito{position:absolute;bottom:0;right:0;padding:14px 18px;font-size:12px;color:rgba(255,255,255,.8)}
 
+/* ============ VISTA DE HERRAMIENTA ============ */
+.volver{display:inline-flex;align-items:center;gap:8px;background:none;border:none;color:var(--navy);font-size:15px;font-weight:600;cursor:pointer;padding:6px 0;margin-bottom:14px}
+.volver svg{width:16px;height:16px}
+.vista__h{margin-bottom:26px}
+.vista__num{font-size:13px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--muted)}
+.vista__h h1{font-size:clamp(26px,3vw,34px);color:var(--navy);margin:6px 0 14px}
+.vista__h .ent-t{font-size:21px;font-weight:600;color:var(--ink);line-height:1.4;max-width:46ch}
+.vista__h .ent-c{font-size:19px;font-weight:500;color:#20242C;line-height:1.55;max-width:56ch;margin-top:10px}
+
+.hero-num{background:var(--navy);border-radius:var(--radius);padding:clamp(24px,3vw,34px);margin-bottom:22px;color:#fff}
+.hero-num__lab{font-size:15px;font-weight:600;color:var(--yellow);letter-spacing:.02em}
+.hero-num__n{font-family:var(--display);font-size:clamp(40px,6vw,64px);font-weight:800;line-height:1.05;margin:8px 0 10px;font-variant-numeric:tabular-nums;letter-spacing:-0.02em}
+.hero-num__pie{font-size:17px;line-height:1.55;color:rgba(255,255,255,.9);max-width:52ch}
+
+.panelito{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:clamp(20px,2.5vw,26px);margin-bottom:22px}
+.panelito h2{font-size:21px;color:var(--navy);margin-bottom:6px}
+.panelito__sub{font-size:16px;color:var(--muted);line-height:1.5;margin-bottom:20px;max-width:56ch}
+
+.barras{display:grid;gap:18px}
+.barra-fila__top{display:flex;align-items:baseline;gap:12px;margin-bottom:7px;flex-wrap:wrap}
+.barra-fila__nom{font-size:16px;font-weight:600;color:var(--ink)}
+.barra-fila__val{margin-left:auto;font-family:var(--display);font-size:24px;font-weight:800;color:var(--navy);font-variant-numeric:tabular-nums;letter-spacing:-0.01em}
+.barra-fila__pista{height:26px;background:var(--line-soft);border-radius:6px;overflow:hidden}
+.barra-fila__mark{height:100%;border-radius:0 6px 6px 0}
+.barra-fila--hoy .barra-fila__mark{background:#6E7A8C}
+.barra-fila--hoy .barra-fila__val{color:#4A5464}
+.barra-fila--proy .barra-fila__mark{background:var(--navy)}
+.barra-fila__pie{font-size:14px;color:var(--muted);margin-top:6px}
+
+.par{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:4px}
+.par__it{border-left:3px solid var(--line);padding-left:14px}
+.par__lab{font-size:14px;font-weight:600;color:var(--muted)}
+.par__n{font-family:var(--display);font-size:24px;font-weight:800;color:var(--navy);font-variant-numeric:tabular-nums;margin-top:3px}
+
+.fichas{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:16px;margin-bottom:22px}
+.ficha{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px}
+.ficha h3{font-family:var(--sans);font-size:13px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--navy);margin-bottom:14px}
+.ficha dl{margin:0;display:grid;gap:11px}
+.ficha .fila{display:flex;gap:12px;align-items:baseline;font-size:16px;line-height:1.4}
+.ficha dt{color:var(--muted);flex:0 0 auto}
+.ficha dd{margin:0 0 0 auto;text-align:right;font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums}
+.ficha dd.vacio{font-weight:500;color:#8A5300;background:var(--yellow-soft);padding:1px 8px;border-radius:999px;font-size:14px}
+
+.crecim{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.crecim__c{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px}
+.crecim__lab{font-size:13px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.crecim__nd{font-size:19px;font-weight:600;color:var(--navy);line-height:1.4}
+.crecim__pie{font-size:15px;color:var(--muted);line-height:1.5;margin-top:8px}
+.crecim__rango{font-size:15px;color:var(--ink);margin-top:12px;padding-top:12px;border-top:1px solid var(--line-soft);font-variant-numeric:tabular-nums}
+.cierre{margin-top:26px;font-size:19px;font-weight:600;line-height:1.5;color:var(--ink);background:var(--yellow-soft);border-left:5px solid var(--yellow);border-radius:0 12px 12px 0;padding:18px 20px;max-width:64ch}
+
 /* ============ PANEL ============ */
 .app{display:grid;grid-template-columns:var(--side) minmax(0,1fr);min-height:100%;background:var(--canvas)}
 .side{background:var(--white);border-right:1px solid var(--line);display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto}
@@ -169,6 +220,7 @@ input[type=email],input[type=password]{width:100%;font-family:var(--sans);font-s
     <symbol id="i-buscar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></symbol>
     <symbol id="i-ayuda" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.4 2.3c-.6.25-.9.8-.9 1.45V14"/><path d="M12 17.2h.01"/></symbol>
     <symbol id="i-campana" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 1 0-12 0c0 6-2 7-2 7h16s-2-1-2-7"/><path d="M13.7 20a2 2 0 0 1-3.4 0"/></symbol>
+    <symbol id="i-atras" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12H5"/><path d="M11 6l-6 6 6 6"/></symbol>
     <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
     <symbol id="i-descarga" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11"/><path d="M8 11l4 4 4-4"/><path d="M4 19h16"/></symbol>
     <symbol id="i-mas" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></symbol>
@@ -265,6 +317,7 @@ input[type=email],input[type=password]{width:100%;font-family:var(--sans);font-s
     </header>
 
     <div class="lienzo">
+      <div id="v-panel">
       <div class="reporte">
         <label class="reporte__lab" for="sel-reporte">Reporte</label>
         <select id="sel-reporte">
@@ -312,6 +365,99 @@ input[type=email],input[type=password]{width:100%;font-family:var(--sans);font-s
 
       <div class="tarjetas" id="tarjetas"></div>
       <p class="pendiente" id="pendiente" hidden role="status"></p>
+      </div>
+
+      <!-- ===== 01 · RESUMEN FINANCIERO ===== -->
+      <div id="v-t01" hidden>
+        <button class="volver" type="button" data-volver><svg aria-hidden="true"><use href="#i-atras"></use></svg>Volver al panel</button>
+
+        <div class="vista__h">
+          <p class="vista__num">Herramienta 01</p>
+          <h1>Resumen financiero</h1>
+          <p class="ent-t">Dos cifras para empezar</p>
+          <p class="ent-c">Una es tu pensión con lo que el IMSS tiene registrado hoy. La otra, hasta dónde puede llegar si mueves lo que todavía está en tus manos.</p>
+        </div>
+
+        <div class="hero-num">
+          <p class="hero-num__lab">La diferencia entre las dos</p>
+          <p class="hero-num__n">+$20,826.94</p>
+          <p class="hero-num__pie">Cada mes, durante toda tu jubilación. Es lo que está en juego en las siguientes seis pantallas.</p>
+        </div>
+
+        <div class="panelito">
+          <h2>Tu pensión mensual</h2>
+          <p class="panelito__sub">Con tus datos actuales, y con la proyección a tu edad de retiro.</p>
+          <div class="barras">
+            <div class="barra-fila barra-fila--hoy">
+              <div class="barra-fila__top"><span class="barra-fila__nom">Con datos actuales</span><span class="barra-fila__val">$28,309.78</span></div>
+              <div class="barra-fila__pista"><div class="barra-fila__mark" style="width:57.6%"></div></div>
+            </div>
+            <div class="barra-fila barra-fila--proy">
+              <div class="barra-fila__top"><span class="barra-fila__nom">Con pronóstico a los 60 años</span><span class="barra-fila__val">$49,136.72</span></div>
+              <div class="barra-fila__pista"><div class="barra-fila__mark" style="width:100%"></div></div>
+            </div>
+          </div>
+          <div class="par">
+            <div class="par__it"><p class="par__lab">Salario base diario hoy</p><p class="par__n">$1,712.91</p></div>
+            <div class="par__it"><p class="par__lab">Salario base diario al retirarte</p><p class="par__n">$2,384.15</p></div>
+          </div>
+        </div>
+
+        <div class="fichas">
+          <div class="ficha">
+            <h3>Tus datos</h3>
+            <dl>
+              <div class="fila"><dt>Nombre</dt><dd>Campa López Víctor</dd></div>
+              <div class="fila"><dt>NSS</dt><dd>3296 •••• 164</dd></div>
+              <div class="fila"><dt>CURP</dt><dd>CALV7211•••••PC03</dd></div>
+              <div class="fila"><dt>Ley aplicable</dt><dd>Ley 73</dd></div>
+              <div class="fila"><dt>Fecha de retiro</dt><dd>7 nov 2032</dd></div>
+            </dl>
+          </div>
+          <div class="ficha">
+            <h3>Cómo estás hoy</h3>
+            <dl>
+              <div class="fila"><dt>Salario mensual</dt><dd>$52,072.46</dd></div>
+              <div class="fila"><dt>Gastos mensuales</dt><dd>$45,000.00</dd></div>
+              <div class="fila"><dt>Ahorros</dt><dd>$0.00</dd></div>
+              <div class="fila"><dt>Ahorros en la AFORE</dt><dd>$0.00</dd></div>
+            </dl>
+          </div>
+          <div class="ficha">
+            <h3>Lo que esperas del retiro</h3>
+            <dl>
+              <div class="fila"><dt>Edad a la que quieres retirarte</dt><dd>60 años</dd></div>
+              <div class="fila"><dt>Edad para recibir pensión</dt><dd>60 años</dd></div>
+              <div class="fila"><dt>Expectativa de vida</dt><dd>85 años</dd></div>
+              <div class="fila"><dt>Modalidad 40</dt><dd class="vacio">Falta</dd></div>
+              <div class="fila"><dt>Cotizando ahora</dt><dd class="vacio">Falta</dd></div>
+              <div class="fila"><dt>Otros ingresos</dt><dd>No</dd></div>
+              <div class="fila"><dt>Crédito Infonavit</dt><dd class="vacio">Falta</dd></div>
+            </dl>
+          </div>
+        </div>
+
+        <div class="panelito">
+          <h2>Cuánto ha crecido tu salario anualmente</h2>
+          <p class="panelito__sub">La inflación crece en promedio 4.40% al año. Si tu salario crece menos, pierdes poder de compra.</p>
+          <div class="crecim">
+            <div class="crecim__c">
+              <p class="crecim__lab">Con tus datos actuales</p>
+              <p class="crecim__nd">No se puede calcular</p>
+              <p class="crecim__pie">El salario inicial registrado es $0.00, así que no hay punto de partida para medir el crecimiento.</p>
+              <p class="crecim__rango">28.6 años · de $0.00 a $1,712.91 diarios</p>
+            </div>
+            <div class="crecim__c">
+              <p class="crecim__lab">Con pronóstico</p>
+              <p class="crecim__nd">No se puede calcular</p>
+              <p class="crecim__pie">El salario inicial registrado es $0.00, así que no hay punto de partida para medir el crecimiento.</p>
+              <p class="crecim__rango">36.6 años · de $0.00 a $2,384.15 diarios</p>
+            </div>
+          </div>
+        </div>
+
+        <p class="cierre">Esa diferencia depende sobre todo de una decisión: a qué edad te retiras. Ese es el siguiente paso.</p>
+      </div>
     </div>
   </div>
 </div>
@@ -349,15 +495,38 @@ input[type=email],input[type=password]{width:100%;font-family:var(--sans);font-s
   });
 
   var pendiente = document.getElementById('pendiente');
-  function avisar(num) {
-    var h = HERRAMIENTAS.filter(function (x) { return x.n === num; })[0];
-    pendiente.textContent = 'Pantalla ' + num + ' · ' + h.nom + ': pendiente de su captura.';
-    pendiente.hidden = false;
-    pendiente.scrollIntoView({block:'nearest'});
+  var LISTAS = ['01'];   // herramientas ya construidas
+
+  function verPanel() {
+    document.querySelectorAll('[id^="v-"]').forEach(function (v) { v.hidden = v.id !== 'v-panel'; });
+    window.scrollTo(0, 0);
+  }
+  function verHerramienta(num) {
+    if (LISTAS.indexOf(num) === -1) {
+      var h = HERRAMIENTAS.filter(function (x) { return x.n === num; })[0];
+      pendiente.textContent = 'Pantalla ' + num + ' · ' + h.nom + ': pendiente de su captura.';
+      pendiente.hidden = false;
+      pendiente.scrollIntoView({block:'nearest'});
+      return;
+    }
+    pendiente.hidden = true;
+    document.querySelectorAll('[id^="v-"]').forEach(function (v) { v.hidden = v.id !== 'v-t' + num; });
+    document.querySelectorAll('.side__link[data-tool]').forEach(function (l) {
+      if (l.dataset.tool === num) { l.setAttribute('aria-current', 'true'); }
+      else { l.removeAttribute('aria-current'); }
+    });
+    window.scrollTo(0, 0);
+    cerrar();
   }
   document.addEventListener('click', function (ev) {
-    var el = ev.target.closest && ev.target.closest('[data-tool]');
-    if (el) avisar(el.dataset.tool);
+    if (!ev.target.closest) return;
+    if (ev.target.closest('[data-volver]')) {
+      verPanel();
+      document.querySelectorAll('.side__link[data-tool]').forEach(function (l) { l.removeAttribute('aria-current'); });
+      return;
+    }
+    var el = ev.target.closest('[data-tool]');
+    if (el) verHerramienta(el.dataset.tool);
   });
 
   // Acceso -> panel
