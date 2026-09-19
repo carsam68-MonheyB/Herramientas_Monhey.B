@@ -75,6 +75,29 @@ input[type=email],input[type=password]{width:100%;font-family:var(--sans);font-s
 .panelito h2{font-size:21px;color:var(--navy);margin-bottom:6px}
 .panelito__sub{font-size:16px;color:var(--muted);line-height:1.5;margin-bottom:20px;max-width:56ch}
 
+.aviso-barra{display:flex;gap:12px;align-items:flex-start;background:var(--yellow-soft);border:1px solid #E8D49A;border-radius:12px;padding:14px 18px;margin-bottom:22px;font-size:16px;line-height:1.5;color:#5C3B00;max-width:78ch}
+.aviso-barra svg{width:19px;height:19px;flex:0 0 auto;color:#8A5300;margin-top:2px}
+.motivos{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-bottom:22px}
+.motivo{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px}
+.motivo__lab{font-size:14px;font-weight:600;color:var(--muted);margin-bottom:10px}
+.motivo__par{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.motivo__de{font-size:17px;color:var(--muted);font-variant-numeric:tabular-nums}
+.motivo__a{font-family:var(--display);font-size:30px;font-weight:800;color:var(--navy);font-variant-numeric:tabular-nums;letter-spacing:-0.02em}
+.motivo__mas{font-size:15px;font-weight:600;color:#1E6B45;background:#E6F4EC;padding:3px 10px;border-radius:999px;margin-left:auto}
+.motivo__pie{font-size:15px;color:var(--muted);line-height:1.5;margin-top:10px}
+.tabla-caja{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--white)}
+table.proy{width:100%;border-collapse:collapse;min-width:620px}
+table.proy th{background:var(--navy);color:#fff;font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:13px 16px;text-align:left;white-space:nowrap}
+table.proy td{padding:13px 16px;border-bottom:1px solid var(--line-soft);font-size:16px;color:var(--ink);font-variant-numeric:tabular-nums;white-space:nowrap}
+table.proy tbody tr:last-child td{border-bottom:none}
+table.proy tbody tr:last-child{background:var(--navy-soft)}
+table.proy .edad{font-weight:700;color:var(--navy)}
+table.proy .monto{font-weight:700;color:var(--navy)}
+table.proy .pct{font-weight:600}
+.tabla-pie{font-size:15px;color:var(--muted);line-height:1.55;margin-top:12px;max-width:72ch}
+.advert{background:var(--white);border:2px solid #C98F1E;border-radius:var(--radius);padding:18px 22px;margin:22px 0;font-size:20px;font-weight:600;color:#5C3B00;line-height:1.4;max-width:64ch}
+.invita{background:var(--navy);border-radius:var(--radius);padding:22px 24px;margin-bottom:22px;color:#fff;font-size:19px;font-weight:500;line-height:1.5;max-width:64ch}
+.invita b{color:var(--yellow);font-weight:700}
 .graf-leyenda{display:flex;gap:22px;flex-wrap:wrap;margin-bottom:12px}
 .leg{display:inline-flex;align-items:center;gap:8px;font-size:14px;color:var(--muted)}
 .leg__m{width:16px;height:12px;border-radius:3px;flex:0 0 auto}
@@ -85,6 +108,7 @@ input[type=email],input[type=password]{width:100%;font-family:var(--sans);font-s
 .graf .ejeT{font-family:var(--sans);font-size:12px;fill:var(--muted);font-variant-numeric:tabular-nums}
 .graf .ejeN{font-family:var(--sans);font-size:12px;font-weight:600;fill:var(--muted)}
 .graf .catT{font-family:var(--sans);font-size:13px;font-weight:600;fill:var(--ink)}
+.graf .ptT{font-family:var(--sans);font-size:13px;font-weight:700;fill:var(--navy);font-variant-numeric:tabular-nums}
 .graf .valB{font-family:var(--display);font-size:17px;font-weight:800;fill:var(--navy);font-variant-numeric:tabular-nums}
 .graf .valL{font-family:var(--sans);font-size:13px;font-weight:700;fill:#2B3340;font-variant-numeric:tabular-nums}
 .barras{display:grid;gap:18px}
@@ -241,6 +265,7 @@ input[type=email],input[type=password]{width:100%;font-family:var(--sans);font-s
     <symbol id="i-buscar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></symbol>
     <symbol id="i-ayuda" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.4 2.3c-.6.25-.9.8-.9 1.45V14"/><path d="M12 17.2h.01"/></symbol>
     <symbol id="i-campana" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 1 0-12 0c0 6-2 7-2 7h16s-2-1-2-7"/><path d="M13.7 20a2 2 0 0 1-3.4 0"/></symbol>
+    <symbol id="i-alerta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v5.5"/><path d="M12 16.5h.01"/></symbol>
     <symbol id="i-atras" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12H5"/><path d="M11 6l-6 6 6 6"/></symbol>
     <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
     <symbol id="i-descarga" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11"/><path d="M8 11l4 4 4-4"/><path d="M4 19h16"/></symbol>
@@ -342,7 +367,8 @@ input[type=email],input[type=password]{width:100%;font-family:var(--sans);font-s
       <div class="reporte">
         <label class="reporte__lab" for="sel-reporte">Reporte</label>
         <select id="sel-reporte">
-          <option>13/9/2026 · CALV721108HCLMPC03</option>
+          <option value="01">13/9/2026 · CALV721108HCLMPC03</option>
+          <option value="02">22/5/2026 · SAMC760330HCLMTR07</option>
         </select>
         <div class="reporte__acc">
           <button class="btn-sec" type="button"><svg aria-hidden="true"><use href="#i-descarga"></use></svg>Descargar el estudio</button>
@@ -512,6 +538,115 @@ input[type=email],input[type=password]{width:100%;font-family:var(--sans);font-s
 
         <p class="cierre">Esa diferencia depende sobre todo de una decisión: a qué edad te retiras. Ese es el siguiente paso.</p>
       </div>
+
+      <!-- ===== 02 · PROYECCIONES DE PENSIÓN ===== -->
+      <div id="v-t02" hidden>
+        <button class="volver" type="button" data-volver><svg aria-hidden="true"><use href="#i-atras"></use></svg>Volver al panel</button>
+
+        <div class="vista__h">
+          <p class="vista__num">Herramienta 02 · Ley 73</p>
+          <h1>Proyecciones de pensión</h1>
+          <p class="ent-t">Cada edad tiene su porcentaje</p>
+          <p class="ent-c">La ley asigna un porcentaje distinto de pensión según la edad a la que te retires. Aquí está el monto que te corresponde en cada una, empezando por la que registraste. Cuándo retirarte es decisión tuya.</p>
+        </div>
+
+        <p class="aviso-barra"><svg aria-hidden="true"><use href="#i-alerta"></use></svg>Todos los montos de esta pantalla son antes de impuestos. El ISR se descuenta de tu pensión.</p>
+
+        <div class="hero-num">
+          <p class="hero-num__lab">Entre retirarte a los 60 y a los 65</p>
+          <p class="hero-num__n">$26,725.45</p>
+          <p class="hero-num__pie">De diferencia al mes: 54% más. Cada año que esperas suma alrededor de $5,345 mensuales.</p>
+        </div>
+
+        <div class="motivos">
+          <div class="motivo">
+            <p class="motivo__lab">Semanas cotizadas al llegar a los 60</p>
+            <p class="motivo__par"><span class="motivo__de">1,276 hoy →</span><span class="motivo__a">1,886</span><span class="motivo__mas">+610</span></p>
+            <p class="motivo__pie">Las semanas que sumarías si sigues cotizando hasta retirarte.</p>
+          </div>
+          <div class="motivo">
+            <p class="motivo__lab">Salario base diario al llegar a los 60</p>
+            <p class="motivo__par"><span class="motivo__de">$1,433.19 hoy →</span><span class="motivo__a">$2,390.22</span><span class="motivo__mas">+67%</span></p>
+            <p class="motivo__pie">El promedio con el que se calcularía tu pensión.</p>
+          </div>
+        </div>
+
+        <div class="panelito">
+          <h2>Tu pensión mes a mes, según la edad a la que te retires</h2>
+          <p class="panelito__sub">Sube por dos motivos a la vez: el porcentaje que la ley asigna a cada edad y las semanas que sigues acumulando.</p>
+          <div class="graf-caja">
+            <svg viewBox="0 0 780 320" class="graf" role="img"
+                 aria-label="La pensión mensual sube de 49,520.01 pesos a los 60 años hasta 76,245.46 pesos a los 65 años, pasando por 54,456.27, 59,597.00, 64,942.11 y 70,491.60.">
+              <g stroke="#E6EAF1" stroke-width="1">
+                <line x1="100" y1="270.0" x2="680" y2="270.0"/>
+                <line x1="100" y1="237.1" x2="680" y2="237.1"/>
+                <line x1="100" y1="204.3" x2="680" y2="204.3"/>
+                <line x1="100" y1="171.4" x2="680" y2="171.4"/>
+                <line x1="100" y1="138.6" x2="680" y2="138.6"/>
+                <line x1="100" y1="105.7" x2="680" y2="105.7"/>
+                <line x1="100" y1="72.9" x2="680" y2="72.9"/>
+                <line x1="100" y1="40.0" x2="680" y2="40.0"/>
+              </g>
+              <g class="ejeT" text-anchor="end">
+                <text x="90" y="274.0">$45,000</text>
+                <text x="90" y="241.1">$50,000</text>
+                <text x="90" y="208.3">$55,000</text>
+                <text x="90" y="175.4">$60,000</text>
+                <text x="90" y="142.6">$65,000</text>
+                <text x="90" y="109.7">$70,000</text>
+                <text x="90" y="76.9">$75,000</text>
+                <text x="90" y="44.0">$80,000</text>
+              </g>
+              <g class="catT" text-anchor="middle">
+                <text x="100" y="300">60 años</text>
+                <text x="216" y="300">61 años</text>
+                <text x="332" y="300">62 años</text>
+                <text x="448" y="300">63 años</text>
+                <text x="564" y="300">64 años</text>
+                <text x="680" y="300">65 años</text>
+              </g>
+              <polyline points="100,240.3 216,207.9 332,174.1 448,139.0 564,102.5 680,64.7" fill="none" stroke="#2F5DA8" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+              <circle cx="100" cy="240.3" r="5.5" fill="#2F5DA8" stroke="#fff" stroke-width="2"/>
+              <circle cx="216" cy="207.9" r="5.5" fill="#2F5DA8" stroke="#fff" stroke-width="2"/>
+              <circle cx="332" cy="174.1" r="5.5" fill="#2F5DA8" stroke="#fff" stroke-width="2"/>
+              <circle cx="448" cy="139.0" r="5.5" fill="#2F5DA8" stroke="#fff" stroke-width="2"/>
+              <circle cx="564" cy="102.5" r="5.5" fill="#2F5DA8" stroke="#fff" stroke-width="2"/>
+              <circle cx="680" cy="64.7" r="5.5" fill="#2F5DA8" stroke="#fff" stroke-width="2"/>
+              <text class="ptT" x="96" y="264.3" text-anchor="start">$49,520.01</text>
+              <text class="ptT" x="216" y="193.9" text-anchor="middle">$54,456.27</text>
+              <text class="ptT" x="332" y="160.1" text-anchor="middle">$59,597.00</text>
+              <text class="ptT" x="448" y="125.0" text-anchor="middle">$64,942.11</text>
+              <text class="ptT" x="564" y="88.5" text-anchor="middle">$70,491.60</text>
+              <text class="ptT" x="680" y="50.7" text-anchor="middle">$76,245.46</text>
+            </svg>
+          </div>
+        </div>
+
+        <div class="panelito">
+          <h2>La tabla completa</h2>
+          <p class="panelito__sub">La misma información, edad por edad.</p>
+          <div class="tabla-caja">
+            <table class="proy">
+              <thead><tr><th scope="col">Si te retiras a los</th><th scope="col">Fecha de retiro</th><th scope="col">Semanas cotizadas</th><th scope="col">Pensión estimada</th><th scope="col">Porcentaje que te toca</th></tr></thead>
+              <tbody>
+              <tr><td class="edad">60 años</td><td>30 mar 2036</td><td>1,886</td><td class="monto">$49,520.01</td><td class="pct">75%</td></tr>
+              <tr><td class="edad">61 años</td><td>30 mar 2037</td><td>1,938</td><td class="monto">$54,456.27</td><td class="pct">80%</td></tr>
+              <tr><td class="edad">62 años</td><td>30 mar 2038</td><td>1,990</td><td class="monto">$59,597.00</td><td class="pct">85%</td></tr>
+              <tr><td class="edad">63 años</td><td>30 mar 2039</td><td>2,042</td><td class="monto">$64,942.11</td><td class="pct">90%</td></tr>
+              <tr><td class="edad">64 años</td><td>30 mar 2040</td><td>2,094</td><td class="monto">$70,491.60</td><td class="pct">95%</td></tr>
+              <tr><td class="edad">65 años</td><td>30 mar 2041</td><td>2,146</td><td class="monto">$76,245.46</td><td class="pct">100%</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="tabla-pie">El porcentaje es la parte de tu pensión calculada que la ley te entrega según la edad. A los 65 recibes el 100%; a los 60, el 75%.</p>
+        </div>
+
+        <p class="advert">Porcentaje más alto es más pensión, pero no mayor rentabilidad.</p>
+
+        <p class="invita">Calcular lo que más te conviene exige analizar todos los elementos. Un facilitador monhey.B lo hace por ti. <b>Solicita ahora mismo su ayuda.</b></p>
+
+        <p class="cierre">Todo este cálculo se sostiene en tus semanas cotizadas. Conviene revisar que estén completas.</p>
+      </div>
     </div>
   </div>
 </div>
@@ -549,7 +684,7 @@ input[type=email],input[type=password]{width:100%;font-family:var(--sans);font-s
   });
 
   var pendiente = document.getElementById('pendiente');
-  var LISTAS = ['01'];   // herramientas ya construidas
+  var LISTAS = ['01', '02'];   // herramientas ya construidas
 
   function verPanel() {
     document.querySelectorAll('[id^="v-"]').forEach(function (v) { v.hidden = v.id !== 'v-panel'; });
@@ -565,6 +700,10 @@ input[type=email],input[type=password]{width:100%;font-family:var(--sans);font-s
     }
     pendiente.hidden = true;
     document.querySelectorAll('[id^="v-"]').forEach(function (v) { v.hidden = v.id !== 'v-t' + num; });
+    var sel = document.getElementById('sel-reporte');
+    for (var k = 0; k < sel.options.length; k++) {
+      if (sel.options[k].value === num) { sel.selectedIndex = k; }
+    }
     document.querySelectorAll('.side__link[data-tool]').forEach(function (l) {
       if (l.dataset.tool === num) { l.setAttribute('aria-current', 'true'); }
       else { l.removeAttribute('aria-current'); }
