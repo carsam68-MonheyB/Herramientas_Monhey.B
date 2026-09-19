@@ -300,6 +300,14 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
 .step__sub{font-size:20px;font-weight:600;line-height:1.4;color:var(--ink);margin-top:3px;max-width:60ch}
 .step__bridge{font-size:17px;line-height:1.6;color:var(--muted);margin-top:9px;padding-left:16px;border-left:3px solid var(--yellow);max-width:62ch}
 .step__bridge b{font-weight:600;color:var(--navy);font-style:normal}
+/* ---------- Invitación a asesoría ---------- */
+.cta-card{background:var(--navy);border-radius:var(--radius);padding:24px 26px}
+.cta-card .prop{color:#fff}
+.cta-card .copybtn{color:#fff;background:transparent;border-color:rgba(255,255,255,.55)}
+.cta-card .copybtn:hover{background:#fff;color:var(--navy);border-color:#fff}
+.cta-card .copybtn.is-done{background:var(--yellow);color:var(--navy-deep);border-color:var(--yellow)}
+.cta-card :focus-visible{outline-color:var(--yellow)}
+.field__note{font-size:15px;color:var(--muted);line-height:1.55;margin-top:12px;max-width:52ch}
 /* ---------- Reglas de tono ---------- */
 .tono{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;margin-bottom:56px}
 .tono__item{border-left:4px solid var(--navy);padding:4px 0 4px 20px}
@@ -553,12 +561,17 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
           <h3 class="field__label">Texto de entrada</h3>
           <div class="entry">
             <div class="entry__part copyunit"><div><p class="entry__mini">Título</p><p class="copytext prop prop--md">Cada edad tiene su porcentaje</p></div></div>
-            <div class="entry__part copyunit"><div><p class="entry__mini">Cuerpo</p><p class="copytext prop prop--body">La Ley 73 asigna un porcentaje distinto de tu pensión calculada según la edad a la que te retires, y llega al 100% a los 65. Aquí está el monto mensual que te corresponde en cada una, empezando por la edad que registraste.</p></div></div>
+            <div class="entry__part copyunit"><div><p class="entry__mini">Cuerpo</p><p class="copytext prop prop--body">La ley asigna un porcentaje distinto de tu pensión según la edad a la que te retires. Aquí está el monto que te corresponde en cada una, empezando por la que registraste. Cuándo retirarte es decisión tuya; estas son las cifras para tomarla.</p></div></div>
           </div>
         </div>
         <div class="field">
           <h3 class="field__label">Puente a la siguiente pantalla</h3>
           <div class="hook copyunit"><p class="copytext prop prop--md">Todo este cálculo se sostiene en tus semanas cotizadas. Conviene revisar que estén completas.</p></div>
+        </div>
+        <div class="field">
+          <h3 class="field__label">Invitación a asesoría</h3>
+          <div class="cta-card copyunit"><p class="copytext prop prop--md">La tabla te da las cifras; la decisión tiene más variables. Un facilitador monhey.B revisa tu caso completo y te dice qué edad te conviene a ti. Es un servicio adicional que contratas desde la app.</p></div>
+          <p class="field__note">Va en un bloque aparte, visualmente separado del estudio: es una oferta, no un hallazgo.</p>
         </div>
       </div>
       <aside class="tool__side">
