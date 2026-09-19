@@ -197,6 +197,8 @@ table.proy .pct{font-weight:600}
 .leg__m{width:16px;height:12px;border-radius:3px;flex:0 0 auto}
 .leg__m--barra{background:#4A6BA8}
 .leg__m--linea{height:3px;border-radius:2px;background:#2B3340}
+.leg__m--m40{background:#5B3FA8;height:3px;border-radius:2px}
+.leg__m--uma{background:#D9645C;height:3px;border-radius:2px}
 .graf-caja{overflow-x:auto}
 .graf{width:100%;min-width:560px;height:auto;display:block}
 .graf .ejeT{font-family:var(--sans);font-size:12px;fill:var(--muted);font-variant-numeric:tabular-nums}
@@ -1050,6 +1052,49 @@ table.proy .pct{font-weight:600}
           <span class="base-datos__i"><span class="base-datos__l">Salario diario</span><span class="base-datos__v">$2,932.75</span></span>
           <span class="base-datos__i"><span class="base-datos__l">Salario mensual</span><span class="base-datos__v">$89,155.60</span></span>
           <span class="base-datos__i"><span class="base-datos__l">Duración</span><span class="base-datos__v">60 meses</span></span>
+        </div>
+
+        <div class="panelito">
+          <h2>Cómo sube el costo</h2>
+          <p class="panelito__sub">La línea morada es lo que pagas cada mes, en el eje izquierdo. La roja es cuánto vale la UMA cada año, en el eje derecho.</p>
+          <div class="graf-leyenda">
+            <span class="leg"><span class="leg__m leg__m--m40"></span>Costo mensual de Modalidad 40</span>
+            <span class="leg"><span class="leg__m leg__m--uma"></span>Valor de la UMA diaria</span>
+          </div>
+          <div class="graf-caja">
+            <svg viewBox="0 0 760 300" class="graf" role="img"
+                 aria-label="El costo mensual sube de 12,872.29 pesos en 2026 a 16,761.25 en 2030. La UMA diaria sube de 117.31 a 139.47 pesos en el mismo periodo.">
+              <g stroke="#E6EAF1" stroke-width="1">
+                <line x1="110" y1="250" x2="650" y2="250"/><line x1="110" y1="208" x2="650" y2="208"/>
+                <line x1="110" y1="166" x2="650" y2="166"/><line x1="110" y1="124" x2="650" y2="124"/>
+                <line x1="110" y1="82"  x2="650" y2="82"/><line  x1="110" y1="40"  x2="650" y2="40"/>
+              </g>
+              <g class="ejeT" text-anchor="end">
+                <text x="100" y="254">$12,000</text><text x="100" y="212">$13,000</text><text x="100" y="170">$14,000</text>
+                <text x="100" y="128">$15,000</text><text x="100" y="86">$16,000</text><text x="100" y="44">$17,000</text>
+              </g>
+              <g class="ejeT" text-anchor="start">
+                <text x="660" y="254">$115</text><text x="660" y="212">$120</text><text x="660" y="170">$125</text>
+                <text x="660" y="128">$130</text><text x="660" y="86">$135</text><text x="660" y="44">$140</text>
+              </g>
+              <text class="ejeN" x="20" y="145" transform="rotate(-90 20 145)" text-anchor="middle">Costo mensual</text>
+              <text class="ejeN" x="740" y="145" transform="rotate(90 740 145)" text-anchor="middle">UMA diaria</text>
+
+              <polyline points="110,230.6 245,187.0 380,141.6 515,94.1 650,44.5" fill="none" stroke="#D9645C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <polyline points="110,213.4 245,172.5 380,131.7 515,90.9 650,50.0" fill="none" stroke="#5B3FA8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <g fill="#D9645C" stroke="#fff" stroke-width="2">
+                <circle cx="110" cy="230.6" r="5"/><circle cx="245" cy="187.0" r="5"/><circle cx="380" cy="141.6" r="5"/><circle cx="515" cy="94.1" r="5"/><circle cx="650" cy="44.5" r="5"/>
+              </g>
+              <g fill="#5B3FA8" stroke="#fff" stroke-width="2">
+                <circle cx="110" cy="213.4" r="5"/><circle cx="245" cy="172.5" r="5"/><circle cx="380" cy="131.7" r="5"/><circle cx="515" cy="90.9" r="5"/><circle cx="650" cy="50.0" r="5"/>
+              </g>
+              <g class="catT" text-anchor="middle">
+                <text x="110" y="278">2026</text><text x="245" y="278">2027</text><text x="380" y="278">2028</text>
+                <text x="515" y="278">2029</text><text x="650" y="278">2030</text>
+              </g>
+            </svg>
+          </div>
+          <p class="tabla-pie">Las dos suben a la vez pero por motivos distintos: el costo sube porque la cuota del IMSS pasa de 14.438% a 18.800%, y la UMA sube por la inflación. Tu salario a cotizar se queda en $2,932.75 diarios.</p>
         </div>
 
         <div class="panelito">
