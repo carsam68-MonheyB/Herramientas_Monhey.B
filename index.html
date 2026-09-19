@@ -285,6 +285,31 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
   html{scroll-behavior:auto}
   *,*::before,*::after{transition-duration:.001ms !important;animation-duration:.001ms !important;animation-iteration-count:1 !important}
 }
+
+/* ---------- El recorrido ---------- */
+.acts{display:grid;gap:18px}
+.act{border:1px solid var(--line);border-radius:var(--radius);background:var(--white);padding:26px 28px}
+.act__head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+.act__label{font-size:12px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--navy);background:var(--yellow);padding:4px 10px;border-radius:999px}
+.act__head h3{font-size:23px;color:var(--navy)}
+.act > p{font-size:17px;color:var(--muted);line-height:1.6;max-width:var(--measure);margin-bottom:22px}
+.act__steps{list-style:none;margin:0;padding:0;display:grid;gap:16px}
+.step{display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;align-items:start}
+.step__n{font-family:var(--display);font-size:15px;font-weight:800;color:var(--navy);background:var(--navy-soft);width:38px;height:38px;border-radius:10px;display:grid;place-items:center;font-variant-numeric:tabular-nums}
+.step__name{font-size:14px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+.step__sub{font-size:20px;font-weight:600;line-height:1.4;color:var(--ink);margin-top:3px;max-width:60ch}
+.step__bridge{font-size:17px;line-height:1.6;color:var(--muted);margin-top:9px;padding-left:16px;border-left:3px solid var(--yellow);max-width:62ch}
+.step__bridge b{font-weight:600;color:var(--navy);font-style:normal}
+/* ---------- Reglas de tono ---------- */
+.tono{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;margin-bottom:56px}
+.tono__item{border-left:4px solid var(--navy);padding:4px 0 4px 20px}
+.tono__item h3{font-size:20px;color:var(--navy);margin-bottom:9px;line-height:1.3}
+.tono__item p{font-size:17px;color:var(--muted);line-height:1.6;max-width:46ch}
+@media (max-width:720px){
+  .act{padding:22px 20px}
+  .tono{grid-template-columns:1fr;gap:26px}
+  .step{grid-template-columns:1fr;gap:10px}
+}
 </style>
 </head>
 <body>
@@ -309,6 +334,7 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
   <div class="nav__inner">
     <a class="brand" href="#portada"><span class="brand__dot" aria-hidden="true">m</span>monhey.B</a>
     <div class="navlinks">
+      <a href="#recorrido">El recorrido</a>
       <a href="#giro">El giro</a>
       <a href="#t01"><span class="n">01</span>Resumen</a>
       <a href="#t02"><span class="n">02</span>Proyecciones</a>
@@ -326,14 +352,13 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
 
 <main id="contenido">
 
-<!-- ============ PORTADA ============ -->
 <section class="hero" id="portada">
   <div class="wrap hero__grid">
     <div>
       <span class="eyebrow">Propuesta de textos de interfaz</span>
-      <h1>De función a <em>respuesta</em></h1>
-      <p class="lede">Hoy los subtítulos del menú describen lo que hace la herramienta: <strong>“Herramienta interactiva para simular escenarios”</strong>. Nadie abre una app para usar una herramienta interactiva.</p>
-      <p class="lede">La abre porque tiene una pregunta. Esta propuesta cambia los siete subtítulos por la <strong>respuesta que cada herramienta promete</strong>, y revisa pantalla por pantalla qué contradice esa promesa.</p>
+      <h1>Siete herramientas, <em>un solo recorrido</em></h1>
+      <p class="lede">Un menú se ojea y se abandona. Un estudio se sigue hasta el final, porque cada dato deja una pregunta que solo contesta el siguiente.</p>
+      <p class="lede">Esta propuesta reescribe los siete subtítulos para que <strong>cada uno prometa una cifra</strong>, y encadena las pantallas para que el lector avance sin que nadie se lo pida.</p>
 
       <div class="example">
         <div class="example__row example__row--old">
@@ -342,7 +367,7 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
         </div>
         <div class="example__row example__row--new">
           <span class="example__tag">Después</span>
-          <p class="new-text">Tu pensión hoy vs. la que podrías tener</p>
+          <p class="new-text">Tu pensión hoy y la que puedes alcanzar</p>
         </div>
       </div>
     </div>
@@ -351,29 +376,29 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
       <div class="phone" role="group" aria-label="Menú de la app monhey.B con las siete herramientas y los subtítulos propuestos">
         <div class="phone__bar">
           <div class="phone__notch" aria-hidden="true"></div>
-          <p class="phone__hi">Tus herramientas</p>
-          <p class="phone__title">¿Qué quieres saber hoy?</p>
+          <p class="phone__hi">Tu estudio de retiro</p>
+          <p class="phone__title">Siete pasos, en orden</p>
         </div>
         <ul class="phone__list">
           <li class="phone__item">
             <span class="phone__ico" aria-hidden="true"><svg><use href="#i-resumen"></use></svg></span>
-            <span><span class="phone__name">Resumen financiero</span><span class="phone__sub">Tu pensión hoy vs. la que podrías tener</span></span>
+            <span><span class="phone__name">Resumen financiero</span><span class="phone__sub">Tu pensión hoy y la que puedes alcanzar</span></span>
           </li>
           <li class="phone__item">
             <span class="phone__ico" aria-hidden="true"><svg><use href="#i-proy"></use></svg></span>
-            <span><span class="phone__name">Proyecciones de pensión</span><span class="phone__sub">Retirarte a los 60 o a los 65 no es lo mismo</span></span>
+            <span><span class="phone__name">Proyecciones de pensión</span><span class="phone__sub">Lo que cuesta retirarte antes de tiempo</span></span>
           </li>
           <li class="phone__item">
             <span class="phone__ico" aria-hidden="true"><svg><use href="#i-hist"></use></svg></span>
-            <span><span class="phone__name">Historial laboral</span><span class="phone__sub">Revisa que el IMSS tenga bien tus años cotizados</span></span>
+            <span><span class="phone__name">Historial laboral</span><span class="phone__sub">Un dato mal registrado te baja la pensión</span></span>
           </li>
           <li class="phone__item">
             <span class="phone__ico" aria-hidden="true"><svg><use href="#i-gastos"></use></svg></span>
-            <span><span class="phone__name">Análisis de gastos</span><span class="phone__sub">En qué se te va el dinero y cuánto costará mañana</span></span>
+            <span><span class="phone__name">Análisis de gastos</span><span class="phone__sub">Cuánto necesitas al mes para vivir igual</span></span>
           </li>
           <li class="phone__item">
             <span class="phone__ico" aria-hidden="true"><svg><use href="#i-ahorro"></use></svg></span>
-            <span><span class="phone__name">Proyección de ahorros</span><span class="phone__sub">Cuánto tendrás el día que dejes de trabajar</span></span>
+            <span><span class="phone__name">Proyección de ahorros</span><span class="phone__sub">Cuánto habrás juntado al llegar tu retiro</span></span>
           </li>
           <li class="phone__item phone__item--pro">
             <span class="phone__ico" aria-hidden="true"><svg><use href="#i-simul"></use></svg></span>
@@ -381,57 +406,81 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
           </li>
           <li class="phone__item">
             <span class="phone__ico" aria-hidden="true"><svg><use href="#i-mod40"></use></svg></span>
-            <span><span class="phone__name">Modalidad 40</span><span class="phone__sub">Cuánto cuesta la Modalidad 40 y cuánto sube cada año</span></span>
+            <span><span class="phone__name">Modalidad 40</span><span class="phone__sub">Cuánto cuesta subir tu pensión</span></span>
           </li>
         </ul>
       </div>
-      <p class="phone-caption">El menú con los siete subtítulos propuestos. Cada uno es una pregunta que el usuario ya se hizo.</p>
+      <p class="phone-caption">Leídos de corrido, los siete subtítulos ya cuentan la historia completa.</p>
     </div>
   </div>
 </section>
 
-<!-- ============ EL GIRO ============ -->
-<section class="band band--tint" id="giro">
+
+<section class="band band--tint" id="recorrido">
+  <div class="wrap">
+    <div class="band__head">
+      <p class="band__kicker">El recorrido</p>
+      <h2>Cuatro actos, siete pantallas</h2>
+      <p>El orden actual de la app ya casi es una historia. Solo hacía falta que los textos lo dijeran: cuánto vas a recibir, cuánto vas a necesitar, cuánto vas a tener, y qué hacer si no alcanza.</p>
+    </div>
+    <div class="acts">
+      <section class="act">
+        <div class="act__head"><span class="act__label">Acto 1</span><h3>Lo que vas a recibir</h3></div>
+        <p>Las tres primeras pantallas construyen una sola cifra: tu pensión. Primero el monto, luego lo que lo mueve, luego de dónde sale.</p>
+        <ol class="act__steps">
+          <li class="step"><span class="step__n" aria-hidden="true">01</span><div><p class="step__name">Resumen financiero</p><p class="step__sub">Tu pensión hoy y la que puedes alcanzar</p><p class="step__bridge"><b>Cierra con:</b> Esa diferencia depende sobre todo de una decisión: a qué edad te retiras. Ese es el siguiente paso.</p></div></li>
+          <li class="step"><span class="step__n" aria-hidden="true">02</span><div><p class="step__name">Proyecciones de pensión</p><p class="step__sub">Lo que cuesta retirarte antes de tiempo</p><p class="step__bridge"><b>Cierra con:</b> Todo este cálculo se sostiene en tus semanas cotizadas. Conviene revisar que estén completas.</p></div></li>
+          <li class="step"><span class="step__n" aria-hidden="true">03</span><div><p class="step__name">Historial laboral</p><p class="step__sub">Un dato mal registrado te baja la pensión</p><p class="step__bridge"><b>Cierra con:</b> Ya sabes cuánto vas a recibir. Ahora la otra mitad de la cuenta: cuánto vas a necesitar.</p></div></li>
+        </ol>
+      </section>
+      <section class="act">
+        <div class="act__head"><span class="act__label">Acto 2</span><h3>Lo que vas a necesitar</h3></div>
+        <p>La pensión sola no dice nada. Cobra sentido al ponerla contra lo que cuesta tu vida.</p>
+        <ol class="act__steps">
+          <li class="step"><span class="step__n" aria-hidden="true">04</span><div><p class="step__name">Análisis de gastos</p><p class="step__sub">Cuánto necesitas al mes para vivir igual</p><p class="step__bridge"><b>Cierra con:</b> Ese gasto no lo cubre sola la pensión. Veamos qué más vas a tener.</p></div></li>
+        </ol>
+      </section>
+      <section class="act">
+        <div class="act__head"><span class="act__label">Acto 3</span><h3>Lo que vas a tener</h3></div>
+        <p>Además de la pensión, está lo que juntaste por tu cuenta. Es la otra columna del balance.</p>
+        <ol class="act__steps">
+          <li class="step"><span class="step__n" aria-hidden="true">05</span><div><p class="step__name">Proyección de ahorros</p><p class="step__sub">Cuánto habrás juntado al llegar tu retiro</p><p class="step__bridge"><b>Cierra con:</b> Ya están las tres cifras: lo que vas a recibir, lo que vas a gastar y lo que habrás juntado. Falta cruzarlas.</p></div></li>
+        </ol>
+      </section>
+      <section class="act">
+        <div class="act__head"><span class="act__label">Acto 4</span><h3>Si alcanza, y qué hacer si no</h3></div>
+        <p>El cruce de todo lo anterior, y la única palanca que todavía puedes accionar.</p>
+        <ol class="act__steps">
+          <li class="step"><span class="step__n" aria-hidden="true">06</span><div><p class="step__name">Simulador de jubilación</p><p class="step__sub">¿Hasta qué edad te alcanza el dinero?</p><p class="step__bridge"><b>Cierra con:</b> Si el dinero no alcanza, todavía hay algo que puedes mover antes de retirarte.</p></div></li>
+          <li class="step"><span class="step__n" aria-hidden="true">07</span><div><p class="step__name">Modalidad 40</p><p class="step__sub">Cuánto cuesta subir tu pensión</p><p class="step__bridge"><b>Cierra con:</b> Con esto cierra el estudio. Vuelve al resumen para ver tu panorama con los ajustes aplicados.</p></div></li>
+        </ol>
+      </section>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="giro">
   <div class="wrap">
     <div class="band__head">
       <p class="band__kicker">El giro</p>
-      <h2>Tres ejemplos del mismo cambio</h2>
-      <p>El subtítulo viejo explica la pantalla. El nuevo contesta la duda que llevó al usuario hasta ahí.</p>
+      <h2>De describir la pantalla a dar el dato</h2>
+      <p>El subtítulo viejo dice qué contiene la herramienta. El nuevo dice qué vas a saber al salir de ella.</p>
     </div>
-
     <div class="shift">
       <div class="shift__row">
-        <div class="shift__cell shift__cell--old">
-          <span class="shift__label">Antes</span>
-          <p class="old-text">Vista general de tu situación</p>
-        </div>
+        <div class="shift__cell shift__cell--old"><span class="shift__label">Antes</span><p class="old-text">Vista general de tu situación</p></div>
         <div class="shift__arrow" aria-hidden="true"><svg><use href="#i-arrow"></use></svg></div>
-        <div class="shift__cell shift__cell--new">
-          <span class="shift__label">Después</span>
-          <p class="new-text">Tu pensión hoy vs. la que podrías tener</p>
-        </div>
+        <div class="shift__cell shift__cell--new"><span class="shift__label">Después</span><p class="new-text">Tu pensión hoy y la que puedes alcanzar</p></div>
       </div>
       <div class="shift__row">
-        <div class="shift__cell shift__cell--old">
-          <span class="shift__label">Antes</span>
-          <p class="old-text">Proyecciones por edad de retiro</p>
-        </div>
+        <div class="shift__cell shift__cell--old"><span class="shift__label">Antes</span><p class="old-text">Proyecciones por edad de retiro</p></div>
         <div class="shift__arrow" aria-hidden="true"><svg><use href="#i-arrow"></use></svg></div>
-        <div class="shift__cell shift__cell--new">
-          <span class="shift__label">Después</span>
-          <p class="new-text">Retirarte a los 60 o a los 65 no es lo mismo</p>
-        </div>
+        <div class="shift__cell shift__cell--new"><span class="shift__label">Después</span><p class="new-text">Lo que cuesta retirarte antes de tiempo</p></div>
       </div>
       <div class="shift__row">
-        <div class="shift__cell shift__cell--old">
-          <span class="shift__label">Antes</span>
-          <p class="old-text">Historial de empleos y salarios</p>
-        </div>
+        <div class="shift__cell shift__cell--old"><span class="shift__label">Antes</span><p class="old-text">Historial de empleos y salarios</p></div>
         <div class="shift__arrow" aria-hidden="true"><svg><use href="#i-arrow"></use></svg></div>
-        <div class="shift__cell shift__cell--new">
-          <span class="shift__label">Después</span>
-          <p class="new-text">Revisa que el IMSS tenga bien tus años cotizados</p>
-        </div>
+        <div class="shift__cell shift__cell--new"><span class="shift__label">Después</span><p class="new-text">Un dato mal registrado te baja la pensión</p></div>
       </div>
     </div>
 
@@ -443,7 +492,6 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
   </div>
 </section>
 
-<!-- ============ 01 ============ -->
 <section class="tool" id="t01">
   <div class="wrap">
     <div class="tool__head"><span class="tool__num" aria-hidden="true">01</span><h2>Resumen financiero</h2></div>
@@ -452,25 +500,25 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
       <div class="tool__main">
         <div class="field">
           <h3 class="field__label">Subtítulo recomendado</h3>
-          <div class="hero-card copyunit"><p class="copytext prop prop--hero">Tu pensión hoy vs. la que podrías tener</p></div>
+          <div class="hero-card copyunit"><p class="copytext prop prop--hero">Tu pensión hoy y la que puedes alcanzar</p></div>
         </div>
         <div class="field">
           <h3 class="field__label">Alternativas descartadas</h3>
           <ul class="alts">
-            <li class="copyunit"><p class="copytext prop prop--alt">Descubre cuánto puede crecer tu pensión</p></li>
-            <li class="copyunit"><p class="copytext prop prop--alt">Tu retrato financiero completo, en un vistazo</p></li>
+            <li class="copyunit"><p class="copytext prop prop--alt">Dónde estás parado hoy</p></li>
+            <li class="copyunit"><p class="copytext prop prop--alt">El punto de partida de tu retiro</p></li>
           </ul>
         </div>
         <div class="field">
           <h3 class="field__label">Texto de entrada</h3>
           <div class="entry">
-            <div class="entry__part copyunit"><div><p class="entry__mini">Título</p><p class="copytext prop prop--md">Tu pensión hoy vs. tu pensión proyectada</p></div></div>
-            <div class="entry__part copyunit"><div><p class="entry__mini">Cuerpo</p><p class="copytext prop prop--body">Comparamos lo que recibirías con tus datos actuales contra lo que podrías alcanzar con proyección a futuro. La diferencia puede sorprenderte.</p></div></div>
+            <div class="entry__part copyunit"><div><p class="entry__mini">Título</p><p class="copytext prop prop--md">Dos cifras para empezar</p></div></div>
+            <div class="entry__part copyunit"><div><p class="entry__mini">Cuerpo</p><p class="copytext prop prop--body">Una es tu pensión con lo que el IMSS tiene registrado hoy. La otra, hasta dónde puede llegar si mueves lo que todavía está en tus manos.</p></div></div>
           </div>
         </div>
         <div class="field">
-          <h3 class="field__label">Frase gancho</h3>
-          <div class="hook copyunit"><p class="copytext prop prop--md">¿Sabías que la diferencia entre tu pensión actual y la proyectada puede ser de decenas de miles de pesos al mes? Aquí está tu número.</p></div>
+          <h3 class="field__label">Puente a la siguiente pantalla</h3>
+          <div class="hook copyunit"><p class="copytext prop prop--md">Esa diferencia depende sobre todo de una decisión: a qué edad te retiras. Ese es el siguiente paso.</p></div>
         </div>
       </div>
       <aside class="tool__side">
@@ -484,7 +532,6 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
   </div>
 </section>
 
-<!-- ============ 02 ============ -->
 <section class="tool" id="t02">
   <div class="wrap">
     <div class="tool__head"><span class="tool__num" aria-hidden="true">02</span><h2>Proyecciones de pensión</h2></div>
@@ -493,25 +540,25 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
       <div class="tool__main">
         <div class="field">
           <h3 class="field__label">Subtítulo recomendado</h3>
-          <div class="hero-card copyunit"><p class="copytext prop prop--hero">Retirarte a los 60 o a los 65 no es lo mismo</p></div>
+          <div class="hero-card copyunit"><p class="copytext prop prop--hero">Lo que cuesta retirarte antes de tiempo</p></div>
         </div>
         <div class="field">
           <h3 class="field__label">Alternativas descartadas</h3>
           <ul class="alts">
-            <li class="copyunit"><p class="copytext prop prop--alt">Cuánto cambia tu pensión por cada año que esperes</p></li>
+            <li class="copyunit"><p class="copytext prop prop--alt">Cuánto cambia tu pensión por cada año</p></li>
             <li class="copyunit"><p class="copytext prop prop--alt">Tu pensión, edad por edad, hasta los 65</p></li>
           </ul>
         </div>
         <div class="field">
           <h3 class="field__label">Texto de entrada</h3>
           <div class="entry">
-            <div class="entry__part copyunit"><div><p class="entry__mini">Título</p><p class="copytext prop prop--md">Tu pensión, año por año, hasta los 65</p></div></div>
-            <div class="entry__part copyunit"><div><p class="entry__mini">Cuerpo</p><p class="copytext prop prop--body">Cada año adicional suma semanas cotizadas y sube tu porcentaje por edad. Aquí ves exactamente cuánto cambia tu pensión mensual en cada escenario.</p></div></div>
+            <div class="entry__part copyunit"><div><p class="entry__mini">Título</p><p class="copytext prop prop--md">Cada año pesa distinto</p></div></div>
+            <div class="entry__part copyunit"><div><p class="entry__mini">Cuerpo</p><p class="copytext prop prop--body">Entre retirarte a los 60 y a los 65 no hay cinco años de diferencia: hay semanas cotizadas, porcentaje por edad y salario promedio moviéndose a la vez. Aquí está el monto exacto de cada edad.</p></div></div>
           </div>
         </div>
         <div class="field">
-          <h3 class="field__label">Frase gancho</h3>
-          <div class="hook copyunit"><p class="copytext prop prop--md">Un año más de trabajo puede valer miles de pesos al mes durante toda tu jubilación. Descubre cuánto vale el tuyo.</p></div>
+          <h3 class="field__label">Puente a la siguiente pantalla</h3>
+          <div class="hook copyunit"><p class="copytext prop prop--md">Todo este cálculo se sostiene en tus semanas cotizadas. Conviene revisar que estén completas.</p></div>
         </div>
       </div>
       <aside class="tool__side">
@@ -526,7 +573,6 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
   </div>
 </section>
 
-<!-- ============ 03 ============ -->
 <section class="tool" id="t03">
   <div class="wrap">
     <div class="tool__head"><span class="tool__num" aria-hidden="true">03</span><h2>Historial laboral</h2></div>
@@ -535,25 +581,25 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
       <div class="tool__main">
         <div class="field">
           <h3 class="field__label">Subtítulo recomendado</h3>
-          <div class="hero-card copyunit"><p class="copytext prop prop--hero">Revisa que el IMSS tenga bien tus años cotizados</p></div>
+          <div class="hero-card copyunit"><p class="copytext prop prop--hero">Un dato mal registrado te baja la pensión</p></div>
         </div>
         <div class="field">
           <h3 class="field__label">Alternativas descartadas</h3>
           <ul class="alts">
-            <li class="copyunit"><p class="copytext prop prop--alt">Toda tu vida laboral ante el IMSS, en un solo lugar</p></li>
-            <li class="copyunit"><p class="copytext prop prop--alt">Cada empleo y cada salario que definen tu pensión</p></li>
+            <li class="copyunit"><p class="copytext prop prop--alt">Lo que el IMSS tiene registrado a tu nombre</p></li>
+            <li class="copyunit"><p class="copytext prop prop--alt">De dónde salen tus semanas cotizadas</p></li>
           </ul>
         </div>
         <div class="field">
           <h3 class="field__label">Texto de entrada</h3>
           <div class="entry">
-            <div class="entry__part copyunit"><div><p class="entry__mini">Título</p><p class="copytext prop prop--md">Tu trayectoria completa ante el IMSS</p></div></div>
-            <div class="entry__part copyunit"><div><p class="entry__mini">Cuerpo</p><p class="copytext prop prop--body">Cada patrón, periodo y salario base registrado a tu nombre. De aquí salen tus semanas cotizadas y el cálculo de tu pensión, así que vale la pena revisarlo.</p></div></div>
+            <div class="entry__part copyunit"><div><p class="entry__mini">Título</p><p class="copytext prop prop--md">De aquí sale todo lo anterior</p></div></div>
+            <div class="entry__part copyunit"><div><p class="entry__mini">Cuerpo</p><p class="copytext prop prop--body">Cada patrón y cada salario que el IMSS tiene a tu nombre. Si falta un periodo o un sueldo quedó mal capturado, tu pensión se calcula más baja y nadie te va a avisar.</p></div></div>
           </div>
         </div>
         <div class="field">
-          <h3 class="field__label">Frase gancho</h3>
-          <div class="hook copyunit"><p class="copytext prop prop--md">Tu pensión se calcula con lo que el IMSS tiene registrado, no con lo que tú recuerdas. Revisa tu historial completo.</p></div>
+          <h3 class="field__label">Puente a la siguiente pantalla</h3>
+          <div class="hook copyunit"><p class="copytext prop prop--md">Ya sabes cuánto vas a recibir. Ahora la otra mitad de la cuenta: cuánto vas a necesitar.</p></div>
         </div>
       </div>
       <aside class="tool__side">
@@ -568,7 +614,6 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
   </div>
 </section>
 
-<!-- ============ 04 ============ -->
 <section class="tool" id="t04">
   <div class="wrap">
     <div class="tool__head"><span class="tool__num" aria-hidden="true">04</span><h2>Análisis de gastos</h2></div>
@@ -577,25 +622,25 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
       <div class="tool__main">
         <div class="field">
           <h3 class="field__label">Subtítulo recomendado</h3>
-          <div class="hero-card copyunit"><p class="copytext prop prop--hero">En qué se te va el dinero y cuánto costará mañana</p></div>
+          <div class="hero-card copyunit"><p class="copytext prop prop--hero">Cuánto necesitas al mes para vivir igual</p></div>
         </div>
         <div class="field">
           <h3 class="field__label">Alternativas descartadas</h3>
           <ul class="alts">
-            <li class="copyunit"><p class="copytext prop prop--alt">Lo que hoy gastas, con precios de dentro de unos años</p></li>
-            <li class="copyunit"><p class="copytext prop prop--alt">Tus gastos peso por peso, categoría por categoría</p></li>
+            <li class="copyunit"><p class="copytext prop prop--alt">Tu gasto de hoy, con precios de tu retiro</p></li>
+            <li class="copyunit"><p class="copytext prop prop--alt">Lo que cuesta mantener tu vida actual</p></li>
           </ul>
         </div>
         <div class="field">
           <h3 class="field__label">Texto de entrada</h3>
           <div class="entry">
-            <div class="entry__part copyunit"><div><p class="entry__mini">Título</p><p class="copytext prop prop--md">Tus gastos hoy y lo que costarán mañana</p></div></div>
-            <div class="entry__part copyunit"><div><p class="entry__mini">Cuerpo</p><p class="copytext prop prop--body">Desglosamos cada categoría y subcategoría de tu gasto mensual, y te mostramos cuánto costará lo mismo dentro de unos años con la inflación estimada.</p></div></div>
+            <div class="entry__part copyunit"><div><p class="entry__mini">Título</p><p class="copytext prop prop--md">Ahora el otro lado de la cuenta</p></div></div>
+            <div class="entry__part copyunit"><div><p class="entry__mini">Cuerpo</p><p class="copytext prop prop--body">Ya sabes cuánto vas a recibir. Falta cuánto vas a necesitar: tu gasto real de hoy, con los precios que va a haber el día que te retires.</p></div></div>
           </div>
         </div>
         <div class="field">
-          <h3 class="field__label">Frase gancho</h3>
-          <div class="hook copyunit"><p class="copytext prop prop--md">Mantener tu mismo estilo de vida costará casi 19% más en cuatro años. Descubre cuánto significa eso en tu bolsillo.</p></div>
+          <h3 class="field__label">Puente a la siguiente pantalla</h3>
+          <div class="hook copyunit"><p class="copytext prop prop--md">Ese gasto no lo cubre sola la pensión. Veamos qué más vas a tener.</p></div>
         </div>
       </div>
       <aside class="tool__side">
@@ -611,7 +656,6 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
   </div>
 </section>
 
-<!-- ============ 05 ============ -->
 <section class="tool" id="t05">
   <div class="wrap">
     <div class="tool__head"><span class="tool__num" aria-hidden="true">05</span><h2>Proyección de ahorros</h2></div>
@@ -620,25 +664,25 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
       <div class="tool__main">
         <div class="field">
           <h3 class="field__label">Subtítulo recomendado</h3>
-          <div class="hero-card copyunit"><p class="copytext prop prop--hero">Cuánto tendrás el día que dejes de trabajar</p></div>
+          <div class="hero-card copyunit"><p class="copytext prop prop--hero">Cuánto habrás juntado al llegar tu retiro</p></div>
         </div>
         <div class="field">
           <h3 class="field__label">Alternativas descartadas</h3>
           <ul class="alts">
-            <li class="copyunit"><p class="copytext prop prop--alt">Lo que tu ahorro puede convertirse antes de tu retiro</p></li>
-            <li class="copyunit"><p class="copytext prop prop--alt">Tu ahorro de hoy, con intereses hasta tu retiro</p></li>
+            <li class="copyunit"><p class="copytext prop prop--alt">Tu ahorro el día que dejes de trabajar</p></li>
+            <li class="copyunit"><p class="copytext prop prop--alt">Lo que pusiste tú y lo que pusieron los intereses</p></li>
           </ul>
         </div>
         <div class="field">
           <h3 class="field__label">Texto de entrada</h3>
           <div class="entry">
-            <div class="entry__part copyunit"><div><p class="entry__mini">Título</p><p class="copytext prop prop--md">Tu ahorro el día que dejes de trabajar</p></div></div>
-            <div class="entry__part copyunit"><div><p class="entry__mini">Cuerpo</p><p class="copytext prop prop--body">Sumamos lo que ya tienes, lo que aportas cada mes y los intereses que ambos generan. Verás cuánto pone cada parte y cuánto trabaja el dinero por ti.</p></div></div>
+            <div class="entry__part copyunit"><div><p class="entry__mini">Título</p><p class="copytext prop prop--md">Lo que pusiste tú y lo que puso el tiempo</p></div></div>
+            <div class="entry__part copyunit"><div><p class="entry__mini">Cuerpo</p><p class="copytext prop prop--body">Tu ahorro no crece solo por lo que aportas. Aquí ves cuánto sale de tu bolsillo y cuánto lo generan los intereses hasta el día de tu retiro.</p></div></div>
           </div>
         </div>
         <div class="field">
-          <h3 class="field__label">Frase gancho</h3>
-          <div class="hook copyunit"><p class="copytext prop prop--md">Tu ahorro no se queda quieto: los intereses también aportan. Descubre en cuánto se convierte el tuyo al llegar a tu retiro.</p></div>
+          <h3 class="field__label">Puente a la siguiente pantalla</h3>
+          <div class="hook copyunit"><p class="copytext prop prop--md">Ya están las tres cifras: lo que vas a recibir, lo que vas a gastar y lo que habrás juntado. Falta cruzarlas.</p></div>
         </div>
       </div>
       <aside class="tool__side">
@@ -654,7 +698,6 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
   </div>
 </section>
 
-<!-- ============ 06 ============ -->
 <section class="tool" id="t06">
   <div class="wrap">
     <div class="tool__head"><span class="tool__num" aria-hidden="true">06</span><h2>Simulador de jubilación</h2><span class="pro">Premium</span></div>
@@ -668,20 +711,20 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
         <div class="field">
           <h3 class="field__label">Alternativas descartadas</h3>
           <ul class="alts">
-            <li class="copyunit"><p class="copytext prop prop--alt">Cambia una variable y mira cómo cambia tu retiro</p></li>
-            <li class="copyunit"><p class="copytext prop prop--alt">Prueba escenarios antes de que sea tu realidad</p></li>
+            <li class="copyunit"><p class="copytext prop prop--alt">El año en que se te acaba el dinero</p></li>
+            <li class="copyunit"><p class="copytext prop prop--alt">Si alcanza o no, y por cuánto</p></li>
           </ul>
         </div>
         <div class="field">
           <h3 class="field__label">Texto de entrada</h3>
           <div class="entry">
-            <div class="entry__part copyunit"><div><p class="entry__mini">Título</p><p class="copytext prop prop--md">¿Hasta qué edad te alcanza el dinero?</p></div></div>
-            <div class="entry__part copyunit"><div><p class="entry__mini">Cuerpo</p><p class="copytext prop prop--body">Cruzamos tu pensión, tus ahorros, tus otros ingresos y tus gastos con inflación, año por año. Si el dinero se acaba antes de tiempo, te decimos cuánto falta y cómo conseguirlo.</p></div></div>
+            <div class="entry__part copyunit"><div><p class="entry__mini">Título</p><p class="copytext prop prop--md">El momento de cruzar los números</p></div></div>
+            <div class="entry__part copyunit"><div><p class="entry__mini">Cuerpo</p><p class="copytext prop prop--body">Tu pensión, tus ahorros y tus gastos, año por año. Si el dinero se acaba antes de tiempo, aquí ves en qué año pasa y cuánto falta para evitarlo.</p></div></div>
           </div>
         </div>
         <div class="field">
-          <h3 class="field__label">Frase gancho</h3>
-          <div class="hook copyunit"><p class="copytext prop prop--md">Saber cuánto te falta a tiempo todavía es un plan. Descubrirlo después ya no.</p></div>
+          <h3 class="field__label">Puente a la siguiente pantalla</h3>
+          <div class="hook copyunit"><p class="copytext prop prop--md">Si el dinero no alcanza, todavía hay algo que puedes mover antes de retirarte.</p></div>
         </div>
       </div>
       <aside class="tool__side">
@@ -698,7 +741,6 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
   </div>
 </section>
 
-<!-- ============ 07 ============ -->
 <section class="tool" id="t07">
   <div class="wrap">
     <div class="tool__head"><span class="tool__num" aria-hidden="true">07</span><h2>Modalidad 40</h2></div>
@@ -707,25 +749,25 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
       <div class="tool__main">
         <div class="field">
           <h3 class="field__label">Subtítulo recomendado</h3>
-          <div class="hero-card copyunit"><p class="copytext prop prop--hero">Cuánto cuesta la Modalidad 40 y cuánto sube cada año</p></div>
+          <div class="hero-card copyunit"><p class="copytext prop prop--hero">Cuánto cuesta subir tu pensión</p></div>
         </div>
         <div class="field">
           <h3 class="field__label">Alternativas descartadas</h3>
           <ul class="alts">
-            <li class="copyunit"><p class="copytext prop prop--alt">El costo completo de la Modalidad 40, año por año</p></li>
-            <li class="copyunit"><p class="copytext prop prop--alt">Calcula tu cuota mensual de Modalidad 40</p></li>
+            <li class="copyunit"><p class="copytext prop prop--alt">El precio de subir tu pensión</p></li>
+            <li class="copyunit"><p class="copytext prop prop--alt">Lo que pagarías de Modalidad 40, de principio a fin</p></li>
           </ul>
         </div>
         <div class="field">
           <h3 class="field__label">Texto de entrada</h3>
           <div class="entry">
-            <div class="entry__part copyunit"><div><p class="entry__mini">Título</p><p class="copytext prop prop--md">Cuánto cuesta la Modalidad 40, de principio a fin</p></div></div>
-            <div class="entry__part copyunit"><div><p class="entry__mini">Cuerpo</p><p class="copytext prop prop--body">Calculamos tu cuota mensual, lo que pagarías en total y cómo aumenta año con año, porque el porcentaje que cobra el IMSS no es el mismo cada año.</p></div></div>
+            <div class="entry__part copyunit"><div><p class="entry__mini">Título</p><p class="copytext prop prop--md">Lo que sí puedes mover</p></div></div>
+            <div class="entry__part copyunit"><div><p class="entry__mini">Cuerpo</p><p class="copytext prop prop--body">La Modalidad 40 es la vía legal para subir tu pensión antes de retirarte. Esto es lo que costaría en tu caso, mes por mes y año por año, hasta el último pago.</p></div></div>
           </div>
         </div>
         <div class="field">
-          <h3 class="field__label">Frase gancho</h3>
-          <div class="hook copyunit"><p class="copytext prop prop--md">La cuota de la Modalidad 40 no es fija: sube cada año por ley. Calcula lo que realmente pagarías de principio a fin.</p></div>
+          <h3 class="field__label">Puente a la siguiente pantalla</h3>
+          <div class="hook copyunit"><p class="copytext prop prop--md">Con esto cierra el estudio. Vuelve al resumen para ver tu panorama con los ajustes aplicados.</p></div>
         </div>
       </div>
       <aside class="tool__side">
@@ -747,9 +789,7 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
       <div class="table-wrap">
         <table>
           <caption class="sr-only">Nombres de columna actuales y propuestos para la tabla de Modalidad 40</caption>
-          <thead>
-            <tr><th scope="col">Nombre actual</th><th scope="col">Nombre propuesto</th></tr>
-          </thead>
+          <thead><tr><th scope="col">Nombre actual</th><th scope="col">Nombre propuesto</th></tr></thead>
           <tbody>
             <tr><td class="col-old" data-label="Nombre actual"><span>Meses Restantes</span></td><td class="col-new" data-label="Nombre propuesto">Meses que te faltan por pagar</td></tr>
             <tr><td class="col-old" data-label="Nombre actual"><span>Var%</span></td><td class="col-new" data-label="Nombre propuesto">Aumento vs. año anterior</td></tr>
@@ -765,36 +805,34 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
   </div>
 </section>
 
-<!-- ============ REGLAS ============ -->
 <section class="band band--tint" id="reglas">
   <div class="wrap">
     <div class="band__head">
-      <p class="band__kicker">Para que el texto se sostenga</p>
+      <p class="band__kicker">Cómo está escrito</p>
+      <h2>Cuatro reglas de tono</h2>
+      <p>Nadie lee por gusto una pantalla de trámites. Se lee lo que promete un dato que importa, dicho por alguien que sabe de qué habla.</p>
+    </div>
+    <div class="tono">
+      <div class="tono__item"><h3>Primero el dato, después la frase</h3><p>Una cifra que el lector no esperaba retiene más que cualquier adjetivo. Y un número verificable es lo que separa un estudio de un folleto.</p></div>
+      <div class="tono__item"><h3>Ni una palabra de venta</h3><p>Fuera “descubre”, “conoce”, “entérate”, “te sorprenderá”. El estudio no invita: informa. La autoridad viene de la precisión, no del entusiasmo.</p></div>
+      <div class="tono__item"><h3>Una idea por línea</h3><p>Si una frase necesita coma para meter el segundo concepto, son dos frases. O sobra una.</p></div>
+      <div class="tono__item"><h3>Cada pantalla entrega a la siguiente</h3><p>Ningún texto termina en punto final. Termina señalando qué falta por saber.</p></div>
+    </div>
+    <div class="band__head" style="margin-top:8px">
+      <p class="band__kicker">Para que la pantalla lo sostenga</p>
       <h2>Tres reglas de jerarquía</h2>
-      <p>Un buen subtítulo promete algo. Estas tres reglas evitan que la pantalla lo incumpla.</p>
+      <p>Un buen subtítulo promete una cifra. Estas tres reglas evitan que la pantalla la esconda.</p>
     </div>
     <div class="rules">
-      <div class="rule">
-        <p class="rule__n" aria-hidden="true">1</p>
-        <h3>El número prometido va primero</h3>
-        <p>Si el subtítulo ofreció la diferencia, la diferencia es lo primero que se ve.</p>
-      </div>
-      <div class="rule">
-        <p class="rule__n" aria-hidden="true">2</p>
-        <h3>El desglose explica, no compite</h3>
-        <p>Los datos de apoyo van más chicos y debajo, en lista.</p>
-      </div>
-      <div class="rule">
-        <p class="rule__n" aria-hidden="true">3</p>
-        <h3>Las fórmulas se esconden</h3>
-        <p>VF, PMT y factores de crecimiento, detrás de “Ver cómo se calcula”.</p>
-      </div>
+      <div class="rule"><p class="rule__n" aria-hidden="true">1</p><h3>El número prometido va primero</h3><p>Si el subtítulo ofreció la diferencia, la diferencia es lo primero que se ve.</p></div>
+      <div class="rule"><p class="rule__n" aria-hidden="true">2</p><h3>El desglose explica, no compite</h3><p>Los datos de apoyo van más chicos y debajo, en lista.</p></div>
+      <div class="rule"><p class="rule__n" aria-hidden="true">3</p><h3>Las fórmulas se esconden</h3><p>VF, PMT y factores de crecimiento, detrás de “Ver cómo se calcula”.</p></div>
     </div>
   </div>
 </section>
 
 <div class="wrap foot">
-  <p>Propuesta de textos de interfaz para monhey.B · Siete herramientas · Los textos propuestos se copian con un clic.</p>
+  <p>Propuesta de textos de interfaz para monhey.B · Siete pantallas en cuatro actos · Los textos propuestos se copian con un clic.</p>
 </div>
 
 </main>
