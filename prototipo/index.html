@@ -75,6 +75,43 @@ input[type=email],input[type=password]{width:100%;font-family:var(--sans);font-s
 .panelito h2{font-size:21px;color:var(--navy);margin-bottom:6px}
 .panelito__sub{font-size:16px;color:var(--muted);line-height:1.5;margin-bottom:20px;max-width:56ch}
 
+.duo{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-bottom:22px}
+.duo__c{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px}
+.duo__l{font-size:14px;font-weight:600;color:var(--muted);margin-bottom:8px}
+.duo__n{font-family:var(--display);font-size:32px;font-weight:800;color:var(--navy);line-height:1.05;font-variant-numeric:tabular-nums;letter-spacing:-0.02em}
+.duo__p{font-size:15px;color:var(--muted);margin-top:8px;line-height:1.45}
+.brecha{background:#7A1F1A;border-radius:var(--radius);padding:clamp(24px,3vw,32px);margin-bottom:22px;color:#fff}
+.brecha__l{font-size:15px;font-weight:600;color:#F7C822}
+.brecha__n{font-family:var(--display);font-size:clamp(34px,5vw,52px);font-weight:800;line-height:1.05;margin:8px 0 14px;font-variant-numeric:tabular-nums;letter-spacing:-0.02em}
+.brecha__d{display:flex;gap:26px;flex-wrap:wrap;margin-bottom:14px}
+.brecha__d span{font-size:16px;color:rgba(255,255,255,.9)}
+.brecha__d b{display:block;font-size:21px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums;margin-top:2px}
+.brecha__pie{font-size:15px;line-height:1.55;color:rgba(255,255,255,.82);max-width:60ch}
+.cats{display:grid;gap:15px}
+.cat__top{display:flex;align-items:baseline;gap:12px;margin-bottom:6px}
+.cat__n{font-size:16px;font-weight:600;color:var(--ink)}
+.cat__v{margin-left:auto;font-family:var(--display);font-size:19px;font-weight:800;color:var(--navy);font-variant-numeric:tabular-nums}
+.cat__p{font-size:14px;font-weight:700;color:var(--muted);width:48px;text-align:right;font-variant-numeric:tabular-nums}
+.cat__pista{height:14px;background:var(--line-soft);border-radius:4px;overflow:hidden}
+.cat__mark{height:100%;background:var(--navy);border-radius:0 4px 4px 0}
+.cat__hoy{font-size:14px;color:var(--muted);margin-top:4px;font-variant-numeric:tabular-nums}
+table.gastos{width:100%;border-collapse:collapse;min-width:640px}
+table.gastos th{background:var(--navy);color:#fff;font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:13px 16px;text-align:left;white-space:nowrap}
+table.gastos th:not(:first-child){text-align:right}
+table.gastos td{padding:11px 16px;border-bottom:1px solid var(--line-soft);font-size:16px;color:var(--ink);font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+table.gastos td.cat-td{text-align:left;white-space:normal}
+table.gastos td.cat-td b{display:block;font-size:13px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+table.gastos td.cat-td span{font-size:16px;color:var(--ink)}
+table.gastos td.monto{font-weight:700;color:var(--navy)}
+table.gastos td.pct{font-weight:600;color:var(--muted)}
+table.gastos tbody tr:nth-child(-n+5) td.monto{color:#7A1F1A}
+table.gastos tfoot td{background:var(--navy-soft);font-weight:700;border-bottom:none}
+.salud-c{background:#FBF1DF;border:1px solid #E8D49A;border-radius:var(--radius);padding:20px 22px;margin-bottom:22px}
+.salud-c h3{font-family:var(--sans);font-size:17px;font-weight:700;color:#5C3B00;margin-bottom:8px}
+.salud-c p{font-size:16px;color:#5C3B00;line-height:1.55;max-width:66ch}
+.salud-c__par{display:flex;gap:30px;flex-wrap:wrap;margin-top:14px}
+.salud-c__par span{font-size:15px;color:#5C3B00}
+.salud-c__par b{display:block;font-family:var(--display);font-size:24px;color:#5C3B00;font-variant-numeric:tabular-nums;margin-top:2px}
 .resumen-l{display:flex;flex-wrap:wrap;gap:10px 28px;background:var(--navy);border-radius:var(--radius);padding:20px 24px;margin-bottom:22px;color:#fff}
 .resumen-l__it{display:flex;flex-direction:column;gap:2px}
 .resumen-l__n{font-family:var(--display);font-size:28px;font-weight:800;line-height:1;font-variant-numeric:tabular-nums;letter-spacing:-0.02em}
@@ -725,6 +762,161 @@ table.proy .pct{font-weight:600}
 
         <p class="cierre">Ya sabes cuánto vas a recibir. Ahora la otra mitad de la cuenta: cuánto vas a necesitar.</p>
       </div>
+
+      <!-- ===== 04 · ANÁLISIS DE GASTOS ===== -->
+      <div id="v-t04" hidden>
+        <button class="volver" type="button" data-volver><svg aria-hidden="true"><use href="#i-atras"></use></svg>Volver al panel</button>
+
+        <div class="vista__h">
+          <p class="vista__num">Herramienta 04</p>
+          <h1>Análisis de gastos</h1>
+          <p class="ent-t">Ahora el otro lado de la cuenta</p>
+          <p class="ent-c">Ya sabes cuánto vas a recibir. Falta cuánto vas a necesitar: tu gasto real de hoy, con los precios que va a haber el día que te retires.</p>
+        </div>
+
+        <p class="aviso-barra"><svg aria-hidden="true"><use href="#i-alerta"></use></svg>La proyección es a 10 años, con una inflación estimada de 4.42% al año. Los seguros de salud van aparte, al 12% anual, porque suben más rápido que todo lo demás.</p>
+
+        <div class="hero-num">
+          <p class="hero-num__lab">Lo mismo que gastas hoy, dentro de 10 años</p>
+          <p class="hero-num__n">+$73,713.79</p>
+          <p class="hero-num__pie">Al mes, 60.53% más, sin cambiar nada de tu forma de vivir. Solo por lo que suben los precios.</p>
+        </div>
+
+        <div class="duo">
+          <div class="duo__c">
+            <p class="duo__l">Gastas hoy</p>
+            <p class="duo__n">$121,773.79</p>
+            <p class="duo__p">$1,461,285.43 al año.</p>
+          </div>
+          <div class="duo__c">
+            <p class="duo__l">Gastarás en 10 años</p>
+            <p class="duo__n">$195,487.55</p>
+            <p class="duo__p">$2,345,850.59 al año.</p>
+          </div>
+        </div>
+
+        <div class="brecha">
+          <p class="brecha__l">Lo que la pensión no cubre</p>
+          <p class="brecha__n">$145,967.56 al mes</p>
+          <div class="brecha__d">
+            <span>Tu pensión a los 60<b>$49,520.01</b></span>
+            <span>Tu gasto proyectado<b>$195,487.55</b></span>
+            <span>La pensión cubre<b>25%</b></span>
+          </div>
+          <p class="brecha__pie">Las dos cifras están proyectadas al mismo momento: los 60 años, alrededor de 2036. De aquí en adelante el estudio trata de cómo cerrar esa diferencia.</p>
+        </div>
+
+        <div class="salud-c">
+          <h3>Los seguros de salud suben aparte</h3>
+          <p>No siguen la inflación general. Se proyectan al 12% anual porque es lo que suben en el mercado, y eso los convierte en el gasto que más crece de todos.</p>
+          <p class="salud-c__par"><span>Hoy<b>$4,997.26</b></span><span>En 10 años<b>$15,520.73</b></span><span>Multiplica por<b>3.1</b></span></p>
+        </div>
+
+        <div class="panelito">
+          <h2>En qué se te va, de mayor a menor</h2>
+          <p class="panelito__sub">Por categoría, con el gasto proyectado a 10 años.</p>
+          <div class="cats">
+            <div class="cat">
+              <div class="cat__top"><span class="cat__n">Entretenimiento</span><span class="cat__v">$59,582.60</span><span class="cat__p">30.5%</span></div>
+              <div class="cat__pista"><div class="cat__mark" style="width:100.0%"></div></div>
+              <p class="cat__hoy">Hoy: $38,661.84</p>
+            </div>
+            <div class="cat">
+              <div class="cat__top"><span class="cat__n">Casa</span><span class="cat__v">$46,785.98</span><span class="cat__p">23.9%</span></div>
+              <div class="cat__pista"><div class="cat__mark" style="width:78.5%"></div></div>
+              <p class="cat__hoy">Hoy: $30,358.39</p>
+            </div>
+            <div class="cat">
+              <div class="cat__top"><span class="cat__n">Automóvil/Movilidad</span><span class="cat__v">$33,239.74</span><span class="cat__p">17.0%</span></div>
+              <div class="cat__pista"><div class="cat__mark" style="width:55.8%"></div></div>
+              <p class="cat__hoy">Hoy: $21,568.53</p>
+            </div>
+            <div class="cat">
+              <div class="cat__top"><span class="cat__n">Salud</span><span class="cat__v">$20,150.38</span><span class="cat__p">10.3%</span></div>
+              <div class="cat__pista"><div class="cat__mark" style="width:33.8%"></div></div>
+              <p class="cat__hoy">Hoy: $8,001.34</p>
+            </div>
+            <div class="cat">
+              <div class="cat__top"><span class="cat__n">Deporte</span><span class="cat__v">$18,640.67</span><span class="cat__p">9.5%</span></div>
+              <div class="cat__pista"><div class="cat__mark" style="width:31.3%"></div></div>
+              <p class="cat__hoy">Hoy: $12,095.52</p>
+            </div>
+            <div class="cat">
+              <div class="cat__top"><span class="cat__n">Gustos Personales</span><span class="cat__v">$6,298.64</span><span class="cat__p">3.2%</span></div>
+              <div class="cat__pista"><div class="cat__mark" style="width:10.6%"></div></div>
+              <p class="cat__hoy">Hoy: $4,087.05</p>
+            </div>
+            <div class="cat">
+              <div class="cat__top"><span class="cat__n">Donativos y Ayudas</span><span class="cat__v">$4,623.36</span><span class="cat__p">2.4%</span></div>
+              <div class="cat__pista"><div class="cat__mark" style="width:7.8%"></div></div>
+              <p class="cat__hoy">Hoy: $3,000.00</p>
+            </div>
+            <div class="cat">
+              <div class="cat__top"><span class="cat__n">Mascotas</span><span class="cat__v">$4,083.97</span><span class="cat__p">2.1%</span></div>
+              <div class="cat__pista"><div class="cat__mark" style="width:6.9%"></div></div>
+              <p class="cat__hoy">Hoy: $2,650.00</p>
+            </div>
+            <div class="cat">
+              <div class="cat__top"><span class="cat__n">Arte y Cultura</span><span class="cat__v">$2,082.23</span><span class="cat__p">1.1%</span></div>
+              <div class="cat__pista"><div class="cat__mark" style="width:3.5%"></div></div>
+              <p class="cat__hoy">Hoy: $1,351.11</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="panelito">
+          <h2>El desglose completo</h2>
+          <p class="panelito__sub">Las 38 subcategorías, ordenadas de mayor a menor. Las cinco primeras se llevan casi la mitad de tu gasto.</p>
+          <div class="tabla-caja">
+            <table class="gastos">
+              <thead><tr><th scope="col">Categoría</th><th scope="col">Hoy</th><th scope="col">En 10 años</th><th scope="col">% del total</th></tr></thead>
+              <tbody>
+              <tr><td class="cat-td"><b>Casa</b><span>Super/Mandado</span></td><td>$15,200.00</td><td class="monto">$23,425.05</td><td class="pct">12.0%</td></tr>
+              <tr><td class="cat-td"><b>Entretenimiento</b><span>Vacaciones</span></td><td>$14,991.78</td><td class="monto">$23,104.16</td><td class="pct">11.8%</td></tr>
+              <tr><td class="cat-td"><b>Automóvil/Movilidad</b><span>Gasolina</span></td><td>$12,160.00</td><td class="monto">$18,740.04</td><td class="pct">9.6%</td></tr>
+              <tr><td class="cat-td"><b>Salud</b><span>Seguro</span></td><td>$4,997.26</td><td class="monto">$15,520.73</td><td class="pct">7.9%</td></tr>
+              <tr><td class="cat-td"><b>Entretenimiento</b><span>Cenas fuera de casa</span></td><td>$8,685.71</td><td class="monto">$13,385.74</td><td class="pct">6.8%</td></tr>
+              <tr><td class="cat-td"><b>Deporte</b><span>Club deportivo</span></td><td>$7,000.00</td><td class="monto">$10,787.85</td><td class="pct">5.5%</td></tr>
+              <tr><td class="cat-td"><b>Entretenimiento</b><span>Comidas fuera de casa</span></td><td>$6,514.29</td><td class="monto">$10,039.31</td><td class="pct">5.1%</td></tr>
+              <tr><td class="cat-td"><b>Casa</b><span>Señora ayuda/Mozo</span></td><td>$6,080.00</td><td class="monto">$9,370.02</td><td class="pct">4.8%</td></tr>
+              <tr><td class="cat-td"><b>Casa</b><span>Luz</span></td><td>$4,053.33</td><td class="monto">$6,246.68</td><td class="pct">3.2%</td></tr>
+              <tr><td class="cat-td"><b>Automóvil/Movilidad</b><span>Seguro</span></td><td>$3,747.95</td><td class="monto">$5,776.04</td><td class="pct">3.0%</td></tr>
+              <tr><td class="cat-td"><b>Entretenimiento</b><span>Carnes asadas/Reuniones</span></td><td>$3,000.00</td><td class="monto">$4,623.36</td><td class="pct">2.4%</td></tr>
+              <tr><td class="cat-td"><b>Donativos y Ayudas</b><span>Mamá y papá</span></td><td>$3,000.00</td><td class="monto">$4,623.36</td><td class="pct">2.4%</td></tr>
+              <tr><td class="cat-td"><b>Entretenimiento</b><span>Conciertos</span></td><td>$2,498.63</td><td class="monto">$3,850.69</td><td class="pct">2.0%</td></tr>
+              <tr><td class="cat-td"><b>Entretenimiento</b><span>Desayunos fuera de casa</span></td><td>$2,171.43</td><td class="monto">$3,346.44</td><td class="pct">1.7%</td></tr>
+              <tr><td class="cat-td"><b>Gustos Personales</b><span>Café o té (Starbucks, Caffenio, Tim Hortons, etc)</span></td><td>$2,171.43</td><td class="monto">$3,346.44</td><td class="pct">1.7%</td></tr>
+              <tr><td class="cat-td"><b>Deporte</b><span>Ropa deportiva y calzado</span></td><td>$2,082.19</td><td class="monto">$3,208.91</td><td class="pct">1.6%</td></tr>
+              <tr><td class="cat-td"><b>Salud</b><span>Medicinas</span></td><td>$2,000.00</td><td class="monto">$3,082.24</td><td class="pct">1.6%</td></tr>
+              <tr><td class="cat-td"><b>Deporte</b><span>Gimnasio</span></td><td>$2,000.00</td><td class="monto">$3,082.24</td><td class="pct">1.6%</td></tr>
+              <tr><td class="cat-td"><b>Mascotas</b><span>Alimento</span></td><td>$2,000.00</td><td class="monto">$3,082.24</td><td class="pct">1.6%</td></tr>
+              <tr><td class="cat-td"><b>Automóvil/Movilidad</b><span>Lavado/Encerado</span></td><td>$1,737.14</td><td class="monto">$2,677.15</td><td class="pct">1.4%</td></tr>
+              <tr><td class="cat-td"><b>Automóvil/Movilidad</b><span>Estacionamientos</span></td><td>$1,737.14</td><td class="monto">$2,677.15</td><td class="pct">1.4%</td></tr>
+              <tr><td class="cat-td"><b>Automóvil/Movilidad</b><span>Mantenimientos</span></td><td>$1,351.11</td><td class="monto">$2,082.23</td><td class="pct">1.1%</td></tr>
+              <tr><td class="cat-td"><b>Arte y Cultura</b><span>Teatro</span></td><td>$1,351.11</td><td class="monto">$2,082.23</td><td class="pct">1.1%</td></tr>
+              <tr><td class="cat-td"><b>Gustos Personales</b><span>Ropa</span></td><td>$1,249.32</td><td class="monto">$1,925.35</td><td class="pct">1.0%</td></tr>
+              <tr><td class="cat-td"><b>Casa</b><span>Gas</span></td><td>$1,013.33</td><td class="monto">$1,561.67</td><td class="pct">0.8%</td></tr>
+              <tr><td class="cat-td"><b>Deporte</b><span>Inscripciones a torneos o competencias</span></td><td>$1,013.33</td><td class="monto">$1,561.67</td><td class="pct">0.8%</td></tr>
+              <tr><td class="cat-td"><b>Casa</b><span>Agua</span></td><td>$1,000.00</td><td class="monto">$1,541.12</td><td class="pct">0.8%</td></tr>
+              <tr><td class="cat-td"><b>Casa</b><span>Jardín</span></td><td>$912.00</td><td class="monto">$1,405.50</td><td class="pct">0.7%</td></tr>
+              <tr><td class="cat-td"><b>Casa</b><span>Cuotas de mantenimiento</span></td><td>$900.00</td><td class="monto">$1,387.01</td><td class="pct">0.7%</td></tr>
+              <tr><td class="cat-td"><b>Entretenimiento</b><span>Plataformas de series y películas</span></td><td>$800.00</td><td class="monto">$1,232.90</td><td class="pct">0.6%</td></tr>
+              <tr><td class="cat-td"><b>Casa</b><span>Cable e Internet</span></td><td>$700.00</td><td class="monto">$1,078.79</td><td class="pct">0.6%</td></tr>
+              <tr><td class="cat-td"><b>Automóvil/Movilidad</b><span>Tenencia/Refrendo</span></td><td>$666.30</td><td class="monto">$1,026.85</td><td class="pct">0.5%</td></tr>
+              <tr><td class="cat-td"><b>Salud</b><span>Estudios médicos</span></td><td>$666.30</td><td class="monto">$1,026.85</td><td class="pct">0.5%</td></tr>
+              <tr><td class="cat-td"><b>Gustos Personales</b><span>Calzado</span></td><td>$666.30</td><td class="monto">$1,026.85</td><td class="pct">0.5%</td></tr>
+              <tr><td class="cat-td"><b>Mascotas</b><span>Baños</span></td><td>$650.00</td><td class="monto">$1,001.73</td><td class="pct">0.5%</td></tr>
+              <tr><td class="cat-td"><b>Casa</b><span>Predial</span></td><td>$499.73</td><td class="monto">$770.14</td><td class="pct">0.4%</td></tr>
+              <tr><td class="cat-td"><b>Salud</b><span>Doctores y especialistas</span></td><td>$337.78</td><td class="monto">$520.56</td><td class="pct">0.3%</td></tr>
+              <tr><td class="cat-td"><b>Automóvil/Movilidad</b><span>Refacciones/Llantas</span></td><td>$168.89</td><td class="monto">$260.28</td><td class="pct">0.1%</td></tr>
+              </tbody>
+              <tfoot><tr><td class="cat-td"><b>Total</b></td><td>$121,773.79</td><td class="monto">$195,487.55</td><td class="pct">100%</td></tr></tfoot>
+            </table>
+          </div>
+        </div>
+
+        <p class="cierre">Ese gasto no lo cubre sola la pensión. Veamos qué más vas a tener.</p>
+      </div>
     </div>
   </div>
 </div>
@@ -762,7 +954,7 @@ table.proy .pct{font-weight:600}
   });
 
   var pendiente = document.getElementById('pendiente');
-  var LISTAS = ['01', '02', '03'];   // herramientas ya construidas
+  var LISTAS = ['01', '02', '03', '04'];   // herramientas ya construidas
 
   function verPanel() {
     document.querySelectorAll('[id^="v-"]').forEach(function (v) { v.hidden = v.id !== 'v-panel'; });
@@ -780,7 +972,7 @@ table.proy .pct{font-weight:600}
     document.querySelectorAll('[id^="v-"]').forEach(function (v) { v.hidden = v.id !== 'v-t' + num; });
     var sel = document.getElementById('sel-reporte');
     for (var k = 0; k < sel.options.length; k++) {
-      if (sel.options[k].value === (num === '03' ? '02' : num)) { sel.selectedIndex = k; }
+      if (sel.options[k].value === (num === '03' || num === '04' ? '02' : num)) { sel.selectedIndex = k; }
     }
     document.querySelectorAll('.side__link[data-tool]').forEach(function (l) {
       if (l.dataset.tool === num) { l.setAttribute('aria-current', 'true'); }
