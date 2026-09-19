@@ -75,6 +75,29 @@ input[type=email],input[type=password]{width:100%;font-family:var(--sans);font-s
 .panelito h2{font-size:21px;color:var(--navy);margin-bottom:6px}
 .panelito__sub{font-size:16px;color:var(--muted);line-height:1.5;margin-bottom:20px;max-width:56ch}
 
+.mezcla{display:flex;height:34px;border-radius:8px;overflow:hidden;gap:2px;margin:6px 0 16px}
+.mezcla span{display:block}
+.mezcla__tuyo{background:var(--navy)}
+.mezcla__int{background:var(--yellow)}
+.mezcla-leg{display:flex;gap:26px;flex-wrap:wrap}
+.mezcla-leg div{display:flex;gap:10px;align-items:flex-start}
+.mezcla-leg i{width:14px;height:14px;border-radius:4px;flex:0 0 auto;margin-top:5px}
+.mezcla-leg b{display:block;font-family:var(--display);font-size:24px;font-weight:800;color:var(--navy);font-variant-numeric:tabular-nums;line-height:1.1}
+.mezcla-leg small{font-size:14px;color:var(--muted);display:block;margin-top:2px}
+.mezcla-leg p{font-size:15px;font-weight:600;color:var(--ink)}
+.params{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:18px}
+.params__i{border-left:3px solid var(--line);padding-left:15px}
+.params__l{font-size:14px;color:var(--muted)}
+.params__v{font-family:var(--display);font-size:23px;font-weight:800;color:var(--navy);font-variant-numeric:tabular-nums;margin-top:2px}
+.params__n{font-size:14px;color:var(--muted);margin-top:3px}
+.partes{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:16px;margin-bottom:22px}
+.parte{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px}
+.parte__l{font-size:14px;font-weight:600;color:var(--muted)}
+.parte__n{font-family:var(--display);font-size:29px;font-weight:800;color:var(--navy);font-variant-numeric:tabular-nums;margin:6px 0 4px;letter-spacing:-0.02em}
+.parte__p{font-size:15px;color:var(--muted);line-height:1.5}
+.parte__desg{margin-top:12px;padding-top:12px;border-top:1px solid var(--line-soft);display:grid;gap:5px;font-size:15px;color:var(--ink);font-variant-numeric:tabular-nums}
+.parte__desg span{display:flex;justify-content:space-between;gap:12px}
+.parte__desg span i{font-style:normal;color:var(--muted)}
 .duo{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-bottom:22px}
 .duo__c{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px}
 .duo__l{font-size:14px;font-weight:600;color:var(--muted);margin-bottom:8px}
@@ -917,6 +940,71 @@ table.proy .pct{font-weight:600}
 
         <p class="cierre">Ese gasto no lo cubre sola la pensión. Veamos qué más vas a tener.</p>
       </div>
+
+      <!-- ===== 05 · PROYECCIÓN DE AHORROS ===== -->
+      <div id="v-t05" hidden>
+        <button class="volver" type="button" data-volver><svg aria-hidden="true"><use href="#i-atras"></use></svg>Volver al panel</button>
+
+        <div class="vista__h">
+          <p class="vista__num">Herramienta 05</p>
+          <h1>Proyección de ahorros</h1>
+          <p class="ent-t">Lo que pusiste tú y lo que puso el tiempo</p>
+          <p class="ent-c">Tu ahorro no crece solo por lo que aportas. Aquí ves cuánto sale de tu bolsillo y cuánto ponen los intereses hasta el día que te retires.</p>
+        </div>
+
+        <div class="hero-num">
+          <p class="hero-num__lab">Tu ahorro el día que cumplas 60</p>
+          <p class="hero-num__n">$1,085,242.68</p>
+          <p class="hero-num__pie">Con los $250,000 que ya tienes, los $3,500 que aportas cada mes y un rendimiento de 6.8% anual durante 10 años.</p>
+        </div>
+
+        <div class="panelito">
+          <h2>De dónde sale ese millón</h2>
+          <p class="panelito__sub">Casi cuatro de cada diez pesos no los pusiste tú.</p>
+          <div class="mezcla" role="img" aria-label="El 61.7% del ahorro final lo aportaste tú y el 38.3% lo generaron los intereses.">
+            <span class="mezcla__tuyo" style="width:61.7%"></span>
+            <span class="mezcla__int" style="width:38.3%"></span>
+          </div>
+          <div class="mezcla-leg">
+            <div><i style="background:var(--navy)"></i><span><p>Lo pusiste tú</p><b>$670,000.00</b><small>61.7% · $250,000 de entrada y $420,000 en aportaciones</small></span></div>
+            <div><i style="background:var(--yellow)"></i><span><p>Lo generó el interés</p><b>$415,242.68</b><small>38.3% · sin que hicieras nada más</small></span></div>
+          </div>
+        </div>
+
+        <div class="partes">
+          <div class="parte">
+            <p class="parte__l">Lo que ya tenías ahorrado</p>
+            <p class="parte__n">$482,672.48</p>
+            <p class="parte__p">44.5% de tu ahorro final.</p>
+            <p class="parte__desg">
+              <span><i>Lo pusiste tú</i>$250,000.00</span>
+              <span><i>Lo generó el interés</i>$232,672.48</span>
+            </p>
+          </div>
+          <div class="parte">
+            <p class="parte__l">Lo que vas a ir aportando</p>
+            <p class="parte__n">$602,570.21</p>
+            <p class="parte__p">55.5% de tu ahorro final.</p>
+            <p class="parte__desg">
+              <span><i>Lo pusiste tú</i>$420,000.00</span>
+              <span><i>Lo generó el interés</i>$182,570.21</span>
+            </p>
+          </div>
+        </div>
+
+        <div class="panelito">
+          <h2>Con qué números se calculó</h2>
+          <p class="panelito__sub">Si alguno cambia, cambia el resultado.</p>
+          <div class="params">
+            <div class="params__i"><p class="params__l">Ahorro que ya tienes</p><p class="params__v">$250,000.00</p></div>
+            <div class="params__i"><p class="params__l">Aportas cada mes</p><p class="params__v">$3,500.00</p><p class="params__n">120 aportaciones en total</p></div>
+            <div class="params__i"><p class="params__l">Rendimiento anual</p><p class="params__v">6.8%</p></div>
+            <div class="params__i"><p class="params__l">Años que faltan</p><p class="params__v">10</p><p class="params__n">De los 50 a los 60</p></div>
+          </div>
+        </div>
+
+        <p class="cierre">Ya están las tres cifras: lo que vas a recibir, lo que vas a gastar y lo que habrás juntado. Falta cruzarlas.</p>
+      </div>
     </div>
   </div>
 </div>
@@ -954,7 +1042,7 @@ table.proy .pct{font-weight:600}
   });
 
   var pendiente = document.getElementById('pendiente');
-  var LISTAS = ['01', '02', '03', '04'];   // herramientas ya construidas
+  var LISTAS = ['01', '02', '03', '04', '05'];   // herramientas ya construidas
 
   function verPanel() {
     document.querySelectorAll('[id^="v-"]').forEach(function (v) { v.hidden = v.id !== 'v-panel'; });
@@ -972,7 +1060,7 @@ table.proy .pct{font-weight:600}
     document.querySelectorAll('[id^="v-"]').forEach(function (v) { v.hidden = v.id !== 'v-t' + num; });
     var sel = document.getElementById('sel-reporte');
     for (var k = 0; k < sel.options.length; k++) {
-      if (sel.options[k].value === (num === '03' || num === '04' ? '02' : num)) { sel.selectedIndex = k; }
+      if (sel.options[k].value === (['03','04','05'].indexOf(num) >= 0 ? '02' : num)) { sel.selectedIndex = k; }
     }
     document.querySelectorAll('.side__link[data-tool]').forEach(function (l) {
       if (l.dataset.tool === num) { l.setAttribute('aria-current', 'true'); }
