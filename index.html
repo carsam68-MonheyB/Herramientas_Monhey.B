@@ -137,7 +137,7 @@ section{scroll-margin-top:calc(var(--navh) + 18px)}
 .band__head h2{font-size:clamp(28px,3.4vw,38px);color:var(--navy);margin-bottom:14px}
 .band__head p{font-size:18px;color:var(--muted);line-height:1.6}
 
-/* ---------- El giro: filas antes/después ---------- */
+/* ---------- Comparación antes/después ---------- */
 .shift{display:grid;gap:20px}
 .shift__row{
   display:grid;grid-template-columns:minmax(0,1fr) 54px minmax(0,1.15fr);
@@ -377,8 +377,8 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
     <a class="brand" href="#portada"><span class="brand__dot" aria-hidden="true">m</span>monhey.B</a>
     <div class="navlinks">
       <a href="#guia">Cómo leer</a>
-      <a href="#giro">El giro</a>
-      <a href="#recorrido">El recorrido</a>
+      <a href="#giro">Qué cambia</a>
+      <a href="#recorrido">El orden</a>
       <a href="#t01"><span class="n">01</span>Resumen</a>
       <a href="#t02"><span class="n">02</span>Proyecciones</a>
       <a href="#t03"><span class="n">03</span>Historial</a>
@@ -399,10 +399,10 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
   <div class="wrap hero__grid">
     <div>
       <span class="eyebrow">Propuesta de textos de interfaz</span>
-      <h1>Siete herramientas, <em>un solo recorrido</em></h1>
+      <h1>Los textos de las <em>siete herramientas</em></h1>
       <p class="lede">Este documento propone los textos de las siete herramientas de monhey.B: el subtítulo que se ve en el menú, los textos que reciben al usuario dentro de cada pantalla y la línea que la cierra.</p>
-      <p class="lede">El cambio de fondo son dos cosas. Los subtítulos dejan de describir la pantalla y pasan a <strong>prometer una cifra</strong>. Y las siete dejan de ser un menú suelto para leerse como <strong>un recorrido</strong>, donde cada pantalla entrega el lector a la siguiente.</p>
-      <p class="lede">Cada texto propuesto se copia con un clic. Al costado de cada pantalla van los hallazgos: lo que hay que corregir para que el texto se sostenga.</p>
+      <p class="lede">Cambian dos cosas. Los subtítulos dejan de describir la pantalla y pasan a <strong>anunciar el dato que entrega</strong>. Y cada pantalla termina con una línea que <strong>nombra la siguiente</strong>, para que las siete se lean en orden.</p>
+      <p class="lede">Cada texto propuesto se copia con un clic. Al costado de cada pantalla van los hallazgos: los errores y mejoras detectados al revisarla.</p>
 
       <div class="example">
         <div class="example__row example__row--old">
@@ -454,7 +454,7 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
           </li>
         </ul>
       </div>
-      <p class="phone-caption">Leídos de corrido, los siete subtítulos ya cuentan la historia completa.</p>
+      <p class="phone-caption">Simulación del menú con los siete subtítulos propuestos. Los encabezados azules del teléfono no forman parte de la propuesta.</p>
     </div>
   </div>
 </section>
@@ -469,8 +469,8 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
     </div>
     <h3 class="guia__h">Las cinco partes, en orden</h3>
     <ol class="idx">
-      <li class="idx__i"><a href="#giro"><span class="idx__n">1</span><span><b>El giro</b><span class="idx__d">Qué cambia, en tres ejemplos. Es el resumen de un vistazo.</span></span></a></li>
-      <li class="idx__i"><a href="#recorrido"><span class="idx__n">2</span><span><b>El recorrido</b><span class="idx__d">Por qué las siete pantallas van en ese orden y no en otro.</span></span></a></li>
+      <li class="idx__i"><a href="#giro"><span class="idx__n">1</span><span><b>Qué cambia</b><span class="idx__d">Los subtítulos de antes y los propuestos, en tres ejemplos.</span></span></a></li>
+      <li class="idx__i"><a href="#recorrido"><span class="idx__n">2</span><span><b>El orden de las pantallas</b><span class="idx__d">Por qué las siete van en este orden y qué encadena una con otra.</span></span></a></li>
       <li class="idx__i"><a href="#pantallas"><span class="idx__n">3</span><span><b>Las siete pantallas</b><span class="idx__d">El detalle de cada una: los textos propuestos y los hallazgos de pantalla.</span></span></a></li>
       <li class="idx__i"><a href="#columnas"><span class="idx__n">4</span><span><b>Nombres de columna</b><span class="idx__d">La traducción de los once encabezados de Modalidad 40. Va dentro de la pantalla 07.</span></span></a></li>
       <li class="idx__i"><a href="#reglas"><span class="idx__n">5</span><span><b>Cómo está escrito</b><span class="idx__d">Las reglas de tono y de jerarquía que sostienen los textos.</span></span></a></li>
@@ -487,7 +487,7 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
           <tr><td data-label="Tipo de texto"><b>Entrada · cuerpo</b></td><td data-label="Qué es">Uno o dos párrafos que dicen qué va a encontrar y por qué importa.</td><td data-label="Dónde va">Debajo del título de entrada.</td><td data-label="En cuáles">Las siete.</td></tr>
           <tr><td data-label="Tipo de texto"><b>Advertencia de lectura</b></td><td data-label="Qué es">Frena una conclusión equivocada que el dato invita a sacar.</td><td data-label="Dónde va">Pegada al dato que la provoca, no al final.</td><td data-label="En cuáles">Solo la 02.</td></tr>
           <tr><td data-label="Tipo de texto"><b>Invitación a asesoría</b></td><td data-label="Qué es">Ofrece al facilitador monhey.B, que es un servicio aparte.</td><td data-label="Dónde va">En bloque propio, visualmente distinto del estudio.</td><td data-label="En cuáles">La 02, la 06 y la 07.</td></tr>
-          <tr><td data-label="Tipo de texto"><b>Puente</b></td><td data-label="Qué es">Entrega al lector a la pantalla siguiente.</td><td data-label="Dónde va">La última línea de la pantalla.</td><td data-label="En cuáles">Las siete.</td></tr>
+          <tr><td data-label="Tipo de texto"><b>Cierre de pantalla</b></td><td data-label="Qué es">Última línea: dice qué falta por saber y en qué herramienta está.</td><td data-label="Dónde va">Al final de la pantalla, después de todo lo demás.</td><td data-label="En cuáles">Las siete.</td></tr>
           <tr class="types--doc"><td data-label="Tipo de texto"><b>Hallazgos de pantalla</b> <span class="nope">No va en la app</span></td><td data-label="Qué es">Errores y mejoras detectados en la pantalla actual.</td><td data-label="Dónde va">No va en la app: es la lista de correcciones.</td><td data-label="En cuáles">Las siete.</td></tr>
         </tbody>
       </table>
@@ -500,7 +500,7 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
       <li><span class="orden__n">4</span><span><b>El contenido de la herramienta</b> <span class="orden__d">Tablas, gráficas y cifras. No es parte de esta propuesta.</span></span></li>
       <li><span class="orden__n">5</span><span><b>Advertencia de lectura</b> <span class="orden__d">Solo donde el dato se presta a una conclusión equivocada.</span></span></li>
       <li><span class="orden__n">6</span><span><b>Invitación a asesoría</b> <span class="orden__d">Solo en las tres pantallas donde el facilitador resuelve algo.</span></span></li>
-      <li><span class="orden__n">7</span><span><b>Puente</b> <span class="orden__d">Cierra y manda a la siguiente.</span></span></li>
+      <li><span class="orden__n">7</span><span><b>Cierre de pantalla</b> <span class="orden__d">Dice qué falta por saber y en qué herramienta está.</span></span></li>
     </ol>
     <h3 class="guia__h">Cómo se marcan los hallazgos</h3>
     <div class="legend">
@@ -514,9 +514,9 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
 <section class="band" id="giro">
   <div class="wrap">
     <div class="band__head">
-      <p class="band__kicker">Parte 1 · El giro</p>
-      <h2>De describir la pantalla a dar el dato</h2>
-      <p>El subtítulo viejo dice qué contiene la herramienta. El nuevo dice qué va a saber el usuario al salir de ella. Estos tres ejemplos resumen el cambio completo.</p>
+      <p class="band__kicker">Parte 1 · Qué cambia</p>
+      <h2>El subtítulo de antes y el propuesto</h2>
+      <p>El subtítulo actual describe qué contiene la herramienta. El propuesto dice qué dato va a obtener el usuario. Estos tres ejemplos resumen el cambio.</p>
     </div>
     <div class="shift">
       <div class="shift__row">
@@ -541,15 +541,15 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
 <section class="band band--tint" id="recorrido">
   <div class="wrap">
     <div class="band__head">
-      <p class="band__kicker">Parte 2 · El recorrido</p>
-      <h2>Cuatro actos, siete pantallas</h2>
-      <p>El orden actual de la app ya casi es una historia. Solo hacía falta que los textos lo dijeran: cuánto vas a recibir, cuánto vas a necesitar, cuánto vas a tener, y qué hacer si no alcanza.</p>
-      <p class="aviso-box"><b>Los actos no se programan.</b> No son etiquetas que aparezcan en la app ni pantallas nuevas. Son la lógica del orden, para que se entienda por qué cada herramienta va donde va. Lo único que los materializa en pantalla es el puente que cierra cada una.</p>
+      <p class="band__kicker">Parte 2 · El orden de las pantallas</p>
+      <h2>Cuatro bloques, siete pantallas</h2>
+      <p>El orden actual de la app ya sigue una secuencia lógica: cuánto va a recibir el usuario, cuánto va a necesitar, cuánto va a tener y qué hacer si no alcanza. Los textos ahora lo hacen explícito.</p>
+      <p class="aviso-box"><b>Los bloques no se programan.</b> No son etiquetas que deban aparecer en la app ni pantallas nuevas, y el menú no cambia. Solo agrupan las siete herramientas para explicar por qué cada una va donde va. Lo único que existe en pantalla es la línea de cierre de cada herramienta.</p>
     </div>
     <div class="acts">
       <section class="act">
-        <div class="act__head"><span class="act__label">Acto 1</span><h3>Lo que vas a recibir</h3></div>
-        <p>Las tres primeras pantallas construyen una sola cifra: tu pensión. Primero el monto, luego lo que lo mueve, luego de dónde sale.</p>
+        <div class="act__head"><span class="act__label">Bloque 1</span><h3>Lo que el usuario va a recibir</h3></div>
+        <p>Las tres primeras pantallas construyen una sola cifra: la pensión. Primero el monto, después lo que lo modifica, después de dónde sale el dato.</p>
         <ol class="act__steps">
           <li class="step"><span class="step__n" aria-hidden="true">01</span><div><p class="step__name">Resumen financiero</p><p class="step__sub">Tu pensión hoy y la que puedes alcanzar</p><p class="step__bridge"><b>Cierra con:</b> Esa diferencia depende sobre todo de una decisión: a qué edad te retiras. Ese es el siguiente paso.</p></div></li>
           <li class="step"><span class="step__n" aria-hidden="true">02</span><div><p class="step__name">Proyecciones de pensión</p><p class="step__sub">La pensión que te corresponde a cada edad</p><p class="step__bridge"><b>Cierra con:</b> Todo este cálculo se sostiene en tus semanas cotizadas. Conviene revisar que estén completas.</p></div></li>
@@ -557,22 +557,22 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
         </ol>
       </section>
       <section class="act">
-        <div class="act__head"><span class="act__label">Acto 2</span><h3>Lo que vas a necesitar</h3></div>
-        <p>La pensión sola no dice nada. Cobra sentido al ponerla contra lo que cuesta tu vida.</p>
+        <div class="act__head"><span class="act__label">Bloque 2</span><h3>Lo que va a necesitar</h3></div>
+        <p>La pensión sola no dice nada. Solo significa algo al compararla con lo que cuesta la vida del usuario.</p>
         <ol class="act__steps">
           <li class="step"><span class="step__n" aria-hidden="true">04</span><div><p class="step__name">Análisis de gastos</p><p class="step__sub">Cuánto necesitas al mes para vivir igual</p><p class="step__bridge"><b>Cierra con:</b> Ese gasto no lo cubre sola la pensión. Veamos qué más vas a tener.</p></div></li>
         </ol>
       </section>
       <section class="act">
-        <div class="act__head"><span class="act__label">Acto 3</span><h3>Lo que vas a tener</h3></div>
-        <p>Además de la pensión, está lo que juntaste por tu cuenta. Es la otra columna del balance.</p>
+        <div class="act__head"><span class="act__label">Bloque 3</span><h3>Lo que va a tener</h3></div>
+        <p>Además de la pensión está el ahorro propio. Es la otra mitad del dinero disponible al retirarse.</p>
         <ol class="act__steps">
           <li class="step"><span class="step__n" aria-hidden="true">05</span><div><p class="step__name">Proyección de ahorros</p><p class="step__sub">Cuánto habrás juntado cuando te retires</p><p class="step__bridge"><b>Cierra con:</b> Ya están las tres cifras: lo que vas a recibir, lo que vas a gastar y lo que habrás juntado. Falta cruzarlas.</p></div></li>
         </ol>
       </section>
       <section class="act">
-        <div class="act__head"><span class="act__label">Acto 4</span><h3>Si alcanza, y qué hacer si no</h3></div>
-        <p>El cruce de todo lo anterior, y la única palanca que todavía puedes accionar.</p>
+        <div class="act__head"><span class="act__label">Bloque 4</span><h3>Si alcanza, y qué hacer si no</h3></div>
+        <p>El cruce de todo lo anterior, y la única acción que el usuario todavía puede tomar antes de retirarse.</p>
         <ol class="act__steps">
           <li class="step"><span class="step__n" aria-hidden="true">06</span><div><p class="step__name">Simulador de jubilación</p><p class="step__sub">¿Hasta qué edad te alcanza el dinero?</p><p class="step__bridge"><b>Cierra con:</b> Si el dinero no alcanza, todavía hay algo que puedes mover antes de retirarte.</p></div></li>
           <li class="step"><span class="step__n" aria-hidden="true">07</span><div><p class="step__name">Modalidad 40</p><p class="step__sub">Cuánto cuesta subir tu pensión</p><p class="step__bridge"><b>Cierra con:</b> Con esto cierra el estudio. Vuelve al resumen para ver el panorama con los ajustes aplicados.</p></div></li>
@@ -617,7 +617,7 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
           </div>
         </div>
         <div class="field">
-          <h3 class="field__label">Puente a la siguiente pantalla</h3>
+          <h3 class="field__label">Cierre de pantalla</h3>
           <div class="hook copyunit"><p class="copytext prop prop--md">Esa diferencia depende sobre todo de una decisión: a qué edad te retiras. Ese es el siguiente paso.</p></div>
         </div>
       </div>
@@ -664,10 +664,10 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
         <div class="field">
           <h3 class="field__label">Invitación a asesoría</h3>
           <div class="cta-card copyunit"><p class="copytext prop prop--md">Calcular lo que más te conviene exige analizar todos los elementos. Un facilitador monhey.B lo hace por ti. Solicita ahora mismo su ayuda.</p></div>
-          <p class="field__note">Va en un bloque aparte, visualmente separado del estudio: es una oferta, no un hallazgo. Las tres siguen la misma estructura: lo que exige hacerlo bien, que el facilitador lo hace por ti, y la llamada a la acción. Es el único lugar del recorrido donde el texto usa imperativo.</p>
+          <p class="field__note">Va en un bloque aparte, visualmente separado del estudio: es una oferta, no un hallazgo. Las tres siguen la misma estructura: lo que exige hacerlo bien, que el facilitador lo hace por ti, y la llamada a la acción. Es el único lugar de la app donde los textos usan imperativo.</p>
         </div>
         <div class="field">
-          <h3 class="field__label">Puente a la siguiente pantalla</h3>
+          <h3 class="field__label">Cierre de pantalla</h3>
           <div class="hook copyunit"><p class="copytext prop prop--md">Todo este cálculo se sostiene en tus semanas cotizadas. Conviene revisar que estén completas.</p></div>
         </div>
       </div>
@@ -708,7 +708,7 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
           </div>
         </div>
         <div class="field">
-          <h3 class="field__label">Puente a la siguiente pantalla</h3>
+          <h3 class="field__label">Cierre de pantalla</h3>
           <div class="hook copyunit"><p class="copytext prop prop--md">Ya sabes cuánto vas a recibir. Ahora la otra mitad de la cuenta: cuánto vas a necesitar.</p></div>
         </div>
       </div>
@@ -749,7 +749,7 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
           </div>
         </div>
         <div class="field">
-          <h3 class="field__label">Puente a la siguiente pantalla</h3>
+          <h3 class="field__label">Cierre de pantalla</h3>
           <div class="hook copyunit"><p class="copytext prop prop--md">Ese gasto no lo cubre sola la pensión. Veamos qué más vas a tener.</p></div>
         </div>
       </div>
@@ -791,7 +791,7 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
           </div>
         </div>
         <div class="field">
-          <h3 class="field__label">Puente a la siguiente pantalla</h3>
+          <h3 class="field__label">Cierre de pantalla</h3>
           <div class="hook copyunit"><p class="copytext prop prop--md">Ya están las tres cifras: lo que vas a recibir, lo que vas a gastar y lo que habrás juntado. Falta cruzarlas.</p></div>
         </div>
       </div>
@@ -837,7 +837,7 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
           <div class="cta-card copyunit"><p class="copytext prop prop--md">Cerrar esa diferencia exige revisar todo lo que tienes. Un facilitador monhey.B arma el plan por ti. Solicita ahora mismo su ayuda.</p></div>
         </div>
         <div class="field">
-          <h3 class="field__label">Puente a la siguiente pantalla</h3>
+          <h3 class="field__label">Cierre de pantalla</h3>
           <div class="hook copyunit"><p class="copytext prop prop--md">Si el dinero no alcanza, todavía hay algo que puedes mover antes de retirarte.</p></div>
         </div>
       </div>
@@ -884,7 +884,7 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
           <div class="cta-card copyunit"><p class="copytext prop prop--md">Decidir si te conviene y llevar el trámite exige experiencia. Un facilitador monhey.B lo hace por ti. Solicita ahora mismo su ayuda.</p></div>
         </div>
         <div class="field">
-          <h3 class="field__label">Puente a la siguiente pantalla</h3>
+          <h3 class="field__label">Cierre de pantalla</h3>
           <div class="hook copyunit"><p class="copytext prop prop--md">Con esto cierra el estudio. Vuelve al resumen para ver el panorama con los ajustes aplicados.</p></div>
         </div>
       </div>
@@ -929,18 +929,18 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
     <div class="band__head">
       <p class="band__kicker">Parte 5 · Cómo está escrito</p>
       <h2>Cuatro reglas de tono</h2>
-      <p>Nadie lee por gusto una pantalla de trámites. Se lee lo que promete un dato que importa, dicho por alguien que sabe de qué habla.</p>
+      <p>Estas cuatro reglas son las que se aplicaron al escribir los textos propuestos. Sirven para redactar los que falten.</p>
     </div>
     <div class="tono">
-      <div class="tono__item"><h3>Primero el dato, después la frase</h3><p>Una cifra que el lector no esperaba retiene más que cualquier adjetivo. Y un número verificable es lo que separa un estudio de un folleto.</p></div>
-      <div class="tono__item"><h3>Ni una palabra de venta</h3><p>Fuera “descubre”, “conoce”, “entérate”, “te sorprenderá”. El estudio no invita: informa. La autoridad viene de la precisión, no del entusiasmo.</p></div>
+      <div class="tono__item"><h3>Primero el dato, después la frase</h3><p>Una cifra concreta retiene más que cualquier adjetivo, y además se puede verificar.</p></div>
+      <div class="tono__item"><h3>Ni una palabra de venta</h3><p>Fuera “descubre”, “conoce”, “entérate”, “te sorprenderá”. El texto informa, no invita. La credibilidad viene de la precisión.</p></div>
       <div class="tono__item"><h3>Una idea por línea</h3><p>Si una frase necesita coma para meter el segundo concepto, son dos frases. O sobra una.</p></div>
-      <div class="tono__item"><h3>Cada pantalla entrega a la siguiente</h3><p>Ningún texto termina en punto final. Termina señalando qué falta por saber.</p></div>
+      <div class="tono__item"><h3>Cada pantalla anuncia la siguiente</h3><p>El último texto de una pantalla no cierra el tema: dice qué falta por saber y dónde está.</p></div>
     </div>
     <div class="band__head" style="margin-top:8px">
-      <p class="band__kicker">Para que la pantalla lo sostenga</p>
-      <h2>Tres reglas de jerarquía</h2>
-      <p>Un buen subtítulo promete una cifra. Estas tres reglas evitan que la pantalla la esconda.</p>
+      <p class="band__kicker">Reglas de jerarquía</p>
+      <h2>Dónde va cada cosa en la pantalla</h2>
+      <p>El subtítulo anuncia una cifra. Estas tres reglas evitan que la pantalla la esconda.</p>
     </div>
     <div class="rules">
       <div class="rule"><p class="rule__n" aria-hidden="true">1</p><h3>El número prometido va primero</h3><p>Si el subtítulo ofreció la diferencia, la diferencia es lo primero que se ve.</p></div>
@@ -951,7 +951,7 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
 </section>
 
 <div class="wrap foot">
-  <p>Propuesta de textos de interfaz para monhey.B · Siete pantallas en cuatro actos · Los textos propuestos se copian con un clic.</p>
+  <p>Propuesta de textos de interfaz para monhey.B · Siete pantallas en cuatro bloques · Los textos propuestos se copian con un clic.</p>
 </div>
 
 </main>
