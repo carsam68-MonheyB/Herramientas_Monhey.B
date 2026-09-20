@@ -28,6 +28,7 @@
   --s-hoy:#6E7A8C; --s-hoy-ink:#4A5464;
   --rejilla:#E6EAF1; --rejilla-fuerte:#D4DCEA;
   --foto-marco:#0E2247;
+  --nota-fondo:#F4EFFD; --nota-borde:#6B4BC7; --nota-ink:#39275F; --nota-lab:#5B3FA8;
   --sans:"Instrument Sans","Segoe UI",system-ui,-apple-system,sans-serif;
   --display:"Fraunces",Georgia,serif;
   --cifra:"Instrument Sans","Segoe UI",system-ui,-apple-system,sans-serif;
@@ -53,6 +54,7 @@ html[data-tema="mixto"]{
   --ambar-ink:#FCE7A4; --ambar-ink2:#F6D486; --ambar-linea:#7A6428;
   --ambar-borde:#C9A23A;
   --s-barra:#3987E5; --s-linea:#D8E2EC; --s-m40:#9085E9; --s-uma:#E66767;
+  --nota-fondo:#2B2340; --nota-borde:#9C8BF0; --nota-ink:#E4DDFA; --nota-lab:#BDAFF7;
   --s-hoy:#93A3B4; --s-hoy-ink:#C3CFDA;
 }
 html[data-tema="petroleo"]{
@@ -95,6 +97,7 @@ html[data-tema="mixto"]{
 }
 
 html[data-tema="nieve"]{
+  --nota-fondo:#F4EFFD; --nota-borde:#6B4BC7; --nota-ink:#39275F; --nota-lab:#5B3FA8;
   --canvas:#F5F5F7; --white:#FFFFFF; --field:#F0F0F2;
   --ink:#1D1D1F; --ink-fuerte:#000000; --muted:#6B6B70;
   --line:#D2D2D7; --line-soft:#E8E8ED;
@@ -171,7 +174,7 @@ input[type=email],input[type=password]{width:100%;font-family:var(--sans);font-s
 .acceso__msg{position:absolute;left:0;right:0;top:0;z-index:1;padding:clamp(28px,3.4vw,52px) clamp(28px,3.4vw,52px) 0;color:#fff;text-shadow:0 1px 18px rgba(6,18,40,.45)}
 .acceso__msg h2{font-size:clamp(26px,2.7vw,37px);color:#fff;text-wrap:balance;max-width:19ch}
 .acceso__msg p{font-size:clamp(16px,1.4vw,19px);line-height:1.55;color:rgba(255,255,255,.94);margin-top:14px;max-width:40ch}
-.acceso__credito{position:absolute;bottom:0;right:0;z-index:1;padding:14px 18px;font-size:12px;color:rgba(255,255,255,.85)}
+.acceso__credito{position:absolute;bottom:14px;right:14px;z-index:1;padding:5px 12px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border-radius:999px;background:var(--nota-fondo);border:1px solid var(--nota-borde);color:var(--nota-lab)}
 @media (min-width:861px) and (max-height:860px){
   .acceso__form{padding:20px clamp(24px,4vw,60px)}
   .logo{--logo-h:42px}
@@ -483,11 +486,23 @@ table.proy .pct{font-weight:600}
 .tarjeta__ico{width:42px;height:42px;border-radius:12px;background:var(--navy-soft);display:grid;place-items:center;color:var(--navy);flex:0 0 auto}
 .tarjeta__ico svg{width:21px;height:21px}
 .tarjeta--pro .tarjeta__ico{background:var(--yellow-soft);color:var(--ambar-ink2)}
+
+/* Nota de trabajo: aclaraciones para el programador y para el cliente
+   de monhey.B. NO forma parte de la app y no se programa. Va siempre
+   dentro de esta capsula para que no se confunda con un texto real. */
+.nota{background:var(--nota-fondo);border:1px solid var(--nota-borde);border-left:5px solid var(--nota-borde);
+  border-radius:12px;padding:14px 18px;margin:18px 0;max-width:74ch}
+.nota__lab{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:700;
+  letter-spacing:.11em;text-transform:uppercase;color:var(--nota-lab);margin-bottom:7px}
+.nota__lab svg{width:14px;height:14px;flex:0 0 auto}
+.nota p,.nota h3{font-size:15px;line-height:1.55;color:var(--nota-ink);font-family:var(--sans);font-weight:400}
+.nota h3{font-weight:700;font-size:16px;margin-bottom:6px}
+.nota--pie{margin-top:14px}
 .tarjeta__num{font-family:var(--cifra);font-size:14px;font-weight:700;color:var(--muted);font-variant-numeric:tabular-nums;letter-spacing:-0.01em}
 .tarjeta__pro{margin-left:auto;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:var(--yellow);color:var(--navy-deep);padding:3px 8px;border-radius:999px}
 .tarjeta__nom{font-size:15px;font-weight:700;color:var(--navy);line-height:1.3}
 .tarjeta__sub{font-size:19px;font-weight:500;color:var(--ink);line-height:1.4;letter-spacing:-0.005em}
-.pendiente{margin-top:26px;font-size:16px;line-height:1.55;color:var(--navy);background:var(--yellow-soft);border-left:4px solid var(--yellow);border-radius:0 10px 10px 0;padding:14px 16px}
+#pendiente{margin-top:26px}
 
 @media (max-width:1000px){
   .app{grid-template-columns:1fr}
@@ -575,7 +590,7 @@ table.proy .pct{font-weight:600}
       <h2>Que el dinero te alcance hasta el final</h2>
       <p>Tu pensión, tus ahorros y tus gastos en un solo estudio. Aquí sabes si alcanza, y qué hacer si no.</p>
     </div>
-    <p class="acceso__credito">Prototipo · sin cálculos</p>
+    <p class="acceso__credito">Nota de trabajo · prototipo sin cálculos</p>
   </div>
 </main>
 
@@ -669,7 +684,7 @@ table.proy .pct{font-weight:600}
       </div>
 
       <div class="tarjetas" id="tarjetas"></div>
-      <p class="pendiente" id="pendiente" hidden role="status"></p>
+      <div class="nota" id="pendiente" hidden><p class="nota__lab"><svg aria-hidden="true"><use href="#i-alerta"></use></svg>Nota de trabajo · no va en la app</p><p id="pendiente-txt" role="status"></p></div>
       </div>
 
       <!-- ===== 01 · RESUMEN FINANCIERO ===== -->
@@ -791,7 +806,7 @@ table.proy .pct{font-weight:600}
               <p class="crecim__rango">En 44.7 años, de $19.91 a $2,980.17 diarios.</p>
             </div>
           </div>
-          <p class="crecim__nota">Estas dos cifras vienen de otro reporte. En el de esta pantalla, el primer salario está registrado en $0.00, así que no hay punto de partida y no se puede calcular el crecimiento. Hoy la app imprime “Infinity%” en ese caso.</p>
+          <div class="nota nota--pie"><p class="nota__lab"><svg aria-hidden="true"><use href="#i-alerta"></use></svg>Nota de trabajo · no va en la app</p><p>Estas dos cifras vienen de otro reporte. En el de esta pantalla, el primer salario está registrado en $0.00, así que no hay punto de partida y no se puede calcular el crecimiento. Hoy la app imprime “Infinity%” en ese caso.</p></div>
         </div>
 
         <p class="cierre">Esa diferencia depende sobre todo de una decisión: a qué edad te retiras. Ese es el siguiente paso.</p>
@@ -1271,7 +1286,7 @@ table.proy .pct{font-weight:600}
               </tbody>
             </table>
           </div>
-          <p class="tabla-pie">Los otros ingresos de $25,000 al mes están modelados hasta los 75 años. De los 76 en adelante la tabla los deja en blanco y en ningún lado se dice por qué.</p>
+          <div class="nota"><p class="nota__lab"><svg aria-hidden="true"><use href="#i-alerta"></use></svg>Nota de trabajo · no va en la app</p><p>Los otros ingresos de $25,000 al mes están modelados hasta los 75 años. De los 76 en adelante la tabla los deja en blanco y en ningún lado se dice por qué.</p></div>
         </div>
 
         <div class="panelito">
@@ -1307,7 +1322,8 @@ table.proy .pct{font-weight:600}
           <p class="hero-num__pie">60 meses, de 2026 a 2030. Empiezas pagando $12,872.29 al mes y terminas pagando $16,761.25: <b>30% más</b>, porque la cuota que cobra el IMSS sube cada año por ley.</p>
         </div>
 
-        <div class="falta-dato">
+        <div class="nota">
+          <p class="nota__lab"><svg aria-hidden="true"><use href="#i-alerta"></use></svg>Nota de trabajo · no va en la app</p>
           <h3>Falta la otra mitad: cuánto sube tu pensión</h3>
           <p>La pantalla dice cuánto cuesta, pero no cuánto se gana. Nadie puede decidir sobre $888,995.45 sin saber en cuánto queda su pensión al terminar de pagarlos. Ese dato lo tienen las Proyecciones de pensión y aquí no aparece.</p>
         </div>
@@ -1446,7 +1462,8 @@ table.proy .pct{font-weight:600}
   function verHerramienta(num) {
     if (LISTAS.indexOf(num) === -1) {
       var h = HERRAMIENTAS.filter(function (x) { return x.n === num; })[0];
-      pendiente.textContent = 'Pantalla ' + num + ' · ' + h.nom + ': pendiente de su captura.';
+      document.getElementById('pendiente-txt').textContent =
+        'Pantalla ' + num + ' · ' + h.nom + ': pendiente de su captura.';
       pendiente.hidden = false;
       pendiente.scrollIntoView({block:'nearest'});
       return;
