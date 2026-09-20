@@ -1506,11 +1506,24 @@ table.proy .pct{font-weight:600}
   }
 
   var botonesTema = document.querySelectorAll('.tema__b');
+
+  // La variante se fija desde aqui y no desde el atributo del elemento
+  // raiz: al publicar como artefacto se recorta la cabecera del
+  // documento, asi que ese atributo no llega y la pagina abriria sin
+  // variante, con la barra lateral clara y el logotipo claro encima.
+  function ponerTema(nombre) {
+    document.documentElement.setAttribute('data-tema', nombre);
+    botonesTema.forEach(function (o) { o.setAttribute('aria-pressed', String(o.dataset.tema === nombre)); });
+  }
+  var inicial = document.documentElement.getAttribute('data-tema');
+  if (!inicial) {
+    var marcado = document.querySelector('.tema__b[aria-pressed="true"]');
+    inicial = marcado ? marcado.dataset.tema : 'nieve';
+  }
+  ponerTema(inicial);
+
   botonesTema.forEach(function (b) {
-    b.addEventListener('click', function () {
-      document.documentElement.setAttribute('data-tema', b.dataset.tema);
-      botonesTema.forEach(function (o) { o.setAttribute('aria-pressed', String(o === b)); });
-    });
+    b.addEventListener('click', function () { ponerTema(b.dataset.tema); });
   });
 
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') cerrar(); });
