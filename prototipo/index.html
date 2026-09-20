@@ -399,9 +399,9 @@ table.proy .pct{font-weight:600}
 .ficha dd{margin:0 0 0 auto;text-align:right;font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums}
 .ficha dd.vacio{font-weight:500;color:var(--ambar-ink2);background:var(--yellow-soft);padding:1px 8px;border-radius:999px;font-size:14px}
 
-.crecim{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
-.crecim__c{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px}
-.crecim__lab{font-size:13px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.crecim{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));grid-template-rows:auto auto auto auto;gap:16px}
+.crecim__c{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px;display:grid;grid-row:span 4;grid-template-rows:subgrid;row-gap:0;align-content:start}
+.crecim__lab{font-size:15px;font-weight:600;color:var(--muted);line-height:1.45;margin-bottom:12px;max-width:42ch}
 .crecim__nd{font-size:19px;font-weight:600;color:var(--navy);line-height:1.4}
 .crecim__pie{font-size:15px;color:var(--muted);line-height:1.5;margin-top:8px}
 .crecim__n{font-family:var(--cifra);font-size:42px;font-weight:600;color:var(--navy);line-height:1.05;font-variant-numeric:tabular-nums;letter-spacing:-0.03em;margin-bottom:6px}
@@ -785,7 +785,7 @@ table.proy .pct{font-weight:600}
               <p class="crecim__rango">En 27.4 años, de $19.91 a $1,433.19 diarios.</p>
             </div>
             <div class="crecim__c">
-              <p class="crecim__lab">Con pronóstico</p>
+              <p class="crecim__lab">Si tu salario sube anualmente con la inflación los años que quedan a tu retiro.</p>
               <p class="crecim__n">11.85<span>% al año</span></p>
               <p class="crecim__vs">Inflación: 4.40% al año</p>
               <p class="crecim__rango">En 44.7 años, de $19.91 a $2,980.17 diarios.</p>
