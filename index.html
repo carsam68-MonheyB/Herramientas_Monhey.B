@@ -345,6 +345,9 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
 /* ---------- Reglas de tono ---------- */
 .tono{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;margin-bottom:56px}
 .tono__item{border-left:4px solid var(--navy);padding:4px 0 4px 20px}
+.nota{background:#F4EFFD;border:1px solid #6B4BC7;border-left:5px solid #6B4BC7;border-radius:12px;padding:15px 19px;margin:0 0 48px;max-width:74ch}
+.nota__lab{font-size:11px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#5B3FA8;margin-bottom:7px}
+.nota p{font-size:16px;line-height:1.55;color:#39275F}
 .tono__item h3{font-size:20px;color:var(--navy);margin-bottom:9px;line-height:1.3}
 .tono__item p{font-size:17px;color:var(--muted);line-height:1.6;max-width:46ch}
 @media (max-width:720px){
@@ -1077,14 +1080,22 @@ td.col-new .kill-note{display:block;font-size:15px;font-weight:400;color:var(--m
   <div class="wrap">
     <div class="band__head">
       <p class="band__kicker">Parte 5 · Cómo está escrito</p>
-      <h2>Cuatro reglas de tono</h2>
-      <p>Estas cuatro reglas son las que se aplicaron al escribir estos textos. Sirven para redactar los que falten.</p>
+      <h2>Cinco reglas de tono</h2>
+      <p>Estas cinco reglas son las que se aplicaron al escribir estos textos. Sirven para redactar los que falten.</p>
     </div>
     <div class="tono">
       <div class="tono__item"><h3>Primero el dato, después la frase</h3><p>Una cifra concreta retiene más que cualquier adjetivo, y además se puede verificar.</p></div>
       <div class="tono__item"><h3>Ni una palabra de venta</h3><p>Fuera “descubre”, “conoce”, “entérate”, “te sorprenderá”. El texto informa, no invita. La credibilidad viene de la precisión.</p></div>
       <div class="tono__item"><h3>Una idea por línea</h3><p>Si una frase necesita coma para meter el segundo concepto, son dos frases. O sobra una.</p></div>
       <div class="tono__item"><h3>Cada pantalla anuncia la siguiente</h3><p>El último texto de una pantalla no cierra el tema: dice qué falta por saber y dónde está.</p></div>
+      <div class="tono__item"><h3>La marca se escribe Monhey.B</h3><p>Con M mayúscula al principio y B mayúscula al final, siempre, en cualquier posición de la frase. No monhey.B, no Monhey.b, no MonheyB.</p></div>
+    </div>
+    <div class="nota">
+      <p class="nota__lab">Nota de trabajo · no va en la app</p>
+      <p>La regla de la marca tiene una excepción dentro de este documento: el hallazgo del panel
+      cita “Tokens MonheyB”, que es el texto que la app muestra hoy y que ese mismo hallazgo
+      propone cambiar. Esa cita se queda tal cual. Si se corrige, el documento estaría citando
+      mal lo que existe y no habría forma de localizarlo en el código.</p>
     </div>
     <div class="band__head" style="margin-top:8px">
       <p class="band__kicker">Reglas de jerarquía</p>
