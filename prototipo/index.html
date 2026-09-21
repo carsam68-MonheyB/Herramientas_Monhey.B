@@ -236,12 +236,15 @@ input[type=email],input[type=password]{width:100%;font-family:var(--sans);font-s
 .hueco__l{font-size:15px;font-weight:600;color:#F7C822}
 .hueco__t{font-family:var(--display);font-size:clamp(24px,3.2vw,32px);font-weight:800;line-height:1.2;margin:8px 0 12px}
 .hueco__p{font-size:17px;line-height:1.6;color:rgba(255,255,255,.9);max-width:62ch}
-.linea-vida{display:flex;gap:2px;margin:18px 0 10px;height:38px;border-radius:8px;overflow:hidden}
-.linea-vida span{display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--sobre-vivo)}
-.lv-ahorro{background:var(--ok-vivo)}
+.linea-vida{display:flex;gap:2px;margin:18px 0 12px;height:22px;border-radius:7px;overflow:hidden}
+.linea-vida span{display:block;height:100%}
 .lv-hueco{background:var(--mal-vivo)}
 .lv-pension{background:var(--s-barra)}
-.linea-vida-pie{display:flex;gap:20px;flex-wrap:wrap;font-size:14px;color:rgba(255,255,255,.85)}
+.linea-vida-pie{display:flex;gap:10px 26px;flex-wrap:wrap;font-size:15px;line-height:1.4;color:rgba(255,255,255,.92);margin-bottom:16px}
+.linea-vida-pie span{display:flex;align-items:center;gap:9px}
+.lv-m{width:13px;height:13px;border-radius:4px;flex:0 0 auto}
+.lv-m--hueco{background:var(--mal-vivo)}
+.lv-m--pension{background:var(--s-barra)}
 .tres{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin-bottom:22px}
 .tres__c{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px}
 .tres__l{font-size:14px;font-weight:600;color:var(--muted);margin-bottom:6px}
@@ -1233,10 +1236,10 @@ table.proy .pct{font-weight:600}
           <p class="hueco__l">Por qué se acaba tan rápido</p>
           <p class="hueco__t">Dejas de trabajar a los 60, pero tu pensión empieza a los 65</p>
           <div class="linea-vida" role="img" aria-label="De los 60 a los 64 no hay pensión; a partir de los 65 se cobra el 100%.">
-            <span class="lv-hueco" style="width:20%">60 a 64 · sin pensión</span>
-            <span class="lv-pension" style="width:80%">65 a 85 · con pensión</span>
+            <span class="lv-hueco" style="width:20%"></span>
+            <span class="lv-pension" style="width:80%"></span>
           </div>
-          <p class="linea-vida-pie"><span>5 años sin pensión</span><span>21 años con pensión</span></p>
+          <p class="linea-vida-pie"><span><i class="lv-m lv-m--hueco" aria-hidden="true"></i>De 60 a 64 años, sin pensión: 5 años</span><span><i class="lv-m lv-m--pension" aria-hidden="true"></i>De 65 a 85 años, con pensión: 21 años</span></p>
           <p class="hueco__p">Son cinco años en los que solo tienes tus ahorros y $300,000 de otros ingresos, contra $2,252,018 de gastos el primer año. El hueco se come el ahorro completo antes de que llegue el primer peso de pensión.</p>
         </div>
 
