@@ -1,0 +1,10 @@
+# Configuración de Netlify para este repositorio.
+# El sitio es estático y se publica desde la raíz (index.html, prototipo/, sp500-ventanas/).
+# La única función de servidor vive dentro de la app sp500-ventanas.
+
+[build]
+  publish = "."
+
+[functions]
+  directory = "sp500-ventanas/netlify/functions"
+  node_bundler = "esbuild"

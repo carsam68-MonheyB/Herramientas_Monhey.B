@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>S&amp;P 500 · Ventanas móviles</title>
+<meta name="description" content="Rendimientos históricos del S&P 500 por ventanas móviles de 1 a 15 años: cuántas fueron positivas, cuántas negativas y su rendimiento logarítmico promedio.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="top">
+  <div class="top-inner">
+    <div class="brand">
+      <span class="brand-mark">S&amp;P</span>
+      <div>
+        <h1>S&amp;P 500 · Ventanas móviles</h1>
+        <p class="sub">Rendimientos históricos por horizonte de 1 a 15 años</p>
+      </div>
+    </div>
+    <div class="top-actions">
+      <span class="muted small" id="estado-datos">Sin datos</span>
+      <button class="btn" id="btn-actualizar" type="button">Actualizar datos</button>
+    </div>
+  </div>
+</header>
+
+<div id="banner" class="banner" hidden role="status"></div>
+
+<main class="wrap">
+  <section class="panel" aria-labelledby="h-datos">
+    <h2 id="h-datos">Datos</h2>
+    <div class="datos-grid">
+      <div>
+        <p class="muted small">Precio de cierre diario del índice ^SPX desde el 01/01/1980. <strong>Actualizar datos</strong> lo descarga de Stooq a través de una función de Netlify. Si prefieres, carga tu propio CSV: debe tener una columna de fecha (<code>Date</code> o <code>Fecha</code>, en AAAA-MM-DD o DD/MM/AAAA) y una de cierre (<code>Close</code> o <code>Cierre</code>).</p>
+        <label class="zona" id="zona" for="archivo">
+          <input type="file" id="archivo" accept=".csv,text/csv,text/plain">
+          <strong>Arrastra aquí un CSV</strong> o haz clic para elegirlo
+        </label>
+        <p class="small muted" id="guardado"></p>
+      </div>
+      <div>
+        <dl class="ficha">
+          <dt>Fuente</dt><dd id="d-fuente">—</dd>
+          <dt>Primera fecha</dt><dd id="d-primera">—</dd>
+          <dt>Última fecha</dt><dd id="d-ultima">—</dd>
+          <dt>Número de cierres</dt><dd id="d-n">—</dd>
+          <dt>Último cierre</dt><dd id="d-cierre">—</dd>
+        </dl>
+        <ul class="avisos" id="avisos"></ul>
+        <p class="consistencia" id="consistencia"></p>
+      </div>
+    </div>
+  </section>
+
+  <div class="nota"><strong>Nota:</strong> los rendimientos son nominales. Se calculan sobre el índice de precio, sin dividendos ni inflación. Rendimiento logarítmico: r = ln(precio final / precio inicial).</div>
+
+  <section class="panel" aria-labelledby="h-tabla">
+    <div class="toolbar">
+      <h2 id="h-tabla">Resumen por horizonte</h2>
+      <div class="toolbar-actions">
+        <button class="btn ghost" id="btn-csv-resumen" type="button" disabled>Descargar resumen (CSV)</button>
+        <button class="btn ghost" id="btn-csv-detalle" type="button" disabled>Descargar detalle de ventanas (CSV)</button>
+      </div>
+    </div>
+    <p class="muted small">Una fila por horizonte. Los rendimientos logarítmicos se muestran como porcentaje (ln × 100). Fechas en DD/MM/AAAA.</p>
+    <div class="tabla-wrap">
+      <table class="resumen" id="tabla">
+        <thead>
+          <tr>
+            <th scope="col">Horizonte</th>
+            <th scope="col">Ventanas</th>
+            <th scope="col">Positivas</th>
+            <th scope="col">% positivas</th>
+            <th scope="col">Negativas</th>
+            <th scope="col">% negativas</th>
+            <th scope="col">Cero</th>
+            <th scope="col">Log promedio<br>acumulado</th>
+            <th scope="col">Log promedio<br>anualizado</th>
+            <th scope="col">Tasa anual<br>efectiva</th>
+            <th scope="col">Mínimo<br><span class="small">inicio</span></th>
+            <th scope="col">Máximo<br><span class="small">inicio</span></th>
+            <th scope="col">Primer inicio</th>
+            <th scope="col">Último inicio</th>
+          </tr>
+        </thead>
+        <tbody id="tabla-cuerpo"><tr><td colspan="14" class="muted" style="text-align:center">Carga datos para ver el resumen.</td></tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="panel" aria-labelledby="h-barras">
+    <h2 id="h-barras">Ventanas positivas frente a negativas</h2>
+    <p class="muted small">Porcentaje de ventanas con rendimiento positivo y negativo por horizonte. Pasa el cursor sobre una barra para ver el valor exacto; la tabla de arriba tiene todos los números.</p>
+    <div class="leyenda" aria-hidden="true"><span><i class="pos"></i>Positivas</span><span><i class="neg"></i>Negativas</span></div>
+    <div class="grafica" id="g-barras"><div class="vacio">Sin datos.</div></div>
+  </section>
+
+  <section class="panel" aria-labelledby="h-linea">
+    <div class="toolbar">
+      <h2 id="h-linea">Rendimiento de cada ventana según su fecha de inicio</h2>
+      <label class="selector">Horizonte
+        <select id="sel-horizonte" aria-label="Horizonte en años"></select>
+      </label>
+    </div>
+    <p class="muted small" id="linea-desc">Rendimiento logarítmico (ln × 100) de cada ventana, colocado en su fecha de inicio. La línea gris marca el cero.</p>
+    <div class="grafica" id="g-linea"><div class="vacio">Sin datos.</div></div>
+  </section>
+
+  <section class="panel metodo" aria-labelledby="h-metodo">
+    <h2 id="h-metodo">Metodología</h2>
+    <ol>
+      <li><strong>Datos:</strong> cierres diarios del ^SPX (Stooq o CSV propio), ordenados por fecha, sin duplicados, sin filas vacías y desde el 01/01/1980. No se inventan ni interpolan precios: si falta un dato se omite y se avisa.</li>
+      <li><strong>Horizontes:</strong> de 1 a 15 años calendario.</li>
+      <li><strong>Inicios:</strong> cada día con cierre, desde el primer día hábil a partir del 01/01/1980, de uno en uno. Precio de entrada: el cierre de ese día.</li>
+      <li><strong>Fecha final:</strong> la misma fecha calendario N años después. Si ese día no hubo mercado se usa el último cierre disponible en o antes de esa fecha (búsqueda binaria). Un inicio en 29 de febrero usa el 28 de febrero como fecha objetivo.</li>
+      <li><strong>Corte:</strong> la ventana solo cuenta si su fecha objetivo cae en o antes del último dato disponible.</li>
+      <li><strong>Rendimiento:</strong> r = ln(P<sub>final</sub> / P<sub>inicial</sub>). Positiva si r &gt; 0, negativa si r &lt; 0; las de r = 0 se cuentan aparte. Promedio anualizado: promedio de r/N. Tasa anual efectiva: exp(promedio anualizado) − 1.</li>
+    </ol>
+    <p class="muted small">Las ventanas se traslapan y comparten tramos de la misma historia, así que los porcentajes describen la experiencia histórica de quien hubiera entrado cada día; no son probabilidades independientes.</p>
+  </section>
+
+  <footer class="pie">Herramientas Monhey.B · Datos de precio: Stooq (^SPX). Los cálculos ocurren en tu navegador.</footer>
+</main>
+
+<script src="motor.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
