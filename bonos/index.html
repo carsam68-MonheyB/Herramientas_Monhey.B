@@ -62,6 +62,11 @@ a{color:var(--navy);text-decoration-thickness:1.5px;text-underline-offset:3px}
 .result{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
 .tile{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:#fff}
 .tile--hero{background:var(--navy-soft);border-color:transparent}
+.tile--total{border-width:2px}
+.tile--total.tile--plus{border-color:var(--green);background:var(--green-soft)}
+.tile--total.tile--minus{border-color:var(--red);background:var(--red-soft)}
+.tile--total.tile--par{border-color:var(--amber);background:var(--amber-soft)}
+.tile--total .tile__value{font-size:30px}
 .tile__label{font-size:13px;color:var(--muted);font-weight:600}
 .tile__value{font-family:var(--sans);font-weight:700;font-size:28px;letter-spacing:-0.02em;margin-top:2px;font-variant-numeric:tabular-nums}
 .tile__sub{font-size:13px;color:var(--muted);margin-top:4px}
@@ -153,7 +158,7 @@ code{font-family:var(--mono);font-size:13px;background:var(--line-soft);padding:
       <div class="field" id="f-cupon" hidden><label for="cupon">Tasa cupón anual (%)</label><input type="number" id="cupon" step="0.01" min="0" value="8"></div>
       <div class="field"><label for="fval">Fecha de valuación (curva)</label><select id="fval"></select>
         <p class="field__note">Fechas con vector de precios disponible.</p></div>
-      <div class="field"><label for="titulos">Títulos</label><input type="number" id="titulos" min="1" step="1" value="1">
+      <div class="field"><label for="titulos">Número de títulos a valuar</label><input type="number" id="titulos" min="1" step="1" value="1" inputmode="numeric">
         <p class="field__note" id="vn-nota"></p></div>
       <div class="field"><label for="fcompra">Fecha de compra</label><input type="date" id="fcompra">
         <p class="field__note">Si es anterior a la valuación, se suman los cupones cobrados.</p></div>
@@ -304,7 +309,7 @@ code{font-family:var(--mono);font-size:13px;background:var(--line-soft);padding:
   function actualizarEtiquetasCompra() {
     const cete = st.tipo === 'cete';
     const vnTxt = st.tipo === 'udibono' ? '100 UDIs' : cete ? '$10' : '$100';
-    $('vn-nota').textContent = `Valor nominal por título: ${vnTxt}.`;
+    $('vn-nota').textContent = `Valor nominal por título: ${vnTxt}. La plusvalía o minusvalía total se calcula con este número.`;
     document.querySelector('input[name=modo][value=limpio]').parentNode.lastChild.textContent = cete ? ' Precio' : ' Precio limpio';
     $('vcompra-label').textContent = st.modo === 'rendimiento' ? 'Rendimiento de compra (%)' : (cete ? 'Precio de compra (por título de $10)' : st.tipo === 'udibono' ? 'Precio limpio de compra (UDIs por 100)' : 'Precio limpio de compra (por $100)');
     $('vcompra').step = st.modo === 'rendimiento' ? '0.0001' : '0.000001';
@@ -383,14 +388,15 @@ code{font-family:var(--mono);font-size:13px;background:var(--line-soft);padding:
       const total = porTitulo * t;
       const pctRel = porTitulo / compra.sucio * 100;
       const signo = Math.abs(porTitulo) < 1e-6 ? 'par' : porTitulo > 0 ? 'plus' : 'minus';
+      const enPesos = (x) => pesos(real ? x * udi : x);
       html += `<div class="tile"><div class="tile__label">${signo === 'minus' ? 'Minusvalía' : 'Plusvalía'} por título</div><div class="tile__value">${mon(porTitulo)}</div><div class="tile__sub">${pct(pctRel, 2)} sobre lo pagado${nCupones ? ` · incluye ${nCupones > 1 ? nCupones + ' cupones cobrados' : '1 cupón cobrado'} (${mon(cuponesCobrados, 4)})` : ''}${aPesos(porTitulo)}</div></div>`;
-      html += `<div class="tile"><div class="tile__label">Total por ${f0.format(t)} título${t === 1 ? '' : 's'}</div><div class="tile__value">${real ? pesos(total * udi) : pesos(total)}</div><div class="tile__sub">Valor hoy <b>${real ? pesos(teo.sucio * t * udi) : pesos(teo.sucio * t)}</b> · pagado <b>${real ? pesos(compra.sucio * t * udi) : pesos(compra.sucio * t)}</b>${real ? ` · UDI ${f6.format(udi)}` : ''}</div></div>`;
+      html += `<div class="tile tile--total tile--${signo}"><div class="tile__label">${signo === 'minus' ? 'Minusvalía' : 'Plusvalía'} total · ${f0.format(t)} título${t === 1 ? '' : 's'}</div><div class="tile__value">${enPesos(total)}</div><div class="tile__sub">Valor hoy <b>${enPesos(teo.sucio * t)}</b> · importe pagado <b>${enPesos(compra.sucio * t)}</b>${nCupones ? ` · cupones cobrados <b>${enPesos(cuponesCobrados * t)}</b>` : ''}${real ? ` · UDI ${f6.format(udi)}` : ''}</div></div>`;
       html += '</div>';
       const pb = (teo.rendimiento - compra.rendimiento) * 100;
       const txt = signo === 'par' ? `Tu precio coincide con el teórico: <b>sin plusvalía ni minusvalía</b>.`
         : signo === 'plus' ? `<b>Plusvalía</b>: compraste a ${pct(compra.rendimiento)} y la curva valúa el título a ${pct(teo.rendimiento)} (${f0.format(Math.abs(pb))} pb ${pb < 0 ? 'menos' : 'más'}). Pagaste ${mon(compra.sucio)} por lo que hoy vale ${mon(teo.sucio)}${nCupones ? ' más los cupones cobrados' : ''}.`
         : `<b>Minusvalía</b>: compraste a ${pct(compra.rendimiento)} y la curva valúa el título a ${pct(teo.rendimiento)} (${f0.format(Math.abs(pb))} pb ${pb < 0 ? 'menos' : 'más'}). Pagaste ${mon(compra.sucio)} por lo que hoy vale ${mon(teo.sucio)}${nCupones ? ' más los cupones cobrados' : ''}.`;
-      html += `<div class="verdict verdict--${signo}"><span class="verdict__ico">${signo === 'plus' ? '▲' : signo === 'minus' ? '▼' : '='}</span><span>${txt}<br><span style="opacity:.85">Precio ${cete ? '' : 'limpio '}de equilibrio hoy: <b>${mon(teo.limpio)}</b>; por arriba hay minusvalía al comprar, por abajo plusvalía.</span></span></div>`;
+      html += `<div class="verdict verdict--${signo}"><span class="verdict__ico">${signo === 'plus' ? '▲' : signo === 'minus' ? '▼' : '='}</span><span>${txt}<br><span style="opacity:.85">Por ${f0.format(t)} título${t === 1 ? '' : 's'}: <b>${signo === 'minus' ? 'minusvalía' : 'plusvalía'} total de ${enPesos(Math.abs(total))}</b>. Precio ${cete ? '' : 'limpio '}de equilibrio hoy: <b>${mon(teo.limpio)}</b>; por arriba hay minusvalía al comprar, por abajo plusvalía.</span></span></div>`;
     } else {
       html += '</div><p class="msg msg--err">La fecha de compra debe ser anterior o igual a la fecha de valuación y anterior al vencimiento.</p>';
     }
@@ -405,6 +411,8 @@ code{font-family:var(--mono);font-size:13px;background:var(--line-soft);padding:
       ['Vencimiento', fechaCorta(ins.vence)],
       ['Días por vencer', f0.format(plazo)],
       ['Valor nominal', real ? '100 UDIs' : pesos(vn, 2)],
+      ['Títulos a valuar', f0.format(st.titulos || 1)],
+      ['Valor nominal total', real ? f0.format(100 * (st.titulos || 1)) + ' UDIs (' + pesos(100 * (st.titulos || 1) * udi) + ')' : pesos(vn * (st.titulos || 1), 2)],
     ];
     if (!cete) {
       items.push(['Tasa cupón', pct(ins.cupon, 2)], ['Cupón por título', mon(teo.cupon, 6)], ['Cupones por cortar', f0.format(teo.cupones)],
