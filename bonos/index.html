@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Monhey.B · Calculadora de bonos gubernamentales</title>
+<meta name="description" content="Valúa Cetes, Bonos M y Udibonos con la curva cupón cero construida por bootstrapping a partir del vector de precios de Banco de México.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#16386E; --navy-deep:#0E2247; --navy-soft:#EDF1F8;
+  --yellow:#F7C822; --yellow-soft:#FEF6D8;
+  --ink:#14171C; --muted:#525B6B; --line:#DFE4EC; --line-soft:#EEF1F6;
+  --green:#0B6B3A; --green-soft:#E3F4EA; --red:#B3261E; --red-soft:#FDECEA;
+  --amber:#8A5300; --amber-soft:#FBF1DF; --white:#FFFFFF; --surface:#FFFFFF;
+  --serie-curva:#2F5FB8; --serie-mercado:#C2410C;
+  --sans:"Instrument Sans","Segoe UI",system-ui,-apple-system,sans-serif;
+  --display:"Fraunces",Georgia,"Times New Roman",serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --radius:14px; --navh:64px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--white);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--display);font-weight:800;line-height:1.15;margin:0;letter-spacing:-0.01em}
+p{margin:0}
+a{color:var(--navy);text-decoration-thickness:1.5px;text-underline-offset:3px}
+:focus-visible{outline:3px solid var(--navy);outline-offset:3px;border-radius:4px}
+.wrap{width:100%;max-width:1180px;margin:0 auto;padding:0 16px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav__inner{display:flex;align-items:center;gap:16px;height:var(--navh);max-width:1180px;margin:0 auto;padding:0 16px}
+.brand{display:flex;align-items:center;gap:9px;text-decoration:none;color:var(--navy);font-weight:700;font-size:17px;letter-spacing:-0.02em}
+.brand__dot{width:26px;height:26px;border-radius:8px;background:var(--navy);display:grid;place-items:center;color:var(--yellow);font-family:var(--display);font-size:15px;font-weight:800}
+.nav__tag{margin-left:auto;font-size:13px;color:var(--muted)}
+
+.hero{padding:40px 0 20px}
+.eyebrow{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--navy);background:var(--navy-soft);padding:4px 10px;border-radius:999px;margin-bottom:14px}
+.hero h1{font-size:clamp(28px,4.5vw,42px);max-width:22ch}
+.lede{color:var(--muted);font-size:17px;max-width:62ch;margin-top:12px}
+.stamps{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:16px;font-size:13.5px;color:var(--muted)}
+.stamps b{color:var(--ink);font-weight:600}
+
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px;margin:16px 0}
+.card h2{font-size:21px;margin-bottom:4px}
+.card__sub{color:var(--muted);font-size:14px;margin-bottom:14px}
+.grid{display:grid;gap:14px 18px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+.field label,.field .field__label{display:block;font-size:13px;font-weight:600;color:var(--muted);margin-bottom:6px}
+.field input,.field select{width:100%;font:inherit;font-size:15px;padding:9px 11px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink)}
+.field input:disabled{background:var(--line-soft);color:var(--muted)}
+.field__note{font-size:12.5px;color:var(--muted);margin-top:5px}
+.radios{display:flex;gap:14px;flex-wrap:wrap;font-size:14px}
+.radios label{display:flex;align-items:center;gap:6px;font-weight:500;color:var(--ink);margin:0}
+.radios input{width:auto}
+.btn{font:inherit;font-weight:600;font-size:14px;padding:9px 14px;border-radius:10px;border:1px solid var(--navy);background:var(--navy);color:#fff;cursor:pointer}
+.btn--ghost{background:#fff;color:var(--navy)}
+.btn:disabled{opacity:.5;cursor:default}
+
+.result{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.tile{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:#fff}
+.tile--hero{background:var(--navy-soft);border-color:transparent}
+.tile__label{font-size:13px;color:var(--muted);font-weight:600}
+.tile__value{font-family:var(--sans);font-weight:700;font-size:28px;letter-spacing:-0.02em;margin-top:2px;font-variant-numeric:tabular-nums}
+.tile__sub{font-size:13px;color:var(--muted);margin-top:4px}
+.tile__sub b{color:var(--ink);font-weight:600}
+.verdict{margin-top:16px;padding:14px 16px;border-radius:12px;font-size:15px;display:flex;gap:10px;align-items:flex-start}
+.verdict--plus{background:var(--green-soft);color:var(--green)}
+.verdict--minus{background:var(--red-soft);color:var(--red)}
+.verdict--par{background:var(--amber-soft);color:var(--amber)}
+.verdict__ico{font-weight:800;font-size:18px;line-height:1.2}
+.verdict b{font-weight:700}
+.badge{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:999px;background:var(--line-soft);color:var(--muted)}
+.badge--obs{background:var(--navy-soft);color:var(--navy)}
+.badge--boot{background:var(--amber-soft);color:var(--amber)}
+
+.table-wrap{overflow-x:auto;margin-top:8px}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{padding:8px 10px;border-bottom:1px solid var(--line-soft);text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+th{font-size:12.5px;color:var(--muted);font-weight:600;text-align:right;border-bottom:1px solid var(--line)}
+th:first-child,td:first-child{text-align:left}
+tfoot td{font-weight:700;border-top:1px solid var(--line)}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px 18px;font-size:14px}
+.kv div{padding:8px 0;border-bottom:1px solid var(--line-soft)}
+.kv span{display:block;font-size:12.5px;color:var(--muted);font-weight:600}
+.kv b{font-weight:600;font-variant-numeric:tabular-nums}
+
+.chart{position:relative;margin-top:12px;overflow:hidden}
+.chart svg{width:100%;height:auto;display:block}
+.chart .grid-line{stroke:var(--line-soft);stroke-width:1}
+.chart .axis{stroke:var(--line);stroke-width:1}
+.chart text{font-family:var(--sans);font-size:11px;fill:var(--muted)}
+.chart .curva{fill:none;stroke:var(--serie-curva);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.chart .nodo{fill:var(--serie-curva);stroke:var(--surface);stroke-width:2}
+.chart .mercado{fill:var(--serie-mercado);stroke:var(--surface);stroke-width:2}
+.chart .flujo{fill:var(--surface);stroke:var(--serie-curva);stroke-width:2}
+.chart .cross{stroke:var(--muted);stroke-width:1;stroke-dasharray:none;opacity:0}
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:13px;color:var(--muted);margin-top:8px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:50%}
+.tooltip{position:absolute;pointer-events:none;max-width:calc(100% - 8px);white-space:normal;text-align:center;background:var(--ink);color:#fff;font-size:12.5px;padding:6px 9px;border-radius:8px;opacity:0;transform:translate(-50%,-120%);transition:opacity .08s}
+
+details{margin-top:10px}
+summary{cursor:pointer;font-weight:600;color:var(--navy)}
+.nota{font-size:14px;color:var(--muted);max-width:72ch}
+.nota ol,.nota ul{padding-left:20px;margin:8px 0}
+.nota li{margin:4px 0}
+code{font-family:var(--mono);font-size:13px;background:var(--line-soft);padding:1px 5px;border-radius:5px}
+.msg{font-size:13.5px;margin-top:8px;color:var(--muted)}
+.msg--err{color:var(--red)}
+.msg--ok{color:var(--green)}
+.foot{padding:32px 0 56px;color:var(--muted);font-size:14px}
+.foot p{max-width:72ch;line-height:1.6}
+@media (max-width:640px){
+  .tile__value{font-size:24px}
+  .card{padding:16px}
+}
+</style>
+</head>
+<body>
+<a class="skip sr-only" href="#calc">Ir al contenido</a>
+<header class="nav">
+  <div class="nav__inner">
+    <a class="brand" href="../index.html"><span class="brand__dot">M</span>Monhey.B</a>
+    <span class="nav__tag">Herramienta · Bonos gubernamentales</span>
+  </div>
+</header>
+
+<main class="wrap" id="calc">
+  <section class="hero">
+    <span class="eyebrow">Mercado secundario · Banco de México</span>
+    <h1>¿A qué precio vale hoy este bono?</h1>
+    <p class="lede">Elige cualquier Cete, Bono M o Udibono en circulación. La herramienta descuenta cada cupón con la curva cupón cero que construye por <em>bootstrapping</em> a partir del vector de precios de Banxico, y compara el precio teórico con tu precio de compra para decirte si hay plusvalía o minusvalía.</p>
+    <div class="stamps" id="stamps"></div>
+  </section>
+
+  <section class="card" aria-labelledby="h-datos">
+    <h2 id="h-datos">1. Instrumento y condiciones de compra</h2>
+    <p class="card__sub">Los datos generales de cada emisión vienen de la posición de valores gubernamentales de Banxico.</p>
+    <div class="grid">
+      <div class="field"><label for="tipo">Tipo de instrumento</label>
+        <select id="tipo">
+          <option value="bono">Bono M (tasa fija)</option>
+          <option value="udibono">Udibono (tasa real, en UDIs)</option>
+          <option value="cete">Cete (cupón cero)</option>
+          <option value="manual">Otro bono a tasa fija (captura manual)</option>
+        </select></div>
+      <div class="field" id="f-emision"><label for="emision">Emisión (vencimiento)</label><select id="emision"></select>
+        <p class="field__note" id="emision-nota"></p></div>
+      <div class="field" id="f-vence" hidden><label for="vence">Fecha de vencimiento</label><input type="date" id="vence"></div>
+      <div class="field" id="f-cupon" hidden><label for="cupon">Tasa cupón anual (%)</label><input type="number" id="cupon" step="0.01" min="0" value="8"></div>
+      <div class="field"><label for="fval">Fecha de valuación (curva)</label><select id="fval"></select>
+        <p class="field__note">Fechas con vector de precios disponible.</p></div>
+      <div class="field"><label for="titulos">Títulos</label><input type="number" id="titulos" min="1" step="1" value="1">
+        <p class="field__note" id="vn-nota"></p></div>
+      <div class="field"><label for="fcompra">Fecha de compra</label><input type="date" id="fcompra">
+        <p class="field__note">Si es anterior a la valuación, se suman los cupones cobrados.</p></div>
+      <div class="field"><span class="field__label">Precio de compra expresado como</span>
+        <div class="radios">
+          <label><input type="radio" name="modo" value="rendimiento" checked> Rendimiento (%)</label>
+          <label><input type="radio" name="modo" value="limpio"> Precio limpio</label>
+        </div></div>
+      <div class="field"><label for="vcompra" id="vcompra-label">Rendimiento de compra (%)</label><input type="number" id="vcompra" step="0.0001" value="9">
+        <p class="field__note" id="vcompra-nota"></p></div>
+    </div>
+  </section>
+
+  <section class="card" aria-labelledby="h-res">
+    <h2 id="h-res">2. Resultado</h2>
+    <p class="card__sub" id="res-sub"></p>
+    <div id="resultado"></div>
+  </section>
+
+  <section class="card" aria-labelledby="h-gen">
+    <h2 id="h-gen">3. Datos generales del título</h2>
+    <div class="kv" id="generales"></div>
+  </section>
+
+  <section class="card" aria-labelledby="h-curva">
+    <h2 id="h-curva">4. Curva cupón cero por bootstrapping</h2>
+    <p class="card__sub" id="curva-sub"></p>
+    <div class="chart" id="chart"></div>
+    <div class="legend" id="legend"></div>
+    <div class="table-wrap"><table id="t-nodos"></table></div>
+    <details><summary>Cómo se construye la curva</summary>
+      <div class="nota">
+        <ol>
+          <li><b>Nodos observados.</b> Los Cetes son cupón cero: su precio da directamente el factor de descuento de su plazo, FD(t) = precio / 10.</li>
+          <li><b>Bootstrapping.</b> Cada bono de referencia (3, 5, 7, 10, 20 y 30 años del vector de precios) añade un nodo en su vencimiento. Se busca la tasa cero z(T) tal que la suma de sus cupones descontados con la curva ya conocida —e interpolada linealmente entre el nodo anterior y T— sea exactamente su precio sucio de mercado. Así los plazos donde no hay tasa observada (los cupones intermedios) quedan determinados por la propia curva.</li>
+          <li><b>Convención.</b> z(t) es tasa anual act/360 capitalizable cada 182 días: FD(t) = (1 + z·182/360)^(−t/182), la misma de la fórmula de precio de Banxico. Con una curva plana el precio teórico coincide con el precio por rendimiento oficial. Se muestra además la tasa simple act/360 equivalente (convención Cetes).</li>
+          <li><b>Extremos.</b> Antes del primer nodo y después del último la curva se toma plana.</li>
+        </ol>
+      </div>
+    </details>
+  </section>
+
+  <section class="card" aria-labelledby="h-flujos">
+    <h2 id="h-flujos">5. Flujos descontados</h2>
+    <p class="card__sub" id="flujos-sub"></p>
+    <div class="table-wrap"><table id="t-flujos"></table></div>
+  </section>
+
+  <section class="card" aria-labelledby="h-api">
+    <h2 id="h-api">6. Actualizar la curva desde la API del SIE</h2>
+    <p class="card__sub">Con un token gratuito de la <a href="https://www.banxico.org.mx/SieAPIRest/service/v1/token" target="_blank" rel="noopener">API del SIE de Banxico</a> la página descarga el vector de precios y la UDI de las fechas que falten. El listado de emisiones se renueva con <code>python3 actualizar_datos.py</code>.</p>
+    <div class="grid">
+      <div class="field"><label for="token">Token Bmx</label><input type="password" id="token" autocomplete="off" placeholder="Pega tu token"></div>
+      <div class="field"><span class="field__label">&nbsp;</span><button class="btn" id="btn-api" type="button">Descargar fechas faltantes</button></div>
+    </div>
+    <p class="msg" id="api-msg"></p>
+  </section>
+
+  <section class="card" aria-labelledby="h-metodo">
+    <h2 id="h-metodo">Método y fuentes</h2>
+    <div class="nota">
+      <ul>
+        <li><b>Flujos.</b> Cupones de 182 días; cupón = VN · tasa · 182/360. Cupones por cortar K = ⌈plazo/182⌉ y días transcurridos d = 182·K − plazo, igual que la posición de Banxico.</li>
+        <li><b>Precio teórico.</b> Suma de cada flujo por su factor de descuento. Precio limpio = sucio − cupón·d/182. El rendimiento implícito es el que reproduce ese precio con la fórmula oficial de Banxico.</li>
+        <li><b>Plusvalía / minusvalía.</b> Precio sucio teórico a la fecha de valuación, más cupones cobrados desde la compra, menos el precio sucio pagado. Los Udibonos se calculan en UDIs y se convierten a pesos con la UDI de la fecha de valuación.</li>
+        <li><b>Fuentes.</b> <a id="src-pos" href="#" target="_blank" rel="noopener">Posición de valores gubernamentales</a> · <a id="src-vec" href="#" target="_blank" rel="noopener">Vector de precios de títulos gubernamentales (CF300)</a> · <a id="src-udi" href="#" target="_blank" rel="noopener">Valor de la UDI (CP150)</a>. El vector de precios cubre los títulos de referencia "on the run"; los demás se valúan con la curva interpolada.</li>
+      </ul>
+    </div>
+  </section>
+</main>
+<footer class="foot"><div class="wrap"><p>Herramienta de apoyo para decidir; no sustituye el precio de un proveedor de precios autorizado ni constituye recomendación de inversión. Los cálculos corren en tu navegador.</p></div></footer>
+
+<script src="datos.js"></script>
+<script src="valuacion.js"></script>
+<script>
+(function () {
+  'use strict';
+  const V = window.Valuacion;
+  const D = window.DATOS_BONOS;
+  const $ = (id) => document.getElementById(id);
+
+  // ---------- formato
+  const nf = (dec) => new Intl.NumberFormat('es-MX', { minimumFractionDigits: dec, maximumFractionDigits: dec });
+  const f2 = nf(2), f4 = nf(4), f6 = nf(6), f0 = nf(0);
+  const pct = (x, d = 4) => nf(d).format(x) + ' %';
+  const pesos = (x, d = 2) => (x < 0 ? '−$' : '$') + nf(d).format(Math.abs(x));
+  const fechaLarga = (iso) => {
+    const [y, m, d] = iso.split('-').map(Number);
+    return new Date(Date.UTC(y, m - 1, d)).toLocaleDateString('es-MX', { timeZone: 'UTC', day: 'numeric', month: 'long', year: 'numeric' });
+  };
+  const fechaCorta = (iso) => iso.split('-').reverse().join('/');
+  const isoDeDate = (dt) => dt.toISOString().slice(0, 10);
+  const dateDeIso = (iso) => { const [y, m, d] = iso.split('-').map(Number); return new Date(Date.UTC(y, m - 1, d)); };
+  const dias = (isoA, isoB) => Math.round((dateDeIso(isoB) - dateDeIso(isoA)) / 86400000);
+  const sumaDias = (iso, n) => isoDeDate(new Date(dateDeIso(iso).getTime() + n * 86400000));
+
+  // ---------- estado
+  const st = { tipo: 'bono', emision: 0, fval: D.curvas.fechas[D.curvas.fechas.length - 1], titulos: 1, fcompra: null, modo: 'rendimiento', vcompra: 9 };
+  st.fcompra = st.fval;
+
+  const listas = { bono: D.posicion.bonos, udibono: D.posicion.udibonos, cete: D.posicion.cetes };
+
+  function udiDe(fecha) {
+    if (D.udi[fecha]) return D.udi[fecha];
+    const fs = Object.keys(D.udi).filter((f) => f <= fecha).sort();
+    return fs.length ? D.udi[fs[fs.length - 1]] : null;
+  }
+
+  function instrumentosCurva(fecha, real) {
+    const nodos = (real ? D.curvas.real : D.curvas.nominal)[fecha] || [];
+    const udi = real ? udiDe(fecha) : 1;
+    return nodos.map((n) => n.tipo === 'cete'
+      ? { tipo: 'cete', plazo: n.plazo, precio: n.precio, etiqueta: n.etiqueta }
+      : { tipo: n.tipo, plazo: n.plazo, sucio: n.sucio / udi, cupon: n.cupon, etiqueta: n.etiqueta });
+  }
+
+  // ---------- controles
+  function llenarEmisiones() {
+    const sel = $('emision');
+    sel.innerHTML = '';
+    const lista = listas[st.tipo] || [];
+    lista.forEach((b, i) => {
+      const o = document.createElement('option');
+      o.value = i;
+      o.textContent = st.tipo === 'cete'
+        ? `${fechaCorta(b.vence)} · ${b.dias} días · ${f0.format(b.circulacion)} mdp`
+        : `${fechaCorta(b.vence)} · cupón ${f2.format(b.cupon)} % · ${f0.format(b.circulacion)} mdp`;
+      sel.appendChild(o);
+    });
+    if (st.emision >= lista.length) st.emision = 0;
+    sel.value = st.emision;
+    $('f-emision').hidden = st.tipo === 'manual';
+    $('f-vence').hidden = st.tipo !== 'manual';
+    $('f-cupon').hidden = st.tipo !== 'manual';
+    $('emision-nota').textContent = lista.length ? `${lista.length} emisiones en circulación al ${fechaCorta(D.posicion.fecha)}; monto en millones de pesos a valor nominal.` : '';
+    if (st.tipo === 'manual' && !$('vence').value) $('vence').value = sumaDias(st.fval, 1820);
+  }
+
+  function llenarFechas() {
+    const sel = $('fval');
+    sel.innerHTML = '';
+    D.curvas.fechas.slice().reverse().forEach((f) => {
+      const o = document.createElement('option'); o.value = f; o.textContent = fechaCorta(f); sel.appendChild(o);
+    });
+    sel.value = st.fval;
+  }
+
+  function actualizarEtiquetasCompra() {
+    const cete = st.tipo === 'cete';
+    const vnTxt = st.tipo === 'udibono' ? '100 UDIs' : cete ? '$10' : '$100';
+    $('vn-nota').textContent = `Valor nominal por título: ${vnTxt}.`;
+    document.querySelector('input[name=modo][value=limpio]').parentNode.lastChild.textContent = cete ? ' Precio' : ' Precio limpio';
+    $('vcompra-label').textContent = st.modo === 'rendimiento' ? 'Rendimiento de compra (%)' : (cete ? 'Precio de compra (por título de $10)' : st.tipo === 'udibono' ? 'Precio limpio de compra (UDIs por 100)' : 'Precio limpio de compra (por $100)');
+    $('vcompra').step = st.modo === 'rendimiento' ? '0.0001' : '0.000001';
+  }
+
+  function leerInstrumento() {
+    if (st.tipo === 'manual') {
+      const vence = $('vence').value, cupon = parseFloat($('cupon').value);
+      if (!vence || !(cupon >= 0)) return null;
+      return { vence, cupon, circulacion: null, manual: true };
+    }
+    return (listas[st.tipo] || [])[st.emision] || null;
+  }
+
+  // ---------- cálculo principal
+  function calcular() {
+    const ins = leerInstrumento();
+    const real = st.tipo === 'udibono';
+    const cete = st.tipo === 'cete';
+    const unidad = real ? 'UDIs' : '$';
+    const udi = real ? udiDe(st.fval) : 1;
+    const instrumentos = instrumentosCurva(st.fval, real);
+    if (!ins || !instrumentos.length) {
+      $('resultado').innerHTML = '<p class="msg msg--err">No hay datos suficientes para esta fecha.</p>';
+      return;
+    }
+    const curva = V.bootstrap(instrumentos);
+    const plazo = dias(st.fval, ins.vence);
+    if (plazo <= 0) {
+      $('resultado').innerHTML = `<p class="msg msg--err">El título venció el ${fechaCorta(ins.vence)}; elige una fecha de valuación anterior.</p>`;
+      $('generales').innerHTML = ''; $('t-flujos').innerHTML = '';
+      pintarCurva(curva, [], real);
+      return;
+    }
+    const vn = cete ? 10 : 100;
+    const fcompra = st.fcompra || st.fval;
+    const plazoCompra = dias(fcompra, ins.vence);
+    const compraValida = plazoCompra > 0 && fcompra <= st.fval;
+
+    let teo, compra, cuponesCobrados = 0, nCupones = 0;
+    if (cete) {
+      const vc = V.valuarCete(curva, plazo, vn);
+      teo = { sucio: vc.precio, limpio: vc.precio, rendimiento: vc.rendimiento, devengados: 0, cupon: 0, cupones: 0, diasTranscurridos: 0, plazo, flujos: [{ dias: plazo, flujo: vn, tasaCero: vc.tasaCero, tasaSimple: curva.tasaSimple(plazo), fd: vc.fd, vp: vc.precio }] };
+      if (compraValida) {
+        const precio = st.modo === 'rendimiento' ? V.precioCetePorRendimiento(st.vcompra, plazoCompra, vn) : st.vcompra;
+        compra = { sucio: precio, limpio: precio, rendimiento: V.rendimientoCetePorPrecio(precio, plazoCompra, vn), plazo: plazoCompra };
+      }
+    } else {
+      teo = V.valuarBono(curva, plazo, ins.cupon, vn);
+      if (compraValida) {
+        const sucio = st.modo === 'rendimiento' ? V.precioSucioPorRendimiento(st.vcompra, ins.cupon, plazoCompra, vn)
+          : st.vcompra + V.interesesDevengados(ins.cupon, plazoCompra, vn);
+        compra = { sucio, limpio: sucio - V.interesesDevengados(ins.cupon, plazoCompra, vn), rendimiento: V.rendimientoPorPrecioSucio(sucio, ins.cupon, plazoCompra, vn), plazo: plazoCompra };
+        // cupones cobrados entre la compra y la valuación
+        const kCompra = V.cuponesPorCortar(plazoCompra), kVal = V.cuponesPorCortar(plazo);
+        nCupones = Math.max(0, kCompra - kVal);
+        cuponesCobrados = nCupones * teo.cupon;
+      }
+    }
+
+    pintarResultado(ins, teo, compra, cuponesCobrados, nCupones, unidad, udi, real, cete, vn);
+    pintarGenerales(ins, teo, plazo, real, cete, vn, udi);
+    pintarCurva(curva, cete ? [] : teo.flujos, real);
+    pintarFlujos(teo, ins, unidad, real, udi, cete);
+  }
+
+  function pintarResultado(ins, teo, compra, cuponesCobrados, nCupones, unidad, udi, real, cete, vn) {
+    const t = st.titulos || 1;
+    const mon = (x, d = 6) => (real ? nf(d).format(x) + ' UDIs' : pesos(x, d));
+    const aPesos = (x) => (real ? ` <span class="tile__sub">(${pesos(x * udi)})</span>` : '');
+    let html = '<div class="result">';
+    html += `<div class="tile tile--hero"><div class="tile__label">Precio teórico ${cete ? '' : 'limpio '}por título</div><div class="tile__value">${mon(teo.limpio)}</div><div class="tile__sub">${cete ? '' : `Sucio <b>${mon(teo.sucio)}</b> · devengados <b>${mon(teo.devengados)}</b><br>`}Rendimiento implícito <b>${pct(teo.rendimiento)}</b>${aPesos(teo.limpio)}</div></div>`;
+    if (compra) {
+      html += `<div class="tile"><div class="tile__label">Tu precio de compra (${fechaCorta(st.fcompra || st.fval)})</div><div class="tile__value">${mon(compra.limpio)}</div><div class="tile__sub">${cete ? '' : `Sucio <b>${mon(compra.sucio)}</b> · `}Rendimiento <b>${pct(compra.rendimiento)}</b>${aPesos(compra.limpio)}</div></div>`;
+      const porTitulo = teo.sucio + cuponesCobrados - compra.sucio;
+      const total = porTitulo * t;
+      const pctRel = porTitulo / compra.sucio * 100;
+      const signo = Math.abs(porTitulo) < 1e-6 ? 'par' : porTitulo > 0 ? 'plus' : 'minus';
+      html += `<div class="tile"><div class="tile__label">${signo === 'minus' ? 'Minusvalía' : 'Plusvalía'} por título</div><div class="tile__value">${mon(porTitulo)}</div><div class="tile__sub">${pct(pctRel, 2)} sobre lo pagado${nCupones ? ` · incluye ${nCupones > 1 ? nCupones + ' cupones cobrados' : '1 cupón cobrado'} (${mon(cuponesCobrados, 4)})` : ''}${aPesos(porTitulo)}</div></div>`;
+      html += `<div class="tile"><div class="tile__label">Total por ${f0.format(t)} título${t === 1 ? '' : 's'}</div><div class="tile__value">${real ? pesos(total * udi) : pesos(total)}</div><div class="tile__sub">Valor hoy <b>${real ? pesos(teo.sucio * t * udi) : pesos(teo.sucio * t)}</b> · pagado <b>${real ? pesos(compra.sucio * t * udi) : pesos(compra.sucio * t)}</b>${real ? ` · UDI ${f6.format(udi)}` : ''}</div></div>`;
+      html += '</div>';
+      const pb = (teo.rendimiento - compra.rendimiento) * 100;
+      const txt = signo === 'par' ? `Tu precio coincide con el teórico: <b>sin plusvalía ni minusvalía</b>.`
+        : signo === 'plus' ? `<b>Plusvalía</b>: compraste a ${pct(compra.rendimiento)} y la curva valúa el título a ${pct(teo.rendimiento)} (${f0.format(Math.abs(pb))} pb ${pb < 0 ? 'menos' : 'más'}). Pagaste ${mon(compra.sucio)} por lo que hoy vale ${mon(teo.sucio)}${nCupones ? ' más los cupones cobrados' : ''}.`
+        : `<b>Minusvalía</b>: compraste a ${pct(compra.rendimiento)} y la curva valúa el título a ${pct(teo.rendimiento)} (${f0.format(Math.abs(pb))} pb ${pb < 0 ? 'menos' : 'más'}). Pagaste ${mon(compra.sucio)} por lo que hoy vale ${mon(teo.sucio)}${nCupones ? ' más los cupones cobrados' : ''}.`;
+      html += `<div class="verdict verdict--${signo}"><span class="verdict__ico">${signo === 'plus' ? '▲' : signo === 'minus' ? '▼' : '='}</span><span>${txt}<br><span style="opacity:.85">Precio ${cete ? '' : 'limpio '}de equilibrio hoy: <b>${mon(teo.limpio)}</b>; por arriba hay minusvalía al comprar, por abajo plusvalía.</span></span></div>`;
+    } else {
+      html += '</div><p class="msg msg--err">La fecha de compra debe ser anterior o igual a la fecha de valuación y anterior al vencimiento.</p>';
+    }
+    $('resultado').innerHTML = html;
+    $('res-sub').textContent = `Valuación al ${fechaLarga(st.fval)} con la curva de esa fecha.`;
+  }
+
+  function pintarGenerales(ins, teo, plazo, real, cete, vn, udi) {
+    const mon = (x, d = 6) => (real ? nf(d).format(x) + ' UDIs' : pesos(x, d));
+    const items = [
+      ['Instrumento', { bono: 'Bono M (tasa fija)', udibono: 'Udibono', cete: 'Cete', manual: 'Bono a tasa fija (manual)' }[st.tipo]],
+      ['Vencimiento', fechaCorta(ins.vence)],
+      ['Días por vencer', f0.format(plazo)],
+      ['Valor nominal', real ? '100 UDIs' : pesos(vn, 2)],
+    ];
+    if (!cete) {
+      items.push(['Tasa cupón', pct(ins.cupon, 2)], ['Cupón por título', mon(teo.cupon, 6)], ['Cupones por cortar', f0.format(teo.cupones)],
+        ['Días transcurridos del cupón', f0.format(teo.diasTranscurridos)], ['Próximo cupón', fechaCorta(sumaDias(st.fval, 182 - teo.diasTranscurridos))],
+        ['Intereses devengados', mon(teo.devengados, 6)]);
+    }
+    if (ins.circulacion != null) items.push(['En circulación (mdp)', f0.format(ins.circulacion) + ` al ${fechaCorta(D.posicion.fecha)}`]);
+    if (real) items.push(['UDI de valuación', f6.format(udi)]);
+    $('generales').innerHTML = items.map(([k, v]) => `<div><span>${k}</span><b>${v}</b></div>`).join('');
+  }
+
+  function pintarFlujos(teo, ins, unidad, real, udi, cete) {
+    const mon = (x, d = 6) => nf(d).format(x);
+    let h = `<thead><tr><th>#</th><th>Fecha</th><th>Días</th><th>Flujo (${real ? 'UDIs' : '$'})</th><th>Tasa cero (182 d)</th><th>Tasa simple equiv.</th><th>Factor de desc.</th><th>Valor presente</th>${real ? '<th>VP en pesos</th>' : ''}</tr></thead><tbody>`;
+    let sum = 0;
+    teo.flujos.forEach((f, i) => {
+      sum += f.vp;
+      h += `<tr><td>${i + 1}</td><td>${fechaCorta(sumaDias(st.fval, f.dias))}</td><td>${f0.format(f.dias)}</td><td>${mon(f.flujo)}</td><td>${pct(f.tasaCero)}</td><td>${pct(f.tasaSimple)}</td><td>${mon(f.fd, 8)}</td><td>${mon(f.vp)}</td>${real ? `<td>${pesos(f.vp * udi)}</td>` : ''}</tr>`;
+    });
+    h += `</tbody><tfoot><tr><td colspan="7">Precio sucio teórico</td><td>${mon(sum)}</td>${real ? `<td>${pesos(sum * udi)}</td>` : ''}</tr></tfoot>`;
+    $('t-flujos').innerHTML = h;
+    $('flujos-sub').textContent = cete ? 'Un solo flujo: el valor nominal al vencimiento.' : `${teo.flujos.length} flujos: cupones de 182 días y el principal al vencimiento, cada uno descontado con la tasa cero de su plazo.`;
+  }
+
+  // ---------- curva: tabla y gráfica
+  function pintarCurva(curva, flujos, real) {
+    $('curva-sub').textContent = `${real ? 'Curva real (Udibonos, en UDIs)' : 'Curva nominal'} del ${fechaLarga(st.fval)}: ${curva.nodos.length} nodos del vector de precios de Banxico.`;
+    let h = '<thead><tr><th>Nodo</th><th>Origen</th><th>Plazo (días)</th><th>Precio sucio</th><th>Rendimiento de mercado</th><th>Tasa cero (182 d)</th><th>Tasa simple equiv.</th><th>Factor de desc.</th></tr></thead><tbody>';
+    curva.nodos.forEach((n) => {
+      const boot = n.origen !== 'cete';
+      h += `<tr><td>${n.etiqueta}${n.cupon ? ` <span class="badge">cupón ${f2.format(n.cupon)} %</span>` : ''}</td><td><span class="badge ${boot ? 'badge--boot' : 'badge--obs'}">${boot ? 'bootstrapping' : 'observado'}</span></td><td>${f0.format(n.plazo)}</td><td>${f6.format(n.precio)}</td><td>${pct(n.tasaMercado)}</td><td>${pct(n.tasa)}</td><td>${pct(n.tasaSimple)}</td><td>${nf(8).format(n.fd)}</td></tr>`;
+    });
+    $('t-nodos').innerHTML = h + '</tbody>';
+    dibujar(curva, flujos);
+  }
+
+  function dibujar(curva, flujos) {
+    const W = 760, H = 320, m = { t: 16, r: 18, b: 38, l: 48 };
+    const nodos = curva.nodos;
+    const tMax = Math.max(nodos[nodos.length - 1].plazo, ...flujos.map((f) => f.dias)) * 1.02;
+    const ys = [...nodos.map((n) => n.tasa), ...nodos.map((n) => n.tasaMercado), ...flujos.map((f) => f.tasaCero)];
+    let yMin = Math.floor(Math.min(...ys) * 2) / 2 - 0.5, yMax = Math.ceil(Math.max(...ys) * 2) / 2 + 0.5;
+    const x = (t) => m.l + (t / tMax) * (W - m.l - m.r);
+    const y = (v) => H - m.b - ((v - yMin) / (yMax - yMin)) * (H - m.t - m.b);
+    let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Curva cupón cero y rendimientos de mercado">`;
+    // rejilla y
+    const paso = (yMax - yMin) > 6 ? 1 : 0.5;
+    for (let v = yMin; v <= yMax + 1e-9; v += paso) {
+      s += `<line class="grid-line" x1="${m.l}" x2="${W - m.r}" y1="${y(v)}" y2="${y(v)}"/><text x="${m.l - 6}" y="${y(v) + 4}" text-anchor="end">${f2.format(v).replace(/\.?0+$/, '')}</text>`;
+    }
+    // eje x en años
+    const anios = Math.ceil(tMax / 365);
+    const pasoX = anios > 20 ? 5 : anios > 8 ? 2 : 1;
+    for (let a = 0; a * 365 <= tMax; a += pasoX) s += `<text x="${x(a * 365)}" y="${H - m.b + 16}" text-anchor="middle">${a}</text>`;
+    s += `<text x="${(m.l + W - m.r) / 2}" y="${H - 4}" text-anchor="middle">Plazo (años)</text>`;
+    s += `<line class="axis" x1="${m.l}" x2="${W - m.r}" y1="${y(yMin)}" y2="${y(yMin)}"/>`;
+    // curva interpolada
+    const pts = [];
+    for (let t = 1; t <= tMax; t += Math.max(1, Math.round(tMax / 300))) pts.push(`${x(t).toFixed(1)},${y(curva.tasa(t)).toFixed(1)}`);
+    s += `<polyline class="curva" points="${pts.join(' ')}"/>`;
+    flujos.forEach((f) => { s += `<circle class="flujo" cx="${x(f.dias)}" cy="${y(f.tasaCero)}" r="4"/>`; });
+    nodos.forEach((n) => {
+      s += `<circle class="mercado" cx="${x(n.plazo)}" cy="${y(n.tasaMercado)}" r="4.5"/>`;
+      s += `<circle class="nodo" cx="${x(n.plazo)}" cy="${y(n.tasa)}" r="4.5"/>`;
+    });
+    s += `<line class="cross" id="cross" x1="0" x2="0" y1="${m.t}" y2="${H - m.b}"/>`;
+    s += `<rect id="hit" x="${m.l}" y="${m.t}" width="${W - m.l - m.r}" height="${H - m.t - m.b}" fill="transparent"/></svg><div class="tooltip" id="tip"></div>`;
+    $('chart').innerHTML = s;
+    $('legend').innerHTML = `<span><i style="background:var(--serie-curva)"></i>Tasa cupón cero (bootstrapping)</span><span><i style="background:var(--serie-mercado)"></i>Rendimiento de mercado del nodo</span>${flujos.length ? '<span><i style="border:2px solid var(--serie-curva);background:#fff"></i>Tasa aplicada a cada flujo del título</span>' : ''}`;
+    // hover
+    const svg = $('chart').querySelector('svg'), hit = $('hit'), cross = $('cross'), tip = $('tip');
+    const mover = (ev) => {
+      const r = svg.getBoundingClientRect();
+      const px = (ev.clientX - r.left) * W / r.width;
+      const t = Math.max(1, Math.min(tMax, (px - m.l) / (W - m.l - m.r) * tMax));
+      cross.setAttribute('x1', x(t)); cross.setAttribute('x2', x(t)); cross.style.opacity = 1;
+      tip.textContent = `${f0.format(Math.round(t))} días (${f2.format(t / 365)} años) · tasa cero ${pct(curva.tasa(t), 3)} · simple ${pct(curva.tasaSimple(t), 3)}`;
+      tip.style.left = Math.max(110, Math.min(r.width - 110, x(t) * r.width / W)) + 'px'; tip.style.top = (y(curva.tasa(t)) * r.height / H) + 'px'; tip.style.opacity = 1;
+    };
+    hit.addEventListener('mousemove', mover);
+    hit.addEventListener('mouseleave', () => { cross.style.opacity = 0; tip.style.opacity = 0; });
+  }
+
+  // ---------- API del SIE
+  async function descargarSIE() {
+    const token = $('token').value.trim();
+    const msg = $('api-msg');
+    if (!token) { msg.className = 'msg msg--err'; msg.textContent = 'Falta el token.'; return; }
+    try { localStorage.setItem('bmxToken', token); } catch (e) { /* sin almacenamiento */ }
+    const ultima = D.curvas.fechas[D.curvas.fechas.length - 1];
+    const hoy = isoDeDate(new Date());
+    if (ultima >= hoy) { msg.className = 'msg msg--ok'; msg.textContent = 'La curva ya está al día.'; return; }
+    const ini = sumaDias(ultima, 1);
+    const defs = [...D.series_sie.nominal.map((d) => ['nominal', ...d]), ...D.series_sie.real.map((d) => ['real', ...d])];
+    const ids = [...new Set([...defs.flatMap((d) => d.slice(3)), D.series_sie.udi])];
+    const datos = {};
+    $('btn-api').disabled = true;
+    msg.className = 'msg'; msg.textContent = `Descargando ${ids.length} series del ${fechaCorta(ini)} al ${fechaCorta(hoy)}…`;
+    try {
+      for (let i = 0; i < ids.length; i += 20) {
+        const lote = ids.slice(i, i + 20);
+        const r = await fetch(`https://www.banxico.org.mx/SieAPIRest/service/v1/series/${lote.join(',')}/datos/${ini}/${hoy}?mediaType=json`, { headers: { 'Bmx-Token': token } });
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        const j = await r.json();
+        for (const s of (j.bmx && j.bmx.series) || []) {
+          for (const d of s.datos || []) {
+            const f = d.fecha.split('/').reverse().join('-');
+            const v = parseFloat(String(d.dato).replace(/,/g, ''));
+            if (!isNaN(v)) (datos[f] = datos[f] || {})[s.idSerie] = v;
+          }
+        }
+      }
+    } catch (e) {
+      msg.className = 'msg msg--err'; msg.textContent = `No se pudo descargar: ${e.message}. Revisa el token o tu conexión.`;
+      $('btn-api').disabled = false; return;
+    }
+    let nuevas = 0;
+    for (const f of Object.keys(datos).sort()) {
+      const fila = datos[f];
+      if (fila[D.series_sie.udi]) D.udi[f] = fila[D.series_sie.udi];
+      const nom = nodosDe(fila, D.series_sie.nominal), re = nodosDe(fila, D.series_sie.real);
+      if (nom.length >= 6) { D.curvas.nominal[f] = nom; D.curvas.real[f] = re; if (!D.curvas.fechas.includes(f)) { D.curvas.fechas.push(f); nuevas++; } }
+    }
+    D.curvas.fechas.sort();
+    if (nuevas) { st.fval = D.curvas.fechas[D.curvas.fechas.length - 1]; st.fcompra = st.fval; $('fcompra').value = st.fval; llenarFechas(); calcular(); }
+    msg.className = 'msg msg--ok'; msg.textContent = nuevas ? `Listo: ${nuevas} fecha${nuevas > 1 ? 's' : ''} nueva${nuevas > 1 ? 's' : ''}; la valuación usa ahora el ${fechaCorta(st.fval)}.` : 'Banxico aún no publica fechas nuevas.';
+    $('btn-api').disabled = false;
+  }
+  function nodosDe(fila, defs) {
+    const out = [];
+    for (const [tipo, etiqueta, sPlazo, sLimpio, sSucio, sTasa] of defs) {
+      const plazo = fila[sPlazo], sucio = fila[sSucio];
+      if (!plazo || sucio == null) continue;
+      const n = { tipo, etiqueta, plazo: Math.round(plazo), limpio: fila[sLimpio], sucio };
+      if (tipo === 'cete') { n.precio = sucio; n.tasa = fila[sTasa]; } else n.cupon = fila[sTasa];
+      out.push(n);
+    }
+    return out;
+  }
+
+  // ---------- arranque
+  function arranque() {
+    $('stamps').innerHTML = `<span>Emisiones en circulación al <b>${fechaCorta(D.posicion.fecha)}</b></span><span>Vector de precios del <b>${fechaCorta(D.curvas.fechas[D.curvas.fechas.length - 1])}</b></span><span>${D.posicion.bonos.length} Bonos M · ${D.posicion.udibonos.length} Udibonos · ${D.posicion.cetes.length} Cetes</span><span>Datos descargados el ${D.generado.slice(0, 10).split('-').reverse().join('/')}</span>`;
+    $('src-pos').href = D.fuentes.posicion; $('src-vec').href = D.fuentes.vector_precios; $('src-udi').href = D.fuentes.udi;
+    // Emisión por defecto: el Bono M de ~10 años
+    const i10 = D.posicion.bonos.findIndex((b) => b.dias >= 3400);
+    st.emision = i10 > 0 ? i10 : 0;
+    llenarEmisiones(); llenarFechas(); actualizarEtiquetasCompra();
+    $('fcompra').value = st.fcompra;
+    try { const t = localStorage.getItem('bmxToken'); if (t) $('token').value = t; } catch (e) { /* nada */ }
+
+    $('tipo').addEventListener('change', (e) => { st.tipo = e.target.value; st.emision = 0; llenarEmisiones(); actualizarEtiquetasCompra(); calcular(); });
+    $('emision').addEventListener('change', (e) => { st.emision = +e.target.value; calcular(); });
+    $('vence').addEventListener('change', calcular);
+    $('cupon').addEventListener('input', calcular);
+    $('fval').addEventListener('change', (e) => { st.fval = e.target.value; if (st.fcompra > st.fval) { st.fcompra = st.fval; $('fcompra').value = st.fval; } calcular(); });
+    $('titulos').addEventListener('input', (e) => { st.titulos = Math.max(1, Math.round(+e.target.value || 1)); calcular(); });
+    $('fcompra').addEventListener('change', (e) => { st.fcompra = e.target.value || st.fval; calcular(); });
+    document.querySelectorAll('input[name=modo]').forEach((r) => r.addEventListener('change', (e) => { st.modo = e.target.value; actualizarEtiquetasCompra(); calcular(); }));
+    $('vcompra').addEventListener('input', (e) => { st.vcompra = parseFloat(e.target.value); if (!isNaN(st.vcompra)) calcular(); });
+    $('btn-api').addEventListener('click', descargarSIE);
+    calcular();
+  }
+  arranque();
+})();
+</script>
+</body>
+</html>
