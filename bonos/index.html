@@ -166,7 +166,9 @@ code{font-family:var(--mono);font-size:13px;background:var(--line-soft);padding:
         <div class="radios">
           <label><input type="radio" name="modo" value="rendimiento" checked> Rendimiento (%)</label>
           <label><input type="radio" name="modo" value="limpio"> Precio limpio</label>
-        </div></div>
+          <label><input type="radio" name="modo" value="sucio"> Precio sucio</label>
+        </div>
+        <p class="field__note">Cetesdirecto muestra precios sucios (con intereses devengados): "precio de adquisición" y "precio de mercado".</p></div>
       <div class="field"><label for="vcompra" id="vcompra-label">Rendimiento de compra (%)</label><input type="number" id="vcompra" step="0.0001" value="9">
         <p class="field__note" id="vcompra-nota"></p></div>
     </div>
@@ -311,7 +313,9 @@ code{font-family:var(--mono);font-size:13px;background:var(--line-soft);padding:
     const vnTxt = st.tipo === 'udibono' ? '100 UDIs' : cete ? '$10' : '$100';
     $('vn-nota').textContent = `Valor nominal por título: ${vnTxt}. La plusvalía o minusvalía total se calcula con este número.`;
     document.querySelector('input[name=modo][value=limpio]').parentNode.lastChild.textContent = cete ? ' Precio' : ' Precio limpio';
-    $('vcompra-label').textContent = st.modo === 'rendimiento' ? 'Rendimiento de compra (%)' : (cete ? 'Precio de compra (por título de $10)' : st.tipo === 'udibono' ? 'Precio limpio de compra (UDIs por 100)' : 'Precio limpio de compra (por $100)');
+    const unidadP = cete ? 'por título de $10' : st.tipo === 'udibono' ? 'UDIs por 100' : 'por $100';
+    $('vcompra-label').textContent = st.modo === 'rendimiento' ? 'Rendimiento de compra (%)' : st.modo === 'sucio' ? `Precio sucio de compra (${unidadP})` : cete ? `Precio de compra (${unidadP})` : `Precio limpio de compra (${unidadP})`;
+    $('vcompra-nota').textContent = st.modo === 'sucio' ? 'Es el "precio de adquisición" que muestra Cetesdirecto.' : st.modo === 'limpio' ? 'Sin intereses devengados.' : '';
     $('vcompra').step = st.modo === 'rendimiento' ? '0.0001' : '0.000001';
   }
 
@@ -361,7 +365,7 @@ code{font-family:var(--mono);font-size:13px;background:var(--line-soft);padding:
       teo = V.valuarBono(curva, plazo, ins.cupon, vn);
       if (compraValida) {
         const sucio = st.modo === 'rendimiento' ? V.precioSucioPorRendimiento(st.vcompra, ins.cupon, plazoCompra, vn)
-          : st.vcompra + V.interesesDevengados(ins.cupon, plazoCompra, vn);
+          : st.modo === 'sucio' ? st.vcompra : st.vcompra + V.interesesDevengados(ins.cupon, plazoCompra, vn);
         compra = { sucio, limpio: sucio - V.interesesDevengados(ins.cupon, plazoCompra, vn), rendimiento: V.rendimientoPorPrecioSucio(sucio, ins.cupon, plazoCompra, vn), plazo: plazoCompra };
         // cupones cobrados entre la compra y la valuación
         const kCompra = V.cuponesPorCortar(plazoCompra), kVal = V.cuponesPorCortar(plazo);
@@ -381,7 +385,7 @@ code{font-family:var(--mono);font-size:13px;background:var(--line-soft);padding:
     const mon = (x, d = 6) => (real ? nf(d).format(x) + ' UDIs' : pesos(x, d));
     const aPesos = (x) => (real ? ` <span class="tile__sub">(${pesos(x * udi)})</span>` : '');
     let html = '<div class="result">';
-    html += `<div class="tile tile--hero"><div class="tile__label">Precio teórico ${cete ? '' : 'limpio '}por título</div><div class="tile__value">${mon(teo.limpio)}</div><div class="tile__sub">${cete ? '' : `Sucio <b>${mon(teo.sucio)}</b> · devengados <b>${mon(teo.devengados)}</b><br>`}Rendimiento implícito <b>${pct(teo.rendimiento)}</b>${aPesos(teo.limpio)}</div></div>`;
+    html += `<div class="tile tile--hero"><div class="tile__label">Precio teórico ${cete ? '' : 'limpio '}por título</div><div class="tile__value">${mon(teo.limpio)}</div><div class="tile__sub">${cete ? '' : `Sucio <b>${mon(teo.sucio)}</b> (el "precio de mercado" de Cetesdirecto) · devengados <b>${mon(teo.devengados)}</b><br>`}Rendimiento implícito <b>${pct(teo.rendimiento)}</b>${aPesos(teo.limpio)}</div></div>`;
     if (compra) {
       html += `<div class="tile"><div class="tile__label">Tu precio de compra (${fechaCorta(st.fcompra || st.fval)})</div><div class="tile__value">${mon(compra.limpio)}</div><div class="tile__sub">${cete ? '' : `Sucio <b>${mon(compra.sucio)}</b> · `}Rendimiento <b>${pct(compra.rendimiento)}</b>${aPesos(compra.limpio)}</div></div>`;
       const porTitulo = teo.sucio + cuponesCobrados - compra.sucio;
