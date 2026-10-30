@@ -131,11 +131,25 @@
     return { plazo, fd, precio: vn * fd, tasaCero: curva.tasa(plazo), rendimiento: rendimientoCetePorPrecio(vn * fd, plazo, vn) };
   }
 
+  /* TIR anual de una serie de flujos fechados (como XIRR de Excel, base 365):
+     flujos = [{fecha: 'AAAA-MM-DD', monto}]; devuelve por ciento o null si no converge. */
+  function tir(flujos) {
+    const f = flujos.filter((x) => x.monto !== 0).slice().sort((p, q) => (p.fecha < q.fecha ? -1 : 1));
+    if (f.length < 2 || !f.some((x) => x.monto < 0) || !f.some((x) => x.monto > 0)) return null;
+    const d0 = Date.parse(f[0].fecha + 'T00:00:00Z');
+    const anios = f.map((x) => (Date.parse(x.fecha + 'T00:00:00Z') - d0) / 86400000 / 365);
+    const van = (r) => f.reduce((s, x, i) => s + x.monto / Math.pow(1 + r, anios[i]), 0);
+    let lo = -0.99, hi = 10;
+    if (van(lo) < 0 || van(hi) > 0) return null;
+    for (let i = 0; i < 300; i++) { const mid = (lo + hi) / 2; if (van(mid) > 0) lo = mid; else hi = mid; }
+    return (lo + hi) / 2 * 100;
+  }
+
   const diasEntre = (a, b) => Math.round((Date.UTC(b.getFullYear(), b.getMonth(), b.getDate()) - Date.UTC(a.getFullYear(), a.getMonth(), a.getDate())) / 86400000);
 
   const V = { PLAZO_CUPON, BASE, cuponesPorCortar, diasTranscurridos, cupon, flujosBono, precioSucioPorRendimiento,
     interesesDevengados, precioLimpioPorRendimiento, rendimientoPorPrecioSucio, rendimientoPorPrecioLimpio,
     precioCetePorRendimiento, rendimientoCetePorPrecio, fdDeTasa, tasaDeFd, tasaSimpleDeFd, Curva, bootstrap,
-    valuarBono, valuarCete, diasEntre };
+    valuarBono, valuarCete, diasEntre, tir };
   if (typeof module !== 'undefined' && module.exports) module.exports = V; else root.Valuacion = V;
 })(typeof window !== 'undefined' ? window : globalThis);

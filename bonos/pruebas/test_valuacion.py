@@ -102,6 +102,19 @@ class Bootstrapping(unittest.TestCase):
         self.assertAlmostEqual(sum(f["vp"] for f in v["flujos"]), v["sucio"])
 
 
+class TIR(unittest.TestCase):
+    def test_reproduce_xirr_de_excel(self):
+        from datetime import date
+        # Bono M 23/11/2034 comprado el 20/02/2025 a 88.55; tres cupones de 3.92; valor 94.06 el 30/10/2026
+        flujos = [(date(2025, 2, 20), -88.55), (date(2025, 6, 5), 3.92), (date(2025, 12, 4), 3.92),
+                  (date(2026, 6, 4), 3.92), (date(2026, 10, 30), 94.06)]
+        self.assertAlmostEqual(V.tir(flujos), 11.9041, places=3)
+
+    def test_sin_signo_mixto_no_hay_tir(self):
+        from datetime import date
+        self.assertIsNone(V.tir([(date(2025, 1, 1), -1.0), (date(2026, 1, 1), -1.0)]))
+
+
 class ReplicaJavaScript(unittest.TestCase):
     """valuacion.js debe dar los mismos números que valuacion.py."""
 
@@ -118,6 +131,7 @@ class ReplicaJavaScript(unittest.TestCase):
             self.assertEqual(n_py.plazo, n_js["plazo"])
             self.assertAlmostEqual(n_py.fd, n_js["fd"], places=12)
             self.assertAlmostEqual(n_py.tasa, n_js["tasa"], places=10)
+        self.assertAlmostEqual(js["tir"], 11.9041, places=3)
         for caso in js["valuaciones"]:
             v = V.valuar_bono(curva, caso["plazo"], caso["cupon"])
             self.assertAlmostEqual(v["sucio"], caso["sucio"], places=10)

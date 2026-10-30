@@ -266,3 +266,29 @@ def valuar_bono(curva: Curva, plazo: int, tasa: float, vn: float = 100.0) -> dic
 
 def dias_entre(a: date, b: date) -> int:
     return (b - a).days
+
+
+def tir(flujos) -> float | None:
+    """TIR anual de flujos fechados, como XIRR de Excel (base 365).
+
+    `flujos`: lista de (date, monto).  Devuelve por ciento o None si no converge.
+    """
+    f = sorted((d, m) for d, m in flujos if m != 0)
+    if len(f) < 2 or not any(m < 0 for _, m in f) or not any(m > 0 for _, m in f):
+        return None
+    d0 = f[0][0]
+    anios = [(d - d0).days / 365 for d, _ in f]
+
+    def van(r):
+        return sum(m / (1 + r) ** a for (_, m), a in zip(f, anios))
+
+    lo, hi = -0.99, 10.0
+    if van(lo) < 0 or van(hi) > 0:
+        return None
+    for _ in range(300):
+        mid = (lo + hi) / 2
+        if van(mid) > 0:
+            lo = mid
+        else:
+            hi = mid
+    return (lo + hi) / 2 * 100

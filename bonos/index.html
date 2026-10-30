@@ -171,6 +171,8 @@ code{font-family:var(--mono);font-size:13px;background:var(--line-soft);padding:
         <p class="field__note">Cetesdirecto muestra precios sucios (con intereses devengados): "precio de adquisición" y "precio de mercado".</p></div>
       <div class="field"><label for="vcompra" id="vcompra-label">Rendimiento de compra (%)</label><input type="number" id="vcompra" step="0.0001" value="9">
         <p class="field__note" id="vcompra-nota"></p></div>
+      <div class="field" id="f-pmercado"><label for="pmercado">Precio sucio de mercado hoy (opcional)</label><input type="number" id="pmercado" step="0.000001" min="0" placeholder="Vacío: usa el precio teórico">
+        <p class="field__note">Si capturas el "precio de mercado" de Cetesdirecto, la plusvalía y la TIR se calculan con él y el teórico queda como comparación.</p></div>
     </div>
   </section>
 
@@ -180,13 +182,19 @@ code{font-family:var(--mono);font-size:13px;background:var(--line-soft);padding:
     <div id="resultado"></div>
   </section>
 
+  <section class="card" aria-labelledby="h-tir">
+    <h2 id="h-tir">3. Rendimiento de tu inversión (TIR)</h2>
+    <p class="card__sub">Lo que pagaste, los cupones que ya cobraste en sus fechas y lo que vale hoy. La TIR es la tasa anual que iguala esos flujos, como XIRR de Excel (base 365 días).</p>
+    <div id="tir"></div>
+  </section>
+
   <section class="card" aria-labelledby="h-gen">
-    <h2 id="h-gen">3. Datos generales del título</h2>
+    <h2 id="h-gen">4. Datos generales del título</h2>
     <div class="kv" id="generales"></div>
   </section>
 
   <section class="card" aria-labelledby="h-curva">
-    <h2 id="h-curva">4. Curva cupón cero por bootstrapping</h2>
+    <h2 id="h-curva">5. Curva cupón cero por bootstrapping</h2>
     <p class="card__sub" id="curva-sub"></p>
     <div class="chart" id="chart"></div>
     <div class="legend" id="legend"></div>
@@ -204,13 +212,13 @@ code{font-family:var(--mono);font-size:13px;background:var(--line-soft);padding:
   </section>
 
   <section class="card" aria-labelledby="h-flujos">
-    <h2 id="h-flujos">5. Flujos descontados</h2>
+    <h2 id="h-flujos">6. Flujos descontados</h2>
     <p class="card__sub" id="flujos-sub"></p>
     <div class="table-wrap"><table id="t-flujos"></table></div>
   </section>
 
   <section class="card" aria-labelledby="h-api">
-    <h2 id="h-api">6. Actualizar la curva desde la API del SIE</h2>
+    <h2 id="h-api">7. Actualizar la curva desde la API del SIE</h2>
     <p class="card__sub">Con un token gratuito de la <a href="https://www.banxico.org.mx/SieAPIRest/service/v1/token" target="_blank" rel="noopener">API del SIE de Banxico</a> la página descarga el vector de precios y la UDI de las fechas que falten. El listado de emisiones se renueva con <code>python3 actualizar_datos.py</code>.</p>
     <div class="grid">
       <div class="field"><label for="token">Token Bmx</label><input type="password" id="token" autocomplete="off" placeholder="Pega tu token"></div>
@@ -225,7 +233,7 @@ code{font-family:var(--mono);font-size:13px;background:var(--line-soft);padding:
       <ul>
         <li><b>Flujos.</b> Cupones de 182 días; cupón = VN · tasa · 182/360. Cupones por cortar K = ⌈plazo/182⌉ y días transcurridos d = 182·K − plazo, igual que la posición de Banxico.</li>
         <li><b>Precio teórico.</b> Suma de cada flujo por su factor de descuento. Precio limpio = sucio − cupón·d/182. El rendimiento implícito es el que reproduce ese precio con la fórmula oficial de Banxico.</li>
-        <li><b>Plusvalía / minusvalía.</b> Precio sucio teórico a la fecha de valuación, más cupones cobrados desde la compra, menos el precio sucio pagado. Los Udibonos se calculan en UDIs y se convierten a pesos con la UDI de la fecha de valuación.</li>
+        <li><b>Plusvalía / minusvalía.</b> Precio sucio a la fecha de valuación (el teórico, o el de mercado si lo capturas) menos el precio sucio pagado, sin contar los cupones ya cobrados, igual que la muestra Cetesdirecto. Los cupones cobrados entran aparte en la TIR. Los Udibonos se calculan en UDIs y se convierten a pesos con la UDI de la fecha de valuación.</li>
         <li><b>Fuentes.</b> <a id="src-pos" href="#" target="_blank" rel="noopener">Posición de valores gubernamentales</a> · <a id="src-vec" href="#" target="_blank" rel="noopener">Vector de precios de títulos gubernamentales (CF300)</a> · <a id="src-udi" href="#" target="_blank" rel="noopener">Valor de la UDI (CP150)</a>. El vector de precios cubre los títulos de referencia "on the run"; los demás se valúan con la curva interpolada.</li>
       </ul>
     </div>
@@ -258,7 +266,7 @@ code{font-family:var(--mono);font-size:13px;background:var(--line-soft);padding:
   const sumaDias = (iso, n) => isoDeDate(new Date(dateDeIso(iso).getTime() + n * 86400000));
 
   // ---------- estado
-  const st = { tipo: 'bono', emision: 0, fval: D.curvas.fechas[D.curvas.fechas.length - 1], titulos: 1, fcompra: null, modo: 'rendimiento', vcompra: 9 };
+  const st = { tipo: 'bono', emision: 0, fval: D.curvas.fechas[D.curvas.fechas.length - 1], titulos: 1, fcompra: null, modo: 'rendimiento', vcompra: 9, pmercado: null };
   st.fcompra = st.fval;
 
   const listas = { bono: D.posicion.bonos, udibono: D.posicion.udibonos, cete: D.posicion.cetes };
@@ -344,7 +352,7 @@ code{font-family:var(--mono);font-size:13px;background:var(--line-soft);padding:
     const plazo = dias(st.fval, ins.vence);
     if (plazo <= 0) {
       $('resultado').innerHTML = `<p class="msg msg--err">El título venció el ${fechaCorta(ins.vence)}; elige una fecha de valuación anterior.</p>`;
-      $('generales').innerHTML = ''; $('t-flujos').innerHTML = '';
+      $('generales').innerHTML = ''; $('t-flujos').innerHTML = ''; $('tir').innerHTML = '';
       pintarCurva(curva, [], real);
       return;
     }
@@ -354,6 +362,7 @@ code{font-family:var(--mono);font-size:13px;background:var(--line-soft);padding:
     const compraValida = plazoCompra > 0 && fcompra <= st.fval;
 
     let teo, compra, cuponesCobrados = 0, nCupones = 0;
+    const fechasCupones = [];
     if (cete) {
       const vc = V.valuarCete(curva, plazo, vn);
       teo = { sucio: vc.precio, limpio: vc.precio, rendimiento: vc.rendimiento, devengados: 0, cupon: 0, cupones: 0, diasTranscurridos: 0, plazo, flujos: [{ dias: plazo, flujo: vn, tasaCero: vc.tasaCero, tasaSimple: curva.tasaSimple(plazo), fd: vc.fd, vp: vc.precio }] };
@@ -371,16 +380,21 @@ code{font-family:var(--mono);font-size:13px;background:var(--line-soft);padding:
         const kCompra = V.cuponesPorCortar(plazoCompra), kVal = V.cuponesPorCortar(plazo);
         nCupones = Math.max(0, kCompra - kVal);
         cuponesCobrados = nCupones * teo.cupon;
+        // fechas de los cupones cobrados: hacia atrás desde el próximo cupón, 182 días cada uno
+        const proximo = sumaDias(st.fval, 182 - teo.diasTranscurridos);
+        for (let k = 1; k <= nCupones; k++) fechasCupones.unshift(sumaDias(proximo, -182 * k));
       }
     }
 
-    pintarResultado(ins, teo, compra, cuponesCobrados, nCupones, unidad, udi, real, cete, vn);
+    const precioHoy = st.pmercado > 0 ? st.pmercado : teo.sucio;
+    pintarResultado(ins, teo, compra, precioHoy, cuponesCobrados, nCupones, unidad, udi, real, cete, vn);
+    pintarTIR(ins, teo, compra, precioHoy, fechasCupones, real, udi, cete);
     pintarGenerales(ins, teo, plazo, real, cete, vn, udi);
     pintarCurva(curva, cete ? [] : teo.flujos, real);
     pintarFlujos(teo, ins, unidad, real, udi, cete);
   }
 
-  function pintarResultado(ins, teo, compra, cuponesCobrados, nCupones, unidad, udi, real, cete, vn) {
+  function pintarResultado(ins, teo, compra, precioHoy, cuponesCobrados, nCupones, unidad, udi, real, cete, vn) {
     const t = st.titulos || 1;
     const mon = (x, d = 6) => (real ? nf(d).format(x) + ' UDIs' : pesos(x, d));
     const aPesos = (x) => (real ? ` <span class="tile__sub">(${pesos(x * udi)})</span>` : '');
@@ -388,24 +402,54 @@ code{font-family:var(--mono);font-size:13px;background:var(--line-soft);padding:
     html += `<div class="tile tile--hero"><div class="tile__label">Precio teórico ${cete ? '' : 'limpio '}por título</div><div class="tile__value">${mon(teo.limpio)}</div><div class="tile__sub">${cete ? '' : `Sucio <b>${mon(teo.sucio)}</b> (el "precio de mercado" de Cetesdirecto) · devengados <b>${mon(teo.devengados)}</b><br>`}Rendimiento implícito <b>${pct(teo.rendimiento)}</b>${aPesos(teo.limpio)}</div></div>`;
     if (compra) {
       html += `<div class="tile"><div class="tile__label">Tu precio de compra (${fechaCorta(st.fcompra || st.fval)})</div><div class="tile__value">${mon(compra.limpio)}</div><div class="tile__sub">${cete ? '' : `Sucio <b>${mon(compra.sucio)}</b> · `}Rendimiento <b>${pct(compra.rendimiento)}</b>${aPesos(compra.limpio)}</div></div>`;
-      const porTitulo = teo.sucio + cuponesCobrados - compra.sucio;
+      const capturado = precioHoy !== teo.sucio;
+      if (capturado) html += `<div class="tile"><div class="tile__label">Precio sucio de mercado capturado</div><div class="tile__value">${mon(precioHoy)}</div><div class="tile__sub">Rendimiento <b>${pct(cete ? V.rendimientoCetePorPrecio(precioHoy, teo.plazo, vn) : V.rendimientoPorPrecioSucio(precioHoy, ins.cupon, teo.plazo, vn))}</b> · teórico <b>${mon(teo.sucio)}</b> (${mon(precioHoy - teo.sucio, 4)} de diferencia)</div></div>`;
+      const porTitulo = precioHoy - compra.sucio;
       const total = porTitulo * t;
       const pctRel = porTitulo / compra.sucio * 100;
       const signo = Math.abs(porTitulo) < 1e-6 ? 'par' : porTitulo > 0 ? 'plus' : 'minus';
       const enPesos = (x) => pesos(real ? x * udi : x);
-      html += `<div class="tile"><div class="tile__label">${signo === 'minus' ? 'Minusvalía' : 'Plusvalía'} por título</div><div class="tile__value">${mon(porTitulo)}</div><div class="tile__sub">${pct(pctRel, 2)} sobre lo pagado${nCupones ? ` · incluye ${nCupones > 1 ? nCupones + ' cupones cobrados' : '1 cupón cobrado'} (${mon(cuponesCobrados, 4)})` : ''}${aPesos(porTitulo)}</div></div>`;
-      html += `<div class="tile tile--total tile--${signo}"><div class="tile__label">${signo === 'minus' ? 'Minusvalía' : 'Plusvalía'} total · ${f0.format(t)} título${t === 1 ? '' : 's'}</div><div class="tile__value">${enPesos(total)}</div><div class="tile__sub">Valor hoy <b>${enPesos(teo.sucio * t)}</b> · importe pagado <b>${enPesos(compra.sucio * t)}</b>${nCupones ? ` · cupones cobrados <b>${enPesos(cuponesCobrados * t)}</b>` : ''}${real ? ` · UDI ${f6.format(udi)}` : ''}</div></div>`;
+      html += `<div class="tile"><div class="tile__label">${signo === 'minus' ? 'Minusvalía' : 'Plusvalía'} por título</div><div class="tile__value">${mon(porTitulo)}</div><div class="tile__sub">${pct(pctRel, 2)} sobre lo pagado · precio hoy menos precio pagado, sin contar cupones cobrados${aPesos(porTitulo)}</div></div>`;
+      html += `<div class="tile tile--total tile--${signo}"><div class="tile__label">${signo === 'minus' ? 'Minusvalía' : 'Plusvalía'} total · ${f0.format(t)} título${t === 1 ? '' : 's'}</div><div class="tile__value">${enPesos(total)}</div><div class="tile__sub">Valor hoy <b>${enPesos(precioHoy * t)}</b> · importe pagado <b>${enPesos(compra.sucio * t)}</b>${nCupones ? ` · aparte, cupones cobrados <b>${enPesos(cuponesCobrados * t)}</b> (ver TIR)` : ''}${real ? ` · UDI ${f6.format(udi)}` : ''}</div></div>`;
       html += '</div>';
-      const pb = (teo.rendimiento - compra.rendimiento) * 100;
+      const rendHoy = capturado ? (cete ? V.rendimientoCetePorPrecio(precioHoy, teo.plazo, vn) : V.rendimientoPorPrecioSucio(precioHoy, ins.cupon, teo.plazo, vn)) : teo.rendimiento;
+      const pb = (rendHoy - compra.rendimiento) * 100;
       const txt = signo === 'par' ? `Tu precio coincide con el teórico: <b>sin plusvalía ni minusvalía</b>.`
-        : signo === 'plus' ? `<b>Plusvalía</b>: compraste a ${pct(compra.rendimiento)} y la curva valúa el título a ${pct(teo.rendimiento)} (${f0.format(Math.abs(pb))} pb ${pb < 0 ? 'menos' : 'más'}). Pagaste ${mon(compra.sucio)} por lo que hoy vale ${mon(teo.sucio)}${nCupones ? ' más los cupones cobrados' : ''}.`
-        : `<b>Minusvalía</b>: compraste a ${pct(compra.rendimiento)} y la curva valúa el título a ${pct(teo.rendimiento)} (${f0.format(Math.abs(pb))} pb ${pb < 0 ? 'menos' : 'más'}). Pagaste ${mon(compra.sucio)} por lo que hoy vale ${mon(teo.sucio)}${nCupones ? ' más los cupones cobrados' : ''}.`;
+        : signo === 'plus' ? `<b>Plusvalía</b>: compraste a ${pct(compra.rendimiento)} y hoy el título ${capturado ? 'cotiza' : 'se valúa'} a ${pct(rendHoy)} (${f0.format(Math.abs(pb))} pb ${pb < 0 ? 'menos' : 'más'}). Pagaste ${mon(compra.sucio)} por lo que hoy vale ${mon(precioHoy)}.`
+        : `<b>Minusvalía</b>: compraste a ${pct(compra.rendimiento)} y hoy el título ${capturado ? 'cotiza' : 'se valúa'} a ${pct(rendHoy)} (${f0.format(Math.abs(pb))} pb ${pb < 0 ? 'menos' : 'más'}). Pagaste ${mon(compra.sucio)} por lo que hoy vale ${mon(precioHoy)}.`;
       html += `<div class="verdict verdict--${signo}"><span class="verdict__ico">${signo === 'plus' ? '▲' : signo === 'minus' ? '▼' : '='}</span><span>${txt}<br><span style="opacity:.85">Por ${f0.format(t)} título${t === 1 ? '' : 's'}: <b>${signo === 'minus' ? 'minusvalía' : 'plusvalía'} total de ${enPesos(Math.abs(total))}</b>. Precio ${cete ? '' : 'limpio '}de equilibrio hoy: <b>${mon(teo.limpio)}</b>; por arriba hay minusvalía al comprar, por abajo plusvalía.</span></span></div>`;
     } else {
       html += '</div><p class="msg msg--err">La fecha de compra debe ser anterior o igual a la fecha de valuación y anterior al vencimiento.</p>';
     }
     $('resultado').innerHTML = html;
     $('res-sub').textContent = `Valuación al ${fechaLarga(st.fval)} con la curva de esa fecha.`;
+  }
+
+  function pintarTIR(ins, teo, compra, precioHoy, fechasCupones, real, udi, cete) {
+    const t = st.titulos || 1;
+    const u = real ? ' UDIs' : '';
+    const mon = (x, d = 6) => (real ? nf(d).format(x) + u : pesos(x, d));
+    const tot = (x) => (real ? nf(2).format(x * t) + u : pesos(x * t));
+    if (!compra) { $('tir').innerHTML = '<p class="msg">Captura una fecha y un precio de compra válidos para ver la TIR.</p>'; return; }
+    const fcompra = st.fcompra || st.fval;
+    const flujos = [{ fecha: fcompra, concepto: 'Compra (precio sucio pagado)', monto: -compra.sucio }];
+    fechasCupones.forEach((f, i) => flujos.push({ fecha: f, concepto: `Cupón ${i + 1} cobrado`, monto: teo.cupon }));
+    flujos.push({ fecha: st.fval, concepto: precioHoy !== teo.sucio ? 'Valor hoy (precio sucio de mercado capturado)' : 'Valor hoy (precio sucio teórico)', monto: precioHoy });
+    const tirPct = V.tir(flujos);
+    const diasInv = dias(fcompra, st.fval);
+    const cupones = teo.cupon * fechasCupones.length;
+    const plus = precioHoy - compra.sucio;
+    const ganancia = cupones + plus;
+    const simple = ganancia / compra.sucio * 100;
+    let h = '<div class="result">';
+    h += `<div class="tile tile--hero"><div class="tile__label">TIR anual de tu inversión</div><div class="tile__value">${tirPct == null ? '—' : pct(tirPct, 2)}</div><div class="tile__sub">${f0.format(diasInv)} días invertido${real ? ' · tasa real, en UDIs' : ''} · compraste a ${pct(compra.rendimiento, 2)}</div></div>`;
+    h += `<div class="tile"><div class="tile__label">Ganancia total · ${f0.format(t)} título${t === 1 ? '' : 's'}</div><div class="tile__value">${tot(ganancia)}</div><div class="tile__sub">Cupones cobrados <b>${tot(cupones)}</b> + ${plus < 0 ? 'minusvalía' : 'plusvalía'} <b>${tot(plus)}</b> · ${pct(simple, 2)} sobre lo pagado en ${f2.format(diasInv / 365)} años</div></div>`;
+    h += '</div>';
+    h += `<div class="table-wrap"><table><thead><tr><th>Fecha</th><th style="text-align:left">Concepto</th><th>Flujo por título</th><th>Flujo · ${f0.format(t)} título${t === 1 ? '' : 's'}</th></tr></thead><tbody>`;
+    flujos.forEach((f) => { h += `<tr><td>${fechaCorta(f.fecha)}</td><td style="text-align:left">${f.concepto}</td><td>${mon(f.monto)}</td><td>${tot(f.monto)}</td></tr>`; });
+    h += `</tbody><tfoot><tr><td colspan="2">Suma (ganancia total)</td><td>${mon(ganancia)}</td><td>${tot(ganancia)}</td></tr></tfoot></table></div>`;
+    if (fechasCupones.length) h += `<p class="msg">El próximo cupón se paga el ${fechaCorta(sumaDias(st.fval, 182 - teo.diasTranscurridos))}.</p>`;
+    $('tir').innerHTML = h;
   }
 
   function pintarGenerales(ins, teo, plazo, real, cete, vn, udi) {
@@ -568,8 +612,8 @@ code{font-family:var(--mono);font-size:13px;background:var(--line-soft);padding:
     $('fcompra').value = st.fcompra;
     try { const t = localStorage.getItem('bmxToken'); if (t) $('token').value = t; } catch (e) { /* nada */ }
 
-    $('tipo').addEventListener('change', (e) => { st.tipo = e.target.value; st.emision = 0; llenarEmisiones(); actualizarEtiquetasCompra(); calcular(); });
-    $('emision').addEventListener('change', (e) => { st.emision = +e.target.value; calcular(); });
+    $('tipo').addEventListener('change', (e) => { st.tipo = e.target.value; st.emision = 0; st.pmercado = null; $('pmercado').value = ''; llenarEmisiones(); actualizarEtiquetasCompra(); calcular(); });
+    $('emision').addEventListener('change', (e) => { st.emision = +e.target.value; st.pmercado = null; $('pmercado').value = ''; calcular(); });
     $('vence').addEventListener('change', calcular);
     $('cupon').addEventListener('input', calcular);
     $('fval').addEventListener('change', (e) => { st.fval = e.target.value; if (st.fcompra > st.fval) { st.fcompra = st.fval; $('fcompra').value = st.fval; } calcular(); });
@@ -577,6 +621,7 @@ code{font-family:var(--mono);font-size:13px;background:var(--line-soft);padding:
     $('fcompra').addEventListener('change', (e) => { st.fcompra = e.target.value || st.fval; calcular(); });
     document.querySelectorAll('input[name=modo]').forEach((r) => r.addEventListener('change', (e) => { st.modo = e.target.value; actualizarEtiquetasCompra(); calcular(); }));
     $('vcompra').addEventListener('input', (e) => { st.vcompra = parseFloat(e.target.value); if (!isNaN(st.vcompra)) calcular(); });
+    $('pmercado').addEventListener('input', (e) => { const v = parseFloat(e.target.value); st.pmercado = v > 0 ? v : null; calcular(); });
     $('btn-api').addEventListener('click', descargarSIE);
     calcular();
   }
