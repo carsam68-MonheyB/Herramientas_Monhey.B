@@ -62,9 +62,15 @@ navegador). El listado de emisiones sólo se renueva con el script.
 * **Precio teórico.** Suma de cada flujo por su factor de descuento. Precio
   limpio = sucio − cupón·d/182. El rendimiento implícito es el que reproduce ese
   precio con la fórmula de Banxico.
-* **Plusvalía / minusvalía.** Precio sucio teórico a la fecha de valuación, más
-  cupones cobrados desde la fecha de compra, menos el precio sucio pagado (a
-  partir del rendimiento o del precio limpio de compra). Los Udibonos se valúan
+* **Plusvalía / minusvalía.** Precio sucio a la fecha de valuación (el teórico, o
+  el precio de mercado capturado, por ejemplo el de Cetesdirecto) menos el precio
+  sucio pagado, sin contar los cupones ya cobrados, igual que la muestra
+  Cetesdirecto. El precio pagado se captura como rendimiento, precio limpio o
+  precio sucio en la fecha de compra.
+* **TIR de la inversión.** Flujos fechados: la compra (precio sucio pagado), cada
+  cupón cobrado en su fecha y el valor hoy. La TIR es la tasa anual que los iguala,
+  como XIRR de Excel (base 365). Se reportan además los días invertidos, los
+  cupones cobrados y la ganancia total (cupones + plusvalía). Los Udibonos se valúan
   en UDIs con la curva real y se convierten a pesos con la UDI de la fecha de
   valuación.
 
